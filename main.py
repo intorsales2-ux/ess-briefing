@@ -135,7 +135,7 @@ def main() -> None:
         import emailer
         subject = f"{cfg['email'].get('subject_prefix', '[인투알] ESS 데일리 브리핑')} {now:%m/%d}"
         summary = "\n".join(f"{i+1}. {l['head']} {l['body']}" for i, l in enumerate(data.get("three_lines", [])))
-        emailer.send_briefing(out_path.read_text(encoding="utf-8", site_url=data.get("site_url", "")), subject, summary)
+        emailer.send_briefing(out_path.read_text(encoding="utf-8"), subject, summary, site_url=data.get("site_url", ""))
 
 
 if __name__ == "__main__":
