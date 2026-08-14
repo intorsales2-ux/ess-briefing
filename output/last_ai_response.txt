@@ -1,0 +1,207 @@
+{
+ "mast": {
+  "counts": "수집 41건 → 중복(LG엔솔 해명 7건·용인시 7건) 묶음 처리 후 카드 6 · 단신 5 (신선도 72시간 이내 기사로 전 지면 충족)",
+  "notice": "3차 ESS 중앙계약시장 입찰: 공고 대기 상태 유지 — 단, '비가격 평가 강화' 논의가 새로 보도됨(8/12, 카드 승격)"
+ },
+ "three_lines": [
+  {"head": "LG엔솔 '10조 ESS 수주' 보도에 공시 해명", "body": "회사 측은 \"상당수 계약 체결, 유럽·일본 등과 추가 공급 논의 중이나 구체적 사항 미확정\"이라고 밝혔다. 대형 수주 파이프라인의 실체가 공시 레벨로 올라온 것 자체가 신호다."},
+  {"head": "삼성SDI, GM 합작 정리 → 북미 ESS로 27GWh 카드", "body": "GM 합작 재편으로 확보한 EV 캐파를 북미 ESS 증설로 돌리는 그림이 구체화. '계륵 EV 캐파가 ESS 효자'라는 평가가 복수 매체에서 동시 확인."},
+  {"head": "정책 이중 호재 — 이격거리 상한·PPA 망이용료 지원", "body": "재생에너지 이격거리 규제 상한이 국무회의 의결됐고, 기업 PPA 망이용료 지원이 중소·중견 최대 7년으로 확대. 재생에너지 확대는 곧 연계 ESS 물량이다."}
+ ],
+ "kpis": [
+  {"label": "LG엔솔 ESS 수주 보도 규모", "value": "10조원", "small": "", "note": "— 공시 해명: 추가 계약 미확정", "dir": "flat"},
+  {"label": "삼성SDI 북미 ESS 증설 카드", "value": "27GWh", "small": "", "note": "▲ GM 공장 인수로 확보", "dir": "up"},
+  {"label": "파주 공공 직접PPA 단가", "value": "−13%", "small": "vs RE100 시세", "note": "▲ 전국 첫 공공 직접PPA 가동", "dir": "up"},
+  {"label": "PPA 망이용료 지원 기간", "value": "최대 7년", "small": "중소·중견", "note": "▲ 정부 지원 확대 발표", "dir": "up"}
+ ],
+ "news_sections": [
+  {
+   "sec": "SEC 01",
+   "title": "정책 · 입찰 레이더",
+   "note": "3차 입찰은 '비가격 평가 강화' 논의로 상태 변화 → 카드 승격. 이격거리·PPA 정책은 중장기 수요 기반.",
+   "cards": [
+    {
+     "cls": "policy",
+     "tags": [{"t": "업데이트", "cls": "t-bid"}, {"t": "3차 입찰", "cls": "t-bid"}],
+     "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBtYWRISTUxQ2xmNXNxU05XR0l0SC0zb1ZraFZvWnhLX3B3RXBWdDlpalFlMVhCVzhjYmlBTWJiT2xCN0VyS1dQQjM3Q0xDN0VEbjlBT3cydVhBZ3VScUVoOA?oc=5",
+     "title": "3차 ESS 입찰, '비가격 평가 강화' 여부가 새 쟁점으로",
+     "bullets": [
+      "업데이트: 1·2차의 <b>가격 경쟁 논란</b> 속에 3차 입찰에서 <b>비가격 평가 강화</b> 여부가 쟁점으로 부상(메트로신문 8/12)",
+      "K배터리 3사 수주전이 다시 불붙을 것이란 전망 — 경쟁 구도는 한층 팽팽해질 것으로 관측(디지털데일리 8/12)",
+      "공고 자체는 아직 대기 상태 — 평가 기준 변화가 확인되는 시점이 본게임"
+     ],
+     "srcs": [
+      {"n": "메트로신문 '26.08.12", "u": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBtYWRISTUxQ2xmNXNxU05XR0l0SC0zb1ZraFZvWnhLX3B3RXBWdDlpalFlMVhCVzhjYmlBTWJiT2xCN0VyS1dQQjM3Q0xDN0VEbjlBT3cydVhBZ3VScUVoOA?oc=5"},
+      {"n": "디지털데일리 '26.08.12", "u": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE03N19HTWEyQTdaSTg4dzFfYjJ3YVJqR1lvaC1rUlA3XzVGUUthNW9IRF9ZaGdPZEZFMWNsYmp4ZzhOVl9DSUpuamlGdGJuclJkTmpOd2M5djVZMHBsbTJxYlRJTGM?oc=5"}
+     ],
+     "insight": "비가격 평가(안전·품질·국산화 등) 비중이 커질수록 최저가 셀 싸움에서 '시스템 완성도' 싸움으로 무게가 이동한다. 외함의 내화·소화 설계, 인증 서류 대응력이 수주사의 가점 요소가 되므로, 인투알은 SI·셀사에 '평가 대응 패키지'로 외함 스펙을 선제 제안할 타이밍이다.",
+     "impact_n": 4,
+     "impact_val": "4/4 직접 영향",
+     "detail": [
+      "배경: 국내 ESS 중앙계약시장은 1·2차 입찰을 거치며 '지나친 가격 경쟁'이 업계의 공통 불만으로 누적됐다. 낙찰가가 낮아질수록 셀·시스템 마진이 압축되고, 그 압박은 외함·랙 같은 후방 기자재 단가로 전이되는 구조였다. 이번 보도의 핵심은 3차 입찰을 앞두고 비가격 평가를 강화할지 여부가 공론화됐다는 점이다.",
+      "경과: 디지털데일리는 3차 입찰을 앞두고 K배터리 수주전이 다시 불붙는 분위기를 전했고, 메트로신문은 가격 경쟁 논란 속 비가격 평가 강화 여부에 업계가 촉각을 세우고 있다고 보도했다. 아직 공고·기준 확정 소식은 아니므로 '상태 변화의 예고편'으로 읽는 것이 정확하다.",
+      "인투알 액션: 비가격 평가가 강화되면 안전(소화·내화 구조), 품질(용접·도장·기밀), 납기·국내 공급망 실적 같은 항목이 점수화될 가능성이 크다. 이는 국내 제조 외함사의 상대적 강점 영역이다. 입찰 참여가 유력한 셀사·SI별로 '우리 외함이 평가표 어느 항목에서 점수를 만들어 주는가'를 1페이지로 정리한 제안서를 공고 전에 돌려야 한다. 공고 확인 즉시 카드로 재승격해 후속 보고한다."
+     ]
+    },
+    {
+     "cls": "policy",
+     "tags": [{"t": "정책", "cls": "t-kr"}, {"t": "국무회의", "cls": "t-kr"}],
+     "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1sNDhrcFJkbjFRbE03amxPUXhsbHQtRFdxaEJHcU5iZHBmUDkwZk9nUHhxREVNbkFNQUlISUlxUTJwTlB0SFY2UTY0REVoaXh1ZzdkQ2dEbXQxeFJBOGh0X2tYX1c?oc=5",
+     "title": "재생에너지 이격거리 규제에 '상한' 도입 — 국무회의 의결",
+     "bullets": [
+      "지자체별 제각각이던 재생에너지 <b>이격거리 규제에 상한</b>을 두는 안이 <b>국무회의 의결</b>(8/12)",
+      "과도한 이격거리로 막혀 있던 태양광·풍력 입지가 풀리면 신규 발전 부지가 확대되는 방향",
+      "재생에너지 신규 설치 확대 → 계통 변동성 증가 → 연계 ESS 수요로 이어지는 중기 체인"
+     ],
+     "srcs": [
+      {"n": "기후에너지경제 '26.08.12", "u": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1sNDhrcFJkbjFRbE03amxPUXhsbHQtRFdxaEJHcU5iZHBmUDkwZk9nUHhxREVNbkFNQUlISUlxUTJwTlB0SFY2UTY0REVoaXh1ZzdkQ2dEbXQxeFJBOGh0X2tYX1c?oc=5"}
+     ],
+     "insight": "이격거리 완화는 당장의 발주가 아니라 '파이프라인의 상류'를 넓히는 조치다. 태양광 부지가 늘면 2~3년 시차로 연계 ESS·변전 설비 수요가 따라온다. 인투알은 태양광 EPC사 대상 '발전소 병설형 ESS 외함' 라인업을 미리 카탈로그화해 상류 단계에서 스펙-인 해두는 전략이 유효하다.",
+     "impact_n": 2,
+     "impact_val": "2/4 중기 간접",
+     "detail": [
+      "배경: 국내 태양광·풍력 보급의 최대 병목 중 하나가 지자체 조례로 정한 이격거리 규제였다. 도로·주거지로부터의 이격 요구가 지역마다 달라 사업자가 부지를 확보하고도 인허가 단계에서 좌초되는 사례가 반복됐다. 이번 국무회의 의결은 그 규제에 전국 공통의 '상한선'을 두겠다는 것으로, 입지 규제의 예측 가능성을 높이는 조치다.",
+      "구조 읽기: 이격거리 상한 → 개발 가능 부지 확대 → 신규 재생에너지 접속 증가의 순서로 효과가 나타난다. 다만 계통 접속 용량이 병목인 지역에서는 발전소가 늘수록 출력제어 리스크가 커지고, 이는 결국 발전소 병설형 또는 계통 안정화용 ESS의 필요성을 키운다. 정책 한 줄이 ESS 수요의 상류를 넓히는 셈이다.",
+      "인투알 액션: 효과가 실물 발주로 오기까지 시차가 있으므로 지금 할 일은 두 가지다. 첫째, 태양광 EPC·디벨로퍼 고객 리스트에 이번 의결을 화두로 접촉해 병설 ESS 계획 유무를 파악한다. 둘째, 야외 설치 환경(염해·방수·방진)에 맞춘 외함 표준 사양서를 정비해 인허가 서류 단계부터 우리 스펙이 반영되게 한다."
+     ]
+    },
+    {
+     "cls": "policy",
+     "tags": [{"t": "PPA", "cls": "t-kr"}, {"t": "RE100", "cls": "t-kr"}],
+     "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFB0bFpKZTZKOVU2NTd5WEdMaW1GVlN4cjY1N1BmSXFBbDV5QkhEaXZvRmVzU0NYSThJLWFRaVFnSlB3VGxrd0tVWDVUMlNxUG9Sbnc1WlVYcHlhTUJGZDhRYU5EbnZuQXM0Zmc?oc=5",
+     "title": "정부, 기업 PPA 망이용료 지원 확대 — 중소·중견 최대 7년",
+     "bullets": [
+      "기업 재생에너지 PPA의 <b>망이용료 지원</b>을 확대, 중소·중견기업은 <b>최대 7년</b>간 지원(8/12)",
+      "PPA의 최대 진입장벽인 부대비용 부담을 낮춰 기업 RE100 조달 확대를 유도",
+      "같은 날 파주시는 전국 첫 '공공 재생에너지 직접PPA'를 가동 — RE100 시세 대비 <b>13%</b> 낮은 단가(단신 참조)"
+     ],
+     "srcs": [
+      {"n": "AI타임스 '26.08.12", "u": "https://news.google.com/rss/articles/CBMiakFVX3lxTFB0bFpKZTZKOVU2NTd5WEdMaW1GVlN4cjY1N1BmSXFBbDV5QkhEaXZvRmVzU0NYSThJLWFRaVFnSlB3VGxrd0tVWDVUMlNxUG9Sbnc1WlVYcHlhTUJGZDhRYU5EbnZuQXM0Zmc?oc=5"}
+     ],
+     "insight": "PPA 활성화는 재생에너지 발전소 착공을 앞당기고, 24시간 조업하는 수요기업일수록 '간헐성 보정용 ESS'가 계약 구조에 붙기 쉽다. 인투알은 PPA 중개사·수요기업 에너지팀을 대상으로 공장 부지 내 설치형 ESS 외함(옥외 컨테이너형) 레퍼런스를 준비할 시점이다.",
+     "impact_n": 2,
+     "impact_val": "2/4 중기 간접",
+     "detail": [
+      "배경: 기업 PPA는 RE100 이행의 핵심 수단이지만, 전기요금 외에 망이용료·부가정산금 같은 부대비용이 붙어 '한전 요금보다 비싸다'는 인식이 확산을 막아 왔다. 정부가 망이용료 지원을 확대하고 중소·중견기업에 최대 7년의 지원 기간을 부여한 것은 이 장벽을 직접 겨냥한 조치다.",
+      "함께 볼 뉴스: 파주시가 전국 최초로 공공 재생에너지 직접PPA를 가동하며 RE100 시세 대비 13% 낮은 단가로 지역기업에 전력을 공급하기 시작했다(전기신문·에너지경제 8/12). 중앙정부의 비용 지원과 지자체의 공공 PPA 모델이 같은 주에 등장한 것은, PPA 시장이 '제도 정비기'에서 '실행기'로 넘어가고 있다는 신호다.",
+      "인투알 액션: PPA 계약이 늘수록 수요기업은 피크 관리·간헐성 보정을 위한 BTM(수용가측) ESS를 검토하게 된다. BTM용은 공장 부지 내 설치가 많아 소방·이격 규정과 외함 안전 설계가 곧 영업 포인트다. 파주 모델이 타 지자체로 확산되는지 추적하고, 지자체·산단 대상 'PPA+ESS 패키지' 제안서에 우리 외함 사양을 끼워 넣는다."
+     ]
+    }
+   ]
+  },
+  {
+   "sec": "SEC 02",
+   "title": "국내 산업 · 발주처 동향",
+   "note": "셀 3사의 ESS 피벗이 공시·설비 레벨로 구체화 — 외함·랙 후방 수요의 선행 지표.",
+   "cards": [
+    {
+     "cls": "kr",
+     "tags": [{"t": "공시", "cls": "t-kr"}, {"t": "LG엔솔", "cls": "t-kr"}],
+     "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTFB4OTM3bnZPUHh0dUt4aFVrQWlKUGVPMEpRQzJxb1lPN1lOTlFISnltRnNDMlljM0hMWDJzckREQU1OaWd3RlE?oc=5",
+     "title": "LG엔솔, 'ESS 10조 수주' 보도에 공시 해명 — \"유럽·일본과 추가 공급 논의 중\"",
+     "bullets": [
+      "<b>10조원</b> 규모 ESS 수주 보도에 대해 회사가 공시로 해명 — \"<b>상당수 계약 체결</b>, 유럽·일본 등과 추가 공급 논의 중\"(8/12)",
+      "재해명에서는 \"추가 계약의 구체적 사항은 미확정\"이라고 선을 그음(CBC뉴스 8/12)",
+      "규모·시점은 미확정이나, 조 단위 ESS 파이프라인의 존재가 공시 레벨에서 확인된 것이 포인트"
+     ],
+     "srcs": [
+      {"n": "다음(연합보도) '26.08.12", "u": "https://news.google.com/rss/articles/CBMiRkFVX3lxTFB4OTM3bnZPUHh0dUt4aFVrQWlKUGVPMEpRQzJxb1lPN1lOTlFISnltRnNDMlljM0hMWDJzckREQU1OaWd3RlE?oc=5"},
+      {"n": "CBC뉴스 '26.08.12", "u": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5vcm95UW91aHVwdVZCOFhFdkJweEFaRngyS0x2TS1qUXNlNWRXcm9DdlFjbkFKZnRvek55NGJjQnZ5VVJXcm9BdUpnNzR4R0g0eE9sSjRndENaV0V2cm03dUFKbHFNeGtu?oc=5"}
+     ],
+     "insight": "10조 수주가 확정 공시로 오면 셀 이후 공정 — 모듈·랙·컨테이너 외주 물량이 시차를 두고 풀린다. 유럽·일본향이라면 CE·현지 규격 대응 외함이 필요하다는 뜻. 인투알은 LG엔솔 ESS사업부·협력사 등록 상태를 재점검하고, 수출 규격 대응 실적을 정리해 둬야 한다.",
+     "impact_n": 3,
+     "impact_val": "3/4 수주 선행 신호",
+     "detail": [
+      "배경: 8월 12일 'LG에너지솔루션이 약 10조원 규모의 ESS 물량을 수주했다'는 보도가 나오자 회사가 조회공시성 해명을 냈다. 해명 요지는 '상당수 계약은 체결됐고, 유럽·일본 등과 추가 공급을 논의 중이나 구체적 사항은 확정되지 않았다'는 것이다. 부인이 아니라 '진행 중' 확인이라는 점이 중요하다.",
+      "숫자 읽기: 10조원이라는 숫자 자체는 아직 회사가 확정한 것이 아니다. 다만 '상당수 계약 체결'이라는 공시 문구는 조 단위 파이프라인이 실재함을 시사하며, 지역으로 유럽·일본이 명시된 점은 북미 편중이던 K배터리 ESS 수주 지도가 다변화되고 있음을 보여준다. 지역 다변화는 외함 입장에서 규격 다변화(CE, 일본 현지 소방 규정 등)를 의미한다.",
+      "인투알 액션: 첫째, LG엔솔 ESS 밸류체인 내 우리 등록 상태·기존 거래선 경유 경로를 이번 주 내 점검한다. 둘째, 유럽·일본향 수출 외함에 요구되는 인증·규격(CE 적합성, 현지 운송 규격) 대응 현황을 표로 정리해 제안 자료에 반영한다. 확정 공시가 나오는 시점이 영업 접촉의 골든타임이므로 공시 모니터링을 일일 루틴에 넣는다."
+     ]
+    },
+    {
+     "cls": "kr",
+     "tags": [{"t": "삼성SDI", "cls": "t-kr"}, {"t": "북미 ESS", "cls": "t-gl"}],
+     "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9pZ0E1ZUZkVmYyaTdSbUlrbVhpVlJjdnVYcGdBVWRDLXRyeDlMVFY1Zk1PZWhQeFhScFBuTkJYQlhUMExhbWhrQTFrZWV2VVpFTlVJWE5xS1M3Rm1YWEt1MnBBTXdJLWxSbmVkSU5n?oc=5",
+     "title": "삼성SDI, GM 합작 정리 — 美 공장 품고 북미 ESS <b>27GWh</b> 증설 카드 확보",
+     "bullets": [
+      "GM과의 합작 재편으로 미국 공장을 확보, 북미 ESS <b>27GWh</b> 증설 카드를 쥐게 됐다는 분석(서울이코노미 8/12)",
+      "시장 일각의 'GM 결별' 우려에 대해 '완벽한 오해, ESS 기회'라는 반론 보도(리드경제 8/12) — 하나증권도 '미국 공장의 ESS 재편'으로 해석",
+      "EV에서 남는 캐파를 ESS로 전환하는 3사 공통 흐름 속 가장 구체적인 설비 이벤트"
+     ],
+     "srcs": [
+      {"n": "서울이코노미뉴스 '26.08.12", "u": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9pZ0E1ZUZkVmYyaTdSbUlrbVhpVlJjdnVYcGdBVWRDLXRyeDlMVFY1Zk1PZWhQeFhScFBuTkJYQlhUMExhbWhrQTFrZWV2VVpFTlVJWE5xS1M3Rm1YWEt1MnBBTXdJLWxSbmVkSU5n?oc=5"},
+      {"n": "뉴스핌 '26.08.12", "u": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE94Z25zVE5tZjA4TXkxNXU5eDRYN1gzUXJpZ0xmcDdxemF6d0pwMk9fMVN0QWZ0RWN2TjctQ29hRWttWXlzbjl3c0dBNndvS25uOW9MSmhOTERUOFhj?oc=5"},
+      {"n": "리드경제 '26.08.12", "u": "https://news.google.com/rss/articles/CBMib0FVX3lxTFA2WnN3Q2lfZFpSMFpnQVhGV003eGtNc3k5YjJNaDE2eVh0QVFHUmljS2F0NGZjeXNZaGNZeDNKYlRWcEFseEREbWJhMjljN21rcUlna3RLa3otOVNvQUJaODBmNjhXZnlPOVE3RmFHMA?oc=5"}
+     ],
+     "insight": "27GWh급 셀 캐파가 ESS로 돌면, GWh당 수백 대 단위의 컨테이너·랙 수요가 후행한다. 북미 현지 조달 요건상 외함은 현지 또는 관세 대응 가능한 공급선이 유리하지만, 국내 마더팩토리향 시제·표준기 물량과 국내 협력사 경유 수출 물량은 인투알의 접점이다. SDI ESS 구매라인 접촉을 우선순위로 올린다.",
+     "impact_n": 3,
+     "impact_val": "3/4 수주 선행 신호",
+     "detail": [
+      "배경: 삼성SDI와 GM의 배터리 합작 재편 소식이 12일 집중 보도됐다. 표면적으로는 'EV 합작 축소'지만, 복수 매체와 하나증권 분석은 이를 '미국 공장의 ESS 전환 기회'로 해석했다. EV 캐즘으로 놀게 된 캐파를 폭증하는 북미 ESS 수요로 돌리는, 3사 공통의 피벗이 삼성SDI에서 설비 이벤트로 구체화된 것이다.",
+      "숫자 분해: 서울이코노미뉴스는 이번 재편으로 삼성SDI가 북미 ESS 27GWh 증설 카드를 확보했다고 짚었다. GWh 단위 셀 캐파는 그대로 시스템(컨테이너) 물량으로 환산된다 — 컨테이너 1대당 수 MWh급이 일반적임을 감안하면 27GWh는 수천 대 규모의 인클로저 수요에 대응하는 상류 캐파다. 물론 전량이 즉시 전환되는 것은 아니고, 고객 수주·라인 개조 일정에 따라 단계적으로 현실화된다.",
+      "경쟁 구도: 뉴스1·비즈니스포스트는 GM의 전기차·ESS 전략 재편 속에서 LG엔솔의 역할 확대, 삼성SDI의 EV 축소·ESS 확대라는 역할 분담을 전했다. 3사가 모두 북미 ESS로 향하는 만큼, 시스템 조립·인클로저 공급망의 병목이 오히려 기회가 된다.",
+      "인투알 액션: 삼성SDI ESS 시스템 부문의 외주 구조(자체 조립 vs 외주 인클로저)를 파악하는 것이 1순위. 국내 파일럿·표준기 물량, 울산·현지 이원화 시 국내 담당 물량을 타깃으로 벤더 등록과 견적 실적을 만들어 둔다."
+     ]
+    }
+   ]
+  },
+  {
+   "sec": "SEC 03",
+   "title": "글로벌 · 수요 트렌드",
+   "note": "북미 ESS 수요의 '속도'가 상향 — AI 데이터센터가 배후 수요로 재확인.",
+   "cards": [
+    {
+     "cls": "gl",
+     "tags": [{"t": "북미", "cls": "t-gl"}, {"t": "수요 전망", "cls": "t-gl"}],
+     "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOWFN5bzhDWjVuRHVpaFVLWmZqTmJYMVFxMXdCbG1KelN6azY5bnhBQ2ZpaDNZS3hnS2tHQ2dLY1lzQ2tCcnQ5LW1XQ0pJNEEzWEplTGhuRXdmU3JqdnNSUERSWjd1NlZLNHM4UVJrMWxhRk9BT2wwRFFWUmVNUXBYbw?oc=5",
+     "title": "\"북미 ESS 수요, 예상보다 빠르다 — 내후년이 더 기대\"",
+     "bullets": [
+      "이차전지 업종 분석에서 <b>북미 ESS 수요가 예상보다 빠르게</b> 올라오고 있으며 <b>내후년(2028년)이 더 기대</b>된다는 진단(이데일리 8/12)",
+      "'계륵'이던 EV 캐파가 북미 ESS의 효자가 됐다는 평가가 동시 보도(브릿지경제 8/12)",
+      "배터리 3사 모두 AI 데이터센터발 ESS를 새 성장축으로 지목(테크월드 8/13)"
+     ],
+     "srcs": [
+      {"n": "이데일리 '26.08.12", "u": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOWFN5bzhDWjVuRHVpaFVLWmZqTmJYMVFxMXdCbG1KelN6azY5bnhBQ2ZpaDNZS3hnS2tHQ2dLY1lzQ2tCcnQ5LW1XQ0pJNEEzWEplTGhuRXdmU3JqdnNSUERSWjd1NlZLNHM4UVJrMWxhRk9BT2wwRFFWUmVNUXBYbw?oc=5"},
+      {"n": "브릿지경제 '26.08.12", "u": "https://news.google.com/rss/articles/CBMieEFVX3lxTE82ejVnODFzM1g3TERpS3V3cEU4SkJJTHpQalA1RS1XajJmR01xUTd3VUxRYXJkakNEbmEzLVFQNDNPMHZQNHpnVjlCbm1MYWVmd0hWUm01OW84VzJlUzB3RjRoc3l3RGpQSTN4TVpvSWtYZjdHNEdtag?oc=5"}
+     ],
+     "insight": "수요의 '레벨'이 아니라 '속도'가 상향된 것이 이번 보도의 핵심이다. 셀 증설보다 시스템 조립·인클로저 공급망이 늦게 깔리는 업계 특성상, 수요 가속 국면에서는 외함·랙이 병목이 되기 쉽다. 인투알은 2027~28년 공급 슬롯을 무기로 한 선제 영업(장기 캐파 예약 제안)을 검토할 만하다.",
+     "impact_n": 3,
+     "impact_val": "3/4 중기 수요 상향",
+     "detail": [
+      "배경: 12~13일 사이 증권가·산업지에서 북미 ESS 수요에 대한 긍정 전망이 동시다발로 나왔다. 이데일리는 북미 ESS 수요가 예상보다 빠르며 내후년이 더 기대된다는 업종 진단을 전했고, 브릿지경제는 EV 캐즘으로 계륵이 된 캐파가 북미 ESS의 효자가 됐다고 평가했다. 테크월드(13일)는 배터리 3사가 EV를 넘어 ESS, 특히 AI 데이터센터를 새 성장축으로 삼고 있다고 정리했다.",
+      "구조 읽기: 수요 가속의 배후는 AI 데이터센터의 전력 수요다. 데이터센터는 계통 접속 지연을 ESS로 우회하려는 유인이 강하고, 이 수요는 경기 변동보다 AI 투자 사이클을 따른다. 셀 3사의 북미 캐파 전환(삼성SDI 27GWh 카드, LG엔솔 수주 파이프라인)은 이 수요 전망을 전제로 한 움직임이다.",
+      "인투알 액션: 수요 가속 국면의 병목은 대개 셀이 아니라 시스템 조립과 인클로저다. 2027~28년 납품 슬롯을 선점하려는 고객에게 '캐파 예약형' 장기 공급 제안을 준비하고, 데이터센터향 ESS의 특수 요구(방화 구획, 설치 공간 제약, 소음)를 반영한 외함 옵션 시트를 영업 자료에 추가한다."
+     ]
+    }
+   ]
+  }
+ ],
+ "briefs": [
+  {"cat": "PPA", "txt": "파주시, 전국 첫 '공공 재생에너지 직접PPA' 가동 — 공공 태양광 전력을 지역기업에 RE100 시세보다 13% 낮게 공급. 지자체 RE100 지원의 새 모델.", "name": "에너지경제신문 8/12", "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBqUG9oSW9iOXVZenM3SlpldmprckNIS0c1dl81SXRpSk9yY0wxVlpTcF9qVlFDN2hfdlMwZXVxZGlyem5GR08xOVRDTExBYkFNYjFWX2w0VkxUOHc?oc=5"},
+  {"cat": "수요", "txt": "배터리 3사, EV 넘어 ESS로 — AI 데이터센터가 새 성장축이라는 업계 정리 기사. 3사 공통 피벗의 배후 수요 재확인.", "name": "테크월드 8/13", "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE51OXgxbC1MNVRCTkJRT2xPUnNWWi1WQllzeEpKa2M4RENxUnFacUVmYVZlYjhVSjB1N19vR3hTeW9XUUkwTDg1Y1BnR2tEMFhwY21tOG13aFRfMl96SlEwRUR0Ml9kMUVh?oc=5"},
+  {"cat": "지자체", "txt": "용인시, 기후에너지환경부 '2027년 재생에너지보급사업' 공모 4년 연속 최우수 — 국비 최고 지원율 적용. 지자체 보급 예산 확대 흐름 참고.", "name": "아시아경제 8/12", "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5xMlhseDg5dHZzb3JZMmpfVjNZOTgxaUlHN0RhdXNyVkdHM1pPSTBYbVVoT1p4eWVFTmg0bXlaR042SXQtZmM5UHhmSUljOUZrMjJacW9LREtFUHlwa2pwTw?oc=5"},
+  {"cat": "기업", "txt": "그리드위즈, 전기차·전력망을 잇는 사업 구조 속 ESS 수주 모멘텀 부각 — 국내 SI·어그리게이터의 ESS 발주 동향 체크 대상.", "name": "핀포인트뉴스 8/12", "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBnaDN5RUx5Uk93eFItbXVFV2l1c0RhckZPZGIzcHpQLVJJemVrN3hHbzlFX19qV3k5MFAwTDBrUnpBMG5IeEZhZzlEeFZJMU5CRWJyd25icGNRZWYtZEhPNkFkd2JaZDdpdlI1MktfXzA1bzTSAXdBVV95cUxNUl9tR0ZqNWc0NDZnMV9lQzhnUGVQLTUxTTk1a1c1M2VNYmZDUG13WHF2NDhrc0g1emtncEtSeEN5OHVrNEVZOUhFRUF2VWFwQnVBZnlrMmw2RGtiWXp2RXZOd0oxYzRRUEdESGt4YTdDOWlIVmN1Yw?oc=5"},
+  {"cat": "R&D", "txt": "정부, SMR·핵융합·차세대 재생에너지 등 미래 에너지기술 'SEED' 육성 계획 — 중장기 기술 로드맵 차원의 참고 정보.", "name": "에너지신문 8/12", "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1NMGlsQnI0UTFBck03NFo3azkyemozQ2VncnBSZGpYclBWc21nc3JoRU82Z0pkZk9EbE9zLS1sM0o2S3l5N2RHSEhQUTRfYmJ2aHllUXVGcXZ0LXg2QkFxU19xeU84bVNVd0hEei1LdHI?oc=5"}
+ ],
+ "radar_note": "레이더: 지표① 3차 ESS 입찰 공고·비가격 평가 기준 확정 여부 — 확인 즉시 카드 승격. 지표② LG엔솔 ESS 추가 계약 확정 공시. 지표③ 삼성SDI 미국 공장 ESS 라인 전환 일정 공식화. 지표④ 파주형 공공 직접PPA의 타 지자체 확산.",
+ "todos": [
+  {"prio": "P1 긴급", "cls": "p1", "title": "3차 입찰 '비가격 평가' 대비 패키지 준비", "body": "안전(내화·소화 설계), 품질(용접·도장·기밀 시험 성적), 국내 공급 실적을 1페이지 평가대응 자료로 정리해 입찰 참여 유력 셀사·SI에 공고 전 선배포.", "owner": "영업1팀 / 금주 내"},
+  {"prio": "P1 긴급", "cls": "p1", "title": "LG엔솔·삼성SDI ESS 구매라인 접촉 재개", "body": "10조 파이프라인 공시 해명(LG)·27GWh 전환 카드(SDI)를 계기로 벤더 등록 상태 점검, 유럽·일본향 규격(CE 등) 대응 실적표 첨부해 미팅 요청.", "owner": "영업2팀 / 8/14까지 접촉 로그 보고"},
+  {"prio": "P2 중요", "cls": "p2", "title": "북미향 2027~28년 캐파 예약 제안서 초안", "body": "북미 ESS 수요 가속 전망(이데일리 8/12)을 근거로 장기 공급 슬롯 예약형 제안 프레임 작성 — 인클로저 병목 논리 포함.", "owner": "영업기획 / 다음 주 초안"},
+  {"prio": "P2 중요", "cls": "p2", "title": "지자체 PPA+ESS 연계 영업 준비", "body": "파주 공공 직접PPA 모델(−13%)의 확산 여부 추적, 산단·지자체 대상 BTM ESS 외함 표준 사양서 정비.", "owner": "영업1팀 / 상시 모니터링"},
+  {"prio": "P3 관리", "cls": "p3", "title": "이격거리 상한 의결 후속 수요 전망 업데이트", "body": "태양광 EPC 고객 리스트에 병설 ESS 계획 유무 문의, 옥외 설치형(염해·방수) 외함 카탈로그 최신화.", "owner": "영업기획 / 8월 내"}
+ ],
+ "comment": "오늘 지면의 공통 문법은 'EV의 유휴가 ESS의 성장'이라는 전환이다. LG엔솔은 공시 레벨에서 조 단위 파이프라인을 확인시켰고, 삼성SDI는 GM 재편으로 27GWh라는 설비 카드를 쥐었으며, 증권가는 북미 수요의 속도 자체를 상향했다. 여기에 이격거리 상한·PPA 망이용료 지원이라는 국내 정책 두 건이 같은 날 얹혔다. 외함·랙 제조사 입장에서 중요한 것은 이 뉴스들이 전부 '셀 상류'의 움직임이라는 점이다. 셀이 움직이고 3~6개월 뒤 시스템·인클로저 발주가 따라오는 것이 이 산업의 시차 구조이므로, 지금은 계약이 아니라 '자리'를 잡는 시기다. 3차 입찰의 비가격 평가 논의는 그 자리싸움에서 국내 제조 외함사의 상대 가치를 올려줄 수 있는 변수인 만큼, 공고 확정 전 선제 대응을 최우선 과제로 둔다. 과장 없이, 접촉 로그와 등록 상태라는 실무 지표로 진도를 관리하자.",
+ "spot_note": "최근 3개 롤링(전문 그대로 · 새 글 왼쪽) — #012 선정 이유: 삼성SDI GM 재편·LG엔솔 10조 해명·북미 수요 가속 보도가 같은 주에 겹쳤다. 개별 뉴스가 아니라 'EV 캐파→ESS 전환'이라는 하나의 구조로 묶어 읽어야 후방 기자재의 발주 시차를 계산할 수 있어 스포트라이트로 승격.",
+ "new_spot": {
+  "no": 12,
+  "tags": [{"t": "스포트라이트", "cls": "t-gl"}, {"t": "구조 분석", "cls": "t-gl"}],
+  "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9seXpiSlByM2dFd3dpT1p2bFZpaGtERFdiV2JLOHNtRW9ua3VCWE1rS0NiTWdJaWFubERrS0NSRElNaEhTdng5NFRVZ3p0SVZORWd1ZzM2SVM5S0hXWmV1eEhJZWjSAWpBVV95cUxNTU9CdXVFUi1OOEwtSTEyWDFFMzZpbXBwMkhyTk1RdlppWmkxM2d4aVZvNUFsNElwNDE1SkZocC1JejRXWHFLUEY4SF96bTNfNXY1cUFkTHNjX0hlQnhxcENvWWw1LWJGNm9B?oc=5",
+  "title": "SPOT #012 · EV 캐파의 ESS 전환 — '계륵'이 자산으로 바뀌는 시차 구조",
+  "bullets": [
+   "기준일 8/12~13: 삼성SDI는 GM 재편으로 <b>27GWh</b> 증설 카드, LG엔솔은 <b>10조</b> 수주 보도에 '상당수 계약 체결' 공시, 증권가는 북미 수요 '예상보다 빠름'으로 상향",
+   "구조: EV 캐즘으로 유휴화된 셀 캐파가 ESS로 전환 → 셀 전환은 즉시, 시스템(모듈·랙·컨테이너) 공급망 구축은 <b>후행</b> — 이 시차가 후방 기자재의 기회 창",
+   "시사점: 수요 가속 국면에서 병목은 셀이 아니라 조립·인클로저 캐파로 이동한다"
+  ],
+  "srcs": [
+   {"n": "뉴스1 '26.08.12", "u": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9seXpiSlByM2dFd3dpT1p2bFZpaGtERFdiV2JLOHNtRW9ua3VCWE1rS0NiTWdJaWFubERrS0NSRElNaEhTdng5NFRVZ3p0SVZORWd1ZzM2SVM5S0hXWmV1eEhJZWjSAWpBVV95cUxNTU9CdXVFUi1OOEwtSTEyWDFFMzZpbXBwMkhyTk1RdlppWmkxM2d4aVZvNUFsNElwNDE1SkZocC1JejRXWHFLUEY4SF96bTNfNXY1cUFkTHNjX0hlQnhxcENvWWw1LWJGNm9B?oc=5"},
+   {"n": "서울이코노미뉴스 '26.08.12", "u": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9pZ0E1ZUZkVmYyaTdSbUlrbVhpVlJjdnVYcGdBVWRDLXRyeDlMVFY1Zk1PZWhQeFhScFBuTkJYQlhUMEx

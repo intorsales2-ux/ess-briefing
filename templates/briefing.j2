@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>인투알 ESS 데일리 브리핑 · {{ date_short }}</title>
+{{ style_block }}
+</head>
+<body>
+<div class="wrap">
+
+  <header class="mast">
+    <div class="mast-top">
+      <div class="brandline">
+        <img class="logo" src="{{ logo_b64 }}" alt="인투알 로고">
+        <div class="brand-divider"></div>
+        <div>
+          <div class="eyebrow"><span class="live"></span>ESS MARKET INTELLIGENCE · DAILY</div>
+          <h1>ESS 시황 데일리 브리핑</h1>
+          <div class="sub">2차전지 외함(컨테이너·랙) 사업 관점의 시장·입찰·업계 동향 리포트</div>
+        </div>
+      </div>
+      <div class="issue">
+        <b>{{ issue_no }}</b><br>
+        발행 {{ date_str }}<br>
+        수신 대표이사 · 영업/전략 임원<br>
+        발신 영업팀
+      </div>
+    </div>
+    <div class="mast-meta">
+      <span>수집 범위 <b>{{ mast.range }}</b></span>
+      <span>{{ mast.counts }}</span>
+      <span>{{ mast.notice }}</span>
+      <span>다음 발행 <b>{{ next_issue }}</b></span>
+    </div>
+  </header>
+
+  <section class="brief">
+    <h2>TODAY IN 3 LINES · 오늘의 3줄 요약</h2>
+    <ol>
+    {% for l in three_lines %}
+      <li><span class="n">{{ loop.index }}</span><div><b>{{ l.head }}</b> {{ l.body }}</div></li>
+    {% endfor %}
+    </ol>
+  </section>
+
+  <section class="kpis">
+  {% for k in kpis %}
+    <div class="kpi">
+      <div class="k-label">{{ k.label }}</div>
+      <div class="k-value">{{ k.value }}{% if k.small %}<small>{{ k.small }}</small>{% endif %}</div>
+      <div class="k-note {{ k.dir }}">{{ k.note }}</div>
+    </div>
+  {% endfor %}
+  </section>
+
+{% macro card(c) %}
+    <article class="card {{ c.cls }}">
+      <div class="tags">{% for t in c.tags %}<span class="tag {{ t.cls }}">{{ t.t }}</span>{% endfor %}</div>
+      {% if c.url %}
+      <a class="hl" href="{{ c.url }}" target="_blank" rel="noopener noreferrer" title="원문 보기">
+        <h3>{{ c.title }}<span class="ext">↗</span></h3>
+      </a>
+      {% else %}
+      <h3 style="margin:2px 0 10px; font-size:16.5px; line-height:1.45;">{{ c.title }}</h3>
+      {% endif %}
+      <ul class="summary">
+      {% for b in c.bullets %}
+        <li>{{ b }}</li>
+      {% endfor %}
+      </ul>
+      <div class="src">출처 {% for s in c.srcs %}<a href="{{ s.u }}" target="_blank" rel="noopener noreferrer">{{ s.n }}</a>{% if not loop.last %} · {% endif %}{% endfor %}</div>
+      <div class="insight"><b>{{ c.ilabel or '인투알 시사점' }}</b> — {{ c.insight }}</div>
+      <div class="impact">
+        <span class="lab">인투알 영향도</span>
+        <span class="soc">{% for i in range(4) %}<i class="{{ 'on' if i < c.impact_n else '' }}"></i>{% endfor %}<span class="cap"></span></span>
+        <span class="val">{{ c.impact_val }}</span>
+      </div>
+      {% if c.detail %}
+      <div class="art-detail" style="display:none">{% for pg in c.detail %}<p>{{ pg }}</p>{% endfor %}</div>
+      {% endif %}
+    </article>
+{% endmacro %}
+
+{% for sec in news_sections %}
+  <div class="plate">
+    <span class="sec">{{ sec.sec }}</span>
+    <h2>{{ sec.title }}</h2>
+    <span class="plate-note">{{ sec.note }}</span>
+  </div>
+  {% if sec.cards %}
+  <section class="cards">
+{% for c in sec.cards %}{{ card(c) }}{% endfor %}
+  </section>
+  {% endif %}
+{% endfor %}
+
+{% if briefs %}
+  <div class="plate">
+    <span class="sec">SEC 04</span>
+    <h2>오늘의 단신 — 한 줄 브리프</h2>
+    <span class="plate-note">카드 미만 · 알아둘 소식 (출처 링크)</span>
+  </div>
+  <section class="board">
+    <table>
+      <thead><tr><th>구분</th><th colspan="2">단신</th><th>출처</th></tr></thead>
+      <tbody>
+      {% for b in briefs %}
+        <tr><td><span class="co-name">{{ b.cat }}</span></td><td colspan="2">{{ b.txt }}</td><td><a href="{{ b.url }}" target="_blank" rel="noopener noreferrer">{{ b.name }}</a></td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </section>
+{% endif %}
+
+{% if calendar %}
+  <section class="board">
+    <table>
+      <thead><tr><th>일자</th><th colspan="2">{{ calendar.title }}</th><th>비고</th></tr></thead>
+      <tbody>
+      {% for r in calendar.rows %}
+        <tr><td><span class="co-name">{{ r.d }}</span></td><td colspan="2">{{ r.txt }}</td><td>{{ r.note }}</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </section>
+{% endif %}
+
+  <div class="plate">
+    <span class="sec">SEC 05</span>
+    <h2>To-Do &amp; 전략 제언</h2>
+    <span class="plate-note">{{ radar_note }}</span>
+  </div>
+  <section class="todo">
+  {% for t in todos %}
+    <div class="todo-item">
+      <span class="prio {{ t.cls }}">{{ t.prio }}</span>
+      <div class="t-body"><b>{{ t.title }}</b><p>{{ t.body }}</p></div>
+      <span class="owner">{{ t.owner }}</span>
+    </div>
+  {% endfor %}
+  </section>
+
+  <div class="comment">
+    <h3>STRATEGY COMMENT · {{ comment_title or '오늘의 전략 코멘트' }}</h3>
+    {{ comment }}
+  </div>
+
+  
+
+  <div class="plate">
+    <span class="sec">SEC 06</span>
+    <h2>에디터 스포트라이트 — 오늘의 짚어볼 것</h2>
+    <span class="plate-note">{{ spot_note }}</span>
+  </div>
+  <section class="cards">
+{{ spot_cards_html }}
+  </section>
+
+  <div class="plate">
+    <span class="sec">SEC 07</span>
+    <h2>오늘의 ESS 지식 — 하루 한 장</h2>
+    <span class="plate-note">{{ know_note }}</span>
+  </div>
+  <section class="cards">
+{{ know_cards_html }}
+  </section>
+
+  <div class="plate">
+    <span class="sec">SEC 08</span>
+    <h2>주가 · 공시 보드</h2>
+    <span class="plate-note">종가 및 전일·전월·전년 대비 — 발행 시세 스크립트 기입(<!--STAMP-->기입 전<!--/STAMP-->) · 오른쪽 열은 확인된 주요 기사·공시(클릭 시 원문 이동)</span>
+  </div>
+  <section class="board">
+    <table>
+      <thead><tr><th>기업</th><th>종가</th><th>전일比</th><th>전월比</th><th>전년比</th><th>주요 기사 · 공시</th></tr></thead>
+      <tbody>
+{{ board_rows_html }}
+      </tbody>
+    </table>
+  </section>
+
+  <div class="plate" id="cmt-plate">
+    <span class="sec">SEC 09</span>
+    <h2>READER&#39;S COMMENTS · 독자 댓글</h2>
+    <span class="plate-note">로그인 없이 누구나 — 비밀번호는 본인 댓글의 수정·삭제에만 사용됩니다</span>
+  </div>
+  <section class="cmt-wrap" id="cmt-root">
+    <div id="cmt-list"><div class="cmt-empty">댓글을 불러오는 중…</div></div>
+    <div class="cmt-form">
+      <input type="text" id="cmt-name" maxlength="20" placeholder="이름 (선택)">
+      <input type="password" id="cmt-pw" maxlength="30" placeholder="비밀번호 (수정·삭제용)">
+      <textarea id="cmt-text" maxlength="500" placeholder="댓글 내용"></textarea>
+      <button id="cmt-submit" type="button">등록</button>
+      <input type="text" id="cmt-hp" class="hp" tabindex="-1" autocomplete="off">
+      <div class="cmt-note">등록 즉시 모든 독자에게 표시됩니다 · 관리자는 댓글 시트에서 전체 관리할 수 있습니다</div>
+    </div>
+  </section>
+
+  <p class="foot-note">
+    <b>보고서 도구 사용법:</b> 기사 제목 왼쪽의 네모를 체크하면 오른쪽 아래에 <b>보고서 버튼</b>이 나타납니다 — 누르면 선택 기사만 담긴 보고서 창이 열리고, 창 안의 &#39;인쇄 / PDF 저장&#39;으로 파일화하세요. (도구는 브라우저 열람 전용 · 팝업 차단 시 허용 필요)<br>
+    <b>모니터링 소스:</b> 전력거래소 공지 · 기후에너지환경부 · 나라장터(g2b) · KIND/DART 공시 · 전기신문 · 디일렉 · Energy-Storage.News 등<br>
+    본 리포트는 공개 기사·공고를 수집·요약한 내부 참고 자료입니다. 원문 확인을 권장하며, 투자 판단의 근거로 사용할 수 없습니다. 주가 보드의 종가·등락은 발행 시세 스크립트(stock_board.py)가 확정 종가로 계산해 기입하며, &#39;—&#39;는 기입 전 상태입니다. 추정·임의 시세는 전 판형 금지. © 인투알 영업팀, 내부용
+  </p>
+
+</div>
+{{ report_tool }}
+</body>
+</html>

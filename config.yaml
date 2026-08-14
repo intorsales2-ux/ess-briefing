@@ -1,0 +1,69 @@
+# ─────────────────────────────────────────────────────────
+# 인투알 ESS 데일리 브리핑 — 설정 파일
+# 키워드·수신 지표·모니터링 종목은 여기서만 수정하면 됩니다.
+# ─────────────────────────────────────────────────────────
+
+report:
+  max_cards_per_section: 3        # 섹션당 카드 수
+
+news:
+  lookback_hours: 72              # 최근 N시간 기사만 수집 (72시간 = 3일). — 에디터 v2 신선도 원칙
+                                  #   월요일 실행 시 main.py가 자동으로 96시간(금~일 포함)으로 늘립니다.
+                                  #   과거처럼 넓게 훑고 싶으면 720(30일)으로 되돌리면 됩니다.
+  max_age_days_hard_limit: 45     # 이 일수보다 오래된 기사는 무조건 제외(안전장치)
+  google_news_queries:            # Google 뉴스 RSS 검색어 (자유롭게 추가/삭제)
+    - ESS 중앙계약시장
+    - 에너지저장장치 입찰
+    - ESS 수주
+    - 재생에너지 정책
+    - RE100 PPA
+    - 전력수급기본계획
+    - LG에너지솔루션 ESS
+    - 삼성SDI ESS
+    - SK온 ESS
+    - ESS 화재 안전
+    - battery energy storage system
+    - Tesla Megapack
+    - Fluence energy storage
+  extra_rss: []                   # 직접 구독할 RSS 주소 추가 가능
+
+kpx:                              # 전력거래소 공지 모니터링 (입찰 공고 감지)
+  enabled: true
+  board_url: https://www.kpx.or.kr/board.es?mid=a11201000000&bid=0042
+  keywords: [ESS, 입찰, 공고, 중앙계약]
+
+stocks:                           # 주가 보드 (yfinance, 지연 시세)
+  enabled: true
+  kr:
+    - { name: LG에너지솔루션,      yf: 373220.KS, label: KRX 373220 }
+    - { name: 삼성SDI,             yf: 006400.KS, label: KRX 006400 }
+    - { name: SK이노베이션 (SK온), yf: 096770.KS, label: KRX 096770 }
+    - { name: 효성중공업,          yf: 298040.KS, label: KRX 298040 }
+  global:
+    - { name: Tesla,          yf: TSLA,      label: NASDAQ TSLA }
+    - { name: Fluence Energy, yf: FLNC,      label: NASDAQ FLNC }
+    - { name: CATL,           yf: 300750.SZ, label: SZSE 300750 }
+    - { name: Sungrow,        yf: 300274.SZ, label: SZSE 300274 }
+
+kpis:                             # 상단 KPI 4종 — 월 1회 수동 갱신 권장
+  - { label: "국내 중앙계약시장 누적 낙찰 (1·2차)", value: "약 1.13",        unit: "GW",   note: "▲ '27년까지 1.1GW 추가 입찰 예정", trend: up }
+  - { label: "미국 BESS 설치 용량 (EIA 전망)",      value: "43 → 88.4",      unit: "GW",   note: "▲ '27년 말까지 약 2배",            trend: up }
+  - { label: "중앙계약시장 낙찰단가 추이 (CP)",     value: "30원대 → 20원대", unit: "/kWh", note: "▼ 원가 절감 압박 심화",            trend: down }
+  - { label: "SMP·REC (전월 대비)",                 value: "동반 약세",       unit: "",     note: "— 3분기 전기요금 동결",            trend: flat }
+
+email:
+  enabled: true
+  subject_prefix: "[인투알] ESS 데일리 브리핑"
+  # 수신자·SMTP 계정은 보안을 위해 .env 파일에서 설정 (.env.example 참고)
+
+output:
+  dir: output
+  archive: true                   # output/archive/YYYY-MM-DD.html 로 매일 보관
+
+
+# 댓글 우체통(구글 시트 Apps Script 웹앱 URL) — 비우면 댓글 칸이 숨겨집니다. 설정법: comments-setup-guide.md
+comments_api_url: "https://script.google.com/macros/s/AKfycbw5yAOuaCA_L4IuecIGNvDqUdYzg2QdL8cSBWODGYMRQ0wKYFC_a6eGA6G0NaCtu9c/exec"
+
+# 웹 발행 주소(GitHub Pages) — 설정 시 메일 본문에 "웹에서 보기" 링크가 표시됩니다
+# 예: https://내아이디.github.io/ess-briefing/
+site_url: ""
