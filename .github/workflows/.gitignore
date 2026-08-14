@@ -1,0 +1,5 @@
+.env
+__pycache__/
+*.pyc
+output/index.html.bak
+output/last_ai_response.txt
