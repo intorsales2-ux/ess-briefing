@@ -1,0 +1,42 @@
+name: INTOR Daily Briefing
+
+on:
+  schedule:
+    - cron: '30 22 * * 0-4'   # UTC 22:30 = 한국시간 월~금 07:30
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Seoul
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      CLAUDE_MODEL: ${{ secrets.CLAUDE_MODEL }}
+      SMTP_HOST: ${{ secrets.SMTP_HOST }}
+      SMTP_PORT: ${{ secrets.SMTP_PORT }}
+      SMTP_USER: ${{ secrets.SMTP_USER }}
+      SMTP_PASS: ${{ secrets.SMTP_PASS }}
+      MAIL_FROM: ${{ secrets.MAIL_FROM }}
+      MAIL_TO: ${{ secrets.MAIL_TO }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install deps
+        run: pip install -r requirements.txt
+      - name: Run robot (publish + email)
+        run: python main.py
+      - name: Publish to web (docs/) & save memory
+        run: |
+          mkdir -p docs/archive
+          cp output/index.html docs/index.html
+          cp output/index.html "docs/archive/$(date +%F).html"
+          git config user.name "intor-robot"
+          git config user.email "robot@intor.kr"
+          git add docs output/state.json output/seen_urls.json
+          git commit -m "briefing $(date +%F)" || echo "no changes"
+          git push
