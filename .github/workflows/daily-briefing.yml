@@ -35,6 +35,7 @@ jobs:
           mkdir -p docs/archive
           cp output/index.html docs/index.html
           cp output/index.html "docs/archive/$(date +%F).html"
+          python archive_index.py
           git config user.name "intor-robot"
           git config user.email "robot@intor.kr"
           git add docs output/state.json output/seen_urls.json
