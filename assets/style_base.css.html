@@ -259,4 +259,26 @@
     table{min-width:640px;}
   }
 
+
+/* ── v12 개편: 가로 활용 · 세로 압축 ── */
+.wrap{max-width:1240px}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+.duo>.plate{grid-column:1/-1}
+@media(max-width:900px){.duo{grid-template-columns:1fr}}
+.arch-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#0b131b;border:1px solid #1f2a36;border-radius:12px;padding:12px 18px;margin:14px 0 4px}
+.arch-bar .txt{font-size:12.5px;color:#9aa4b2}
+.arch-bar .txt b{color:#e6edf3}
+.arch-bar a{background:#18242f;border:1px solid #33414f;color:#e6edf3;text-decoration:none;font-size:12px;font-weight:700;padding:8px 16px;border-radius:18px;white-space:nowrap}
+.arch-bar a:hover{border-color:#4dd0a4;color:#4dd0a4}
+.qgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+@media(max-width:1000px){.qgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.qgrid{grid-template-columns:1fr}}
+.qcard{background:#0b131b;border:1px solid #1a2530;border-radius:11px;padding:11px 13px}
+.qcard .nm{font-size:12.5px;font-weight:700;color:#e6edf3;display:flex;justify-content:space-between;align-items:baseline;gap:6px}
+.qcard .tk{font-size:9.5px;color:#6b7684;font-weight:400;letter-spacing:.03em}
+.qcard .px{font-size:15px;font-weight:800;color:#fff;margin:5px 0 3px;font-variant-numeric:tabular-nums}
+.qcard .dd{font-size:11px;display:flex;gap:9px;color:#8e9aa6;font-variant-numeric:tabular-nums}
+.qcard .nx{display:block;margin-top:7px;padding-top:7px;border-top:1px solid #1a2530;font-size:10.5px;color:#8e9aa6;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.qsec{grid-column:1/-1;font-size:10.5px;color:#6b7684;letter-spacing:.12em;margin:6px 0 1px 2px}
+.todo-item{padding:11px 14px}
 </style>
