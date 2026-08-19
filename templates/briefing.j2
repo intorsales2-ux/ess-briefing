@@ -83,6 +83,7 @@
 {% endmacro %}
 
 {% for sec in news_sections %}
+  <div class="duo">
   <div class="plate">
     <span class="sec">{{ sec.sec }}</span>
     <h2>{{ sec.title }}</h2>
@@ -93,6 +94,7 @@
 {% for c in sec.cards %}{{ card(c) }}{% endfor %}
   </section>
   {% endif %}
+  </div>
 {% endfor %}
 
 {% if briefs %}
@@ -148,36 +150,30 @@
 
   
 
-  <div class="plate">
-    <span class="sec">SEC 06</span>
-    <h2>에디터 스포트라이트 — 오늘의 짚어볼 것</h2>
-    <span class="plate-note">{{ spot_note }}</span>
-  </div>
-  <section class="cards">
+  <div class="duo">
+    <div class="plate">
+      <span class="sec">SEC 06</span>
+      <h2>에디터 스포트라이트 &amp; 오늘의 지식</h2>
+      <span class="plate-note">오늘의 1편씩 — 지난 회차는 아래 &#39;지난 호 목록&#39;에서</span>
+    </div>
 {{ spot_cards_html }}
-  </section>
-
-  <div class="plate">
-    <span class="sec">SEC 07</span>
-    <h2>오늘의 ESS 지식 — 하루 한 장</h2>
-    <span class="plate-note">{{ know_note }}</span>
-  </div>
-  <section class="cards">
 {{ know_cards_html }}
-  </section>
+  </div>
+
+  <div class="arch-bar">
+    <span class="txt"><b>지난 호가 궁금하신가요?</b> 이전 스포트라이트 · 지식 전편과 지난 지면을 게시판에서 다시 보실 수 있습니다.</span>
+    <a href="list.html">📚 지난 호 목록 열기</a>
+  </div>
 
   <div class="plate">
     <span class="sec">SEC 08</span>
     <h2>주가 · 공시 보드</h2>
     <span class="plate-note">종가 및 전일·전월·전년 대비 — 발행 시세 스크립트 기입(<!--STAMP-->기입 전<!--/STAMP-->) · 오른쪽 열은 확인된 주요 기사·공시(클릭 시 원문 이동)</span>
   </div>
-  <section class="board">
-    <table>
-      <thead><tr><th>기업</th><th>종가</th><th>전일比</th><th>전월比</th><th>전년比</th><th>주요 기사 · 공시</th></tr></thead>
-      <tbody>
+  <section class="board" style="background:transparent;border:0;padding:0">
+    <div class="qgrid">
 {{ board_rows_html }}
-      </tbody>
-    </table>
+    </div>
   </section>
 
   <div class="plate" id="cmt-plate">
