@@ -262,9 +262,10 @@
 
 /* ── v12 개편: 가로 활용 · 세로 압축 ── */
 .wrap{max-width:1240px}
-.duo{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+/* 카드가 2장 이상이고 폭이 충분할 때만 2단 — 1장이면 가로 전체 사용 */
+.duo{display:grid;grid-template-columns:repeat(auto-fit,minmax(460px,1fr));gap:14px;align-items:start}
 .duo>.plate{grid-column:1/-1}
-@media(max-width:900px){.duo{grid-template-columns:1fr}}
+@media(max-width:1000px){.duo{grid-template-columns:1fr}}
 .arch-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#0b131b;border:1px solid #1f2a36;border-radius:12px;padding:12px 18px;margin:14px 0 4px}
 .arch-bar .txt{font-size:12.5px;color:#9aa4b2}
 .arch-bar .txt b{color:#e6edf3}
