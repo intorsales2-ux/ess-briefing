@@ -265,7 +265,30 @@
     table{min-width:640px;}
   }
 
+
+/* ── v12 개편: 가로 활용 · 세로 압축 ── */
+.wrap{max-width:1240px}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+.duo>.plate{grid-column:1/-1}
+@media(max-width:900px){.duo{grid-template-columns:1fr}}
+.arch-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#0b131b;border:1px solid #1f2a36;border-radius:12px;padding:12px 18px;margin:14px 0 4px}
+.arch-bar .txt{font-size:12.5px;color:#9aa4b2}
+.arch-bar .txt b{color:#e6edf3}
+.arch-bar a{background:#18242f;border:1px solid #33414f;color:#e6edf3;text-decoration:none;font-size:12px;font-weight:700;padding:8px 16px;border-radius:18px;white-space:nowrap}
+.arch-bar a:hover{border-color:#4dd0a4;color:#4dd0a4}
+.qgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+@media(max-width:1000px){.qgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.qgrid{grid-template-columns:1fr}}
+.qcard{background:#0b131b;border:1px solid #1a2530;border-radius:11px;padding:11px 13px}
+.qcard .nm{font-size:12.5px;font-weight:700;color:#e6edf3;display:flex;justify-content:space-between;align-items:baseline;gap:6px}
+.qcard .tk{font-size:9.5px;color:#6b7684;font-weight:400;letter-spacing:.03em}
+.qcard .px{font-size:15px;font-weight:800;color:#fff;margin:5px 0 3px;font-variant-numeric:tabular-nums}
+.qcard .dd{font-size:11px;display:flex;gap:9px;color:#8e9aa6;font-variant-numeric:tabular-nums}
+.qcard .nx{display:block;margin-top:7px;padding-top:7px;border-top:1px solid #1a2530;font-size:10.5px;color:#8e9aa6;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.qsec{grid-column:1/-1;font-size:10.5px;color:#6b7684;letter-spacing:.12em;margin:6px 0 1px 2px}
+.todo-item{padding:11px 14px}
 </style>
+
 </head>
 <body>
 <div class="wrap">
@@ -283,15 +306,15 @@
       </div>
       <div class="issue">
         <b>제2026-231호</b><br>
-        발행 2026.08.19(수) 08:03 KST<br>
+        발행 2026.08.19(수) 17:23 KST<br>
         수신 대표이사 · 영업/전략 임원<br>
         발신 영업팀
       </div>
     </div>
     <div class="mast-meta">
-      <span>수집 범위 <b>직전 발행 이후 ~ 08.19 08:03</b></span>
-      <span>수집 31건 → 신선도·중복 필터 후 카드 5 · 단신 5 (ESS 3차 입찰·전기본 토론회 등 동일 주제 다중 보도는 대표 기사 1건으로 통합, 발행일 미확인 KPX 게시글 3건은 카드 제외·공지란으로만 반영)</span>
-      <span>전력거래소, '2026년 ESS 중앙계약시장 사업자 의견수렴 간담회' 공지 게시 — 3차 입찰 설계 변경 가능성 있어 참석·모니터링 필요(발행일 미표기로 카드 미승격).</span>
+      <span>수집 범위 <b>직전 발행 이후 ~ 08.19 17:23</b></span>
+      <span>수집 40건 → 동일 사안(LG엔솔 랜싱 가동) 32건 중복 정리 후 유효 소재 8건 — 카드 4 · 단신 4 (랜싱 대량 중복으로 목표 지면 미달, 재탕 대신 지면 축소)</span>
+      <span>오늘 수집분 기준 신규 입찰·공고 없음 — 12차 전기본은 토론회 절차 논란 단계(SEC 01 카드), 그 외 장기 이슈 상태 변화 미확인</span>
       <span>다음 발행 <b>08.20(목) 07:30</b></span>
     </div>
   </header>
@@ -299,149 +322,136 @@
   <section class="brief">
     <h2>TODAY IN 3 LINES · 오늘의 3줄 요약</h2>
     <ol>
-      <li><span class="n">1</span><div><b>1조 ESS 3차 입찰, '3파전' 개막</b> 삼성SDI·LG엔솔·SK온이 약 1조원 규모 공공 ESS 3차 입찰에 모두 참전. '국내 생산'이 핵심 평가 요소로 부각 — 국산 외함·랙 공급망 수요 직결.</div></li>
-      <li><span class="n">2</span><div><b>12차 전기본, 20일 토론회로 재시동</b> 3대 메가프로젝트發 수요 급증을 반영해 2040 전력수요를 재전망. 장관은 '가스발전 일부 증가 불가피·전기본 10월 마련' 언급 — 유연성 자원(ESS) 물량 논의 주시.</div></li>
-      <li><span class="n">3</span><div><b>K배터리, EV 라인→ESS 전환 가속</b> 북미 합작사 철회 후 ESS 라인 전환 집중, R&D 투자도 1.8조원(+13%)으로 확대. 셀 증산은 컨테이너·랙 후방 수요의 선행지표.</div></li>
+      <li><span class="n">1</span><div><b>LG엔솔 랜싱 본격 가동</b> 미시간 랜싱 공장이 가동을 시작하며 북미 ESS <b>5대 생산거점</b>이 완성됐다. 연 <b>35GWh</b>급 캐파로 ESS·EV 투트랙 생산 — 북미 ESS 하드웨어(외함·랙) 현지 수요의 상방 신호다.</div></li>
+      <li><span class="n">2</span><div><b>K배터리 'EV→ESS 용도변경' 경쟁</b> 삼성SDI·GM이 차세대 각형 배터리를 공동개발하고 인디애나 공장을 ESS 거점으로 전환한다는 보도. 전기차 라인의 ESS 전환이 업계 공통 흐름으로 확산 — 오늘 스포트라이트 #019에서 구조 분석.</div></li>
+      <li><span class="n">3</span><div><b>세아메카닉스, ESS부품 수주잔고 6,000억</b> ESS부품 <b>6,000억원</b> 수주잔고를 확보한 세아메카닉스가 'HT로보틱스'로 사명을 바꾸고 로봇 부품으로 체질 전환. ESS 부품 공급망 내 경쟁·협력 지형 재점검이 필요하다.</div></li>
     </ol>
   </section>
 
   <section class="kpis">
     <div class="kpi">
-      <div class="k-label">공공 ESS 3차 입찰 규모</div>
-      <div class="k-value">약 1조원</div>
-      <div class="k-note up">▲ 배터리 3사 정면승부('26.08.18 보도)</div>
+      <div class="k-label">LG엔솔 북미 ESS 생산거점</div>
+      <div class="k-value">5곳<small>랜싱 가동으로 완성</small></div>
+      <div class="k-note up">▲ '26.08.19 발표</div>
     </div>
     <div class="kpi">
-      <div class="k-label">12차 전기본 일정</div>
-      <div class="k-value">10월 마련<small>4·5차 토론회 8/20</small></div>
-      <div class="k-note flat">— 2040 수요 재전망 착수</div>
+      <div class="k-label">랜싱 공장 생산능력</div>
+      <div class="k-value">35GWh/년<small>ESS·EV 투트랙</small></div>
+      <div class="k-note up">▲ 신규 가동</div>
     </div>
     <div class="kpi">
-      <div class="k-label">K배터리 R&D 투자</div>
-      <div class="k-value">1.8조원<small>전년比 +13%</small></div>
-      <div class="k-note up">▲ ESS 등 신기술 투자 확대</div>
+      <div class="k-label">세아메카닉스 ESS부품 수주잔고</div>
+      <div class="k-value">6,000억원<small>사명 'HT로보틱스' 변경</small></div>
+      <div class="k-note up">▲ '26.08.19 보도</div>
     </div>
     <div class="kpi">
-      <div class="k-label">산업용 지역요금제</div>
-      <div class="k-value">내주 공개<small>기후장관 발언</small></div>
-      <div class="k-note flat">— 입지별 전기요금 차등 예고</div>
+      <div class="k-label">12차 전기본 절차</div>
+      <div class="k-value">토론회 단계<small>시민단체 '전면 보완' 요구</small></div>
+      <div class="k-note flat">— 확정 전, 상태 유지</div>
     </div>
   </section>
 
 
+  <div class="duo">
   <div class="plate">
     <span class="sec">SEC 01</span>
     <h2>정책 · 입찰 레이더</h2>
-    <span class="plate-note">3차 입찰 3파전 공식화 + 전기본 재시동 — 이번 주 최대 변수 두 건.</span>
+    <span class="plate-note">신규 입찰·공고 없음 — 12차 전기본 절차 논란 1건만 카드화</span>
   </div>
   <section class="cards">
     <article class="card policy">
-      <div class="tags"><span class="tag t-bid">입찰</span><span class="tag t-bid">업데이트</span></div>
-      <a class="hl" href="https://news.google.com/rss/articles/CBMiWEFVX3lxTFAyUG4yTEFQNHItQmo5NjU0aU5MdFplM3kzODBXai15Q085cVdrc0Myd1JJR2lTRzQ0bElLMU1PV1ZWUDIzU3hNakl0dzRSXzdYekh6MHBDZ1TSAVhBVV95cUxQMlBuMkxBUDRyLUJqOTY1NGlOTHRaZTN5MzgwV2oteUNPOXFXa3NDMndSSUdpU0c0NGxJSzFNT1dWVlAyM1N4TWpJdHc0Ul83WHpIejBwQ2dU?oc=5" target="_blank" rel="noopener noreferrer" title="원문 보기">
-        <h3>K배터리 3사, 1조 규모 공공 ESS 3차 입찰 '정면승부' — 핵심 키워드는 국내 생산<span class="ext">↗</span></h3>
+      <div class="tags"><span class="tag t-bid">12차 전기본</span><span class="tag ">절차 논란</span></div>
+      <a class="hl" href="https://news.google.com/rss/articles/CBMiXkFVX3lxTFBwTVl0bVpsazZXR0R0Mm9GRm84WXVDLURSRXZWTWkyMUw1d3pUVWc2WVB3Q3Z0cVlvRkF4VG5vRjhnN1FTV0I3SVhVLVJRV3hUc3NZa0VKOWtFOGwwWlE?oc=5" target="_blank" rel="noopener noreferrer" title="원문 보기">
+        <h3>시민발전협동조합연합회 "12차 전기본 토론회, 요식행위 — 전면 보완해야"<span class="ext">↗</span></h3>
       </a>
       <ul class="summary">
-        <li>새 사실: LG엔솔·삼성SDI·SK온 3사가 <b>약 1조원</b> 규모 공공 ESS 3차 입찰에 모두 참전하는 '3파전' 구도가 복수 매체에서 확인됨.</li>
-        <li>평가의 핵심은 <b>국내 생산</b> — 국산 공급망 실적이 수주 판도를 가를 변수로 보도.</li>
-        <li>1·2차에 이은 3차전으로, EV 수요 부진의 빈자리를 ESS로 메우려는 3사 전략이 맞물림.</li>
+        <li>시민발전협동조합연합회가 <b>12차 전력수급기본계획</b> 토론회를 '요식행위'로 규정하고 전면 보완을 요구했다('26.08.19).</li>
+        <li>전기본은 향후 전원믹스·계통 투자·ESS 물량의 최상위 근거 — 절차 논란은 확정 <b>일정 지연 리스크</b>로 읽힌다.</li>
       </ul>
-      <div class="src">출처 <a href="https://news.google.com/rss/articles/CBMiWEFVX3lxTFAyUG4yTEFQNHItQmo5NjU0aU5MdFplM3kzODBXai15Q085cVdrc0Myd1JJR2lTRzQ0bElLMU1PV1ZWUDIzU3hNakl0dzRSXzdYekh6MHBDZ1TSAVhBVV95cUxQMlBuMkxBUDRyLUJqOTY1NGlOTHRaZTN5MzgwV2oteUNPOXFXa3NDMndSSUdpU0c0NGxJSzFNT1dWVlAyM1N4TWpJdHc0Ul83WHpIejBwQ2dU?oc=5" target="_blank" rel="noopener noreferrer">아주경제 '26.08.18</a> · <a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE9lT2dRWjMtT1BBejNJTzYtRlVqLU9zR3JESWdCeElCdjJaR3RTRGpzWlVEZ0dCdjViQ1h3RkY3THdaM1VXcHZIcDJ4eWtuVi1lMjdTRnZlUFdiV3VYSk1NcA?oc=5" target="_blank" rel="noopener noreferrer">뉴스토마토 '26.08.18</a></div>
-      <div class="insight"><b>인투알 시사점</b> — 3사 모두 '국내 생산' 실적을 앞세우는 구도는 외함·랙까지 국산 공급망으로 채우려는 유인을 키운다. 인투알은 3사 시스템 파트너별 외함·컨테이너 스펙 대응표와 국내 생산 증빙 패키지를 이번 주 안에 정비해야 한다.</div>
-      <div class="impact">
-        <span class="lab">인투알 영향도</span>
-        <span class="soc"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><span class="cap"></span></span>
-        <span class="val">4/4 직접 수주 파이프라인</span>
-      </div>
-      <div class="art-detail" style="display:none"><p>공공 ESS 중앙계약시장 입찰은 1·2차를 거치며 국내 배터리 3사의 최대 국내 격전지로 자리잡았고, 이번 3차는 약 1조원 규모로 보도됐다. 8월 18일자 복수 매체가 3사 모두의 참전 의사를 전하며 '3파전'을 공식화했다. 직전 호까지 '3차 입찰 대기' 상태였던 이슈가 경쟁 구도 확정이라는 새 국면으로 진입한 것이 이번 카드의 업데이트 포인트다.</p><p>보도의 공통 축은 '국내 생산'이다. 공공 발주 특성상 국산 공급망 기여도가 평가에서 중요한 요소로 다뤄지고 있고, 3사는 각각 국내 생산 실적과 계획을 내세우고 있다. 앞선 라운드에서 우위를 보인 사업자에 대한 반격 구도도 형성되어 있어, 가격뿐 아니라 공급망 구성 전체가 경쟁 요소가 된다.</p><p>EV 캐즘으로 비어 있는 생산능력을 ESS로 돌리는 흐름(북미 합작 철회·라인 전환 보도)과 겹쳐 읽으면, 3사 모두 ESS 물량 확보의 절박성이 크다. 이는 낙찰 후 납기 압박으로 이어지고, 외함·컨테이너·랙 같은 후방 기자재의 리드타임이 병목이 될 가능성이 높다.</p><p>인투알 액션: ① 3사 및 각 사 SI 파트너별 외함·랙 요구 스펙(치수·내화·방진·UL9540A 대응) 비교표 갱신, ② 국내 생산·원산지 증빙 서류 패키지 사전 준비, ③ 낙찰 발표 직후 견적 대응이 가능하도록 표준 컨테이너 견적 템플릿을 이번 주 내 완성한다.</p></div>
-    </article>
-    <article class="card policy">
-      <div class="tags"><span class="tag t-kr">정책</span></div>
-      <a class="hl" href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5tTnpTSElMV3phV01JYWhKVEJFYWU3dGpzTlV2RTJqeVhPRHRMT0diVFNPUm9EU091ZV9jejlSRnhiYUpJMjI1ZWpwV2k3QlkwZjhLRkM5ZXdRcUJGaE9kN3U2RjEtZjA?oc=5" target="_blank" rel="noopener noreferrer" title="원문 보기">
-        <h3>12차 전기본 4·5차 토론회 20일 개최 — 2040 수요 재전망·LNG 확대론까지<span class="ext">↗</span></h3>
-      </a>
-      <ul class="summary">
-        <li>12차 전기본 4·5차 정책토론회가 <b>8월 20일</b> 개최 — '전기국가 전환'과 <b>2040 전력수요 재전망</b>이 의제.</li>
-        <li>3대 메가프로젝트發 수요 급증 반영이 쟁점이며, LNG발전 확대 반영 여부가 함께 거론됨.</li>
-        <li>김성환 기후장관은 '가스발전 일부 증가 불가피', '전기본 <b>10월</b> 마련', '산업용 지역요금제 내주 공개'를 언급.</li>
-      </ul>
-      <div class="src">출처 <a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5tTnpTSElMV3phV01JYWhKVEJFYWU3dGpzTlV2RTJqeVhPRHRMT0diVFNPUm9EU091ZV9jejlSRnhiYUpJMjI1ZWpwV2k3QlkwZjhLRkM5ZXdRcUJGaE9kN3U2RjEtZjA?oc=5" target="_blank" rel="noopener noreferrer">산경e뉴스 '26.08.18</a> · <a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE01UGRBNkN6cHlDLVZlM0h4eDVrUE9VSUpSUGFKZl9WOU5KVFhzMmFJY1NTOVhEWVNkM1hPN0Ewemo4MHVpTXRWR0lJM3laYlVieS14WXFYeGtXc3BRb01KMdIBeEFVX3lxTE5ERVBYaVQ0VS1UZlNTR2duSXNWZUJwUmZIeXpZZjlTMmcydXhUT0RtTTlpbG9tLUdoM1E1WEVYMnpjZ000di1oTlBUeU1kWW42eldZWERHQkhUTXF4ZWdtOXZtSXl3MzFEcHhjUFdHSklyd3IyeTA5Rw?oc=5" target="_blank" rel="noopener noreferrer">뉴시스 '26.08.18</a> · <a href="https://news.google.com/rss/articles/CBMiU0FVX3lxTE5BWW5SRzVuMVVyZDFadC1ZekhMalZicEdYMTduUy1iLTVRemVUVFNEZ3QwQkZoT1JjQUtMNnpHY3hHQkNkYmdqbDMtRDF2LUwzRzhB?oc=5" target="_blank" rel="noopener noreferrer">네이트 '26.08.18</a></div>
-      <div class="insight"><b>인투알 시사점</b> — 수요 재전망이 커질수록 유연성 자원 물량 논의도 커진다. 전기본에 담길 저장장치 목표치는 향후 수년간 국내 ESS 발주의 상한선 — 20일 토론회에서 저장장치 관련 언급을 반드시 채록해 영업 파이프라인 전망에 반영해야 한다.</div>
-      <div class="impact">
-        <span class="lab">인투알 영향도</span>
-        <span class="soc"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><span class="cap"></span></span>
-        <span class="val">3/4 중기 발주 총량 결정</span>
-      </div>
-      <div class="art-detail" style="display:none"><p>12차 전력수급기본계획 수립 절차가 4·5차 대국민 정책토론회(8월 20일)로 재개된다. 핵심 의제는 '전기국가 전환' 담론과 2040년 전력수요 재전망으로, AI·반도체 등 3대 메가프로젝트가 만든 수요 급증분을 어떻게 계획에 반영할지가 쟁점이다. 확정 목표 시점은 10월로 장관이 직접 언급했다.</p><p>수요 전망 상향은 공급 측 논쟁으로 번지고 있다. 단기 대응력이 있는 LNG발전 확대 반영 가능성이 보도됐고, 장관도 '가스발전 일부 증가 불가피'라고 발언했다. 반면 신규 원전을 둘러싼 부처 내 신중론도 함께 보도되어, 전원 믹스 논쟁이 10월까지 이어질 전망이다.</p><p>외함·랙 제조사 관점에서 중요한 것은 전원 믹스 그 자체보다 '변동성·수요 급증 대응 수단으로서의 저장장치'가 계획에 어떤 규모로 담기느냐다. 전기본의 저장장치 물량은 중앙계약시장 입찰 회차와 규모의 근거가 되므로, 사실상 국내 ESS 외함 시장의 중기 총량을 결정한다. 함께 예고된 산업용 지역요금제(내주 공개)도 입지별 요금 차등을 통해 수요지 인근 ESS 수요를 자극할 수 있는 변수다.</p><p>인투알 액션: 20일 토론회 자료·발언 중 저장장치·유연성 자원 관련 내용을 당일 채록해 익일 브리핑에 반영하고, 10월 전기본 확정 전까지 'ESS 물량 시나리오별 외함 수요 추정' 내부 자료를 준비한다.</p></div>
-    </article>
-  </section>
-  <div class="plate">
-    <span class="sec">SEC 02</span>
-    <h2>국내 산업 · 고객사 동향</h2>
-    <span class="plate-note">셀 3사의 무게중심이 ESS로 이동 — 후방 기자재 수요의 선행지표.</span>
-  </div>
-  <section class="cards">
-    <article class="card kr">
-      <div class="tags"><span class="tag t-kr">국내</span></div>
-      <a class="hl" href="https://news.google.com/rss/articles/CBMiZEFVX3lxTE1hZVF2T2owbFdzSDNHZ3ZsM0YxcHNBY1NfVlJKSXJPdlhsMWtUYXVZUGx1bE40NjF5SThwMkRFb21EYzR3YjBHR29XRzZTRDJsMFdpYzh4US0yRkF2ZXFCVUxfVDY?oc=5" target="_blank" rel="noopener noreferrer" title="원문 보기">
-        <h3>北美 합작 철회하는 韓배터리 — 남는 생산능력, ESS 라인으로 전환 집중<span class="ext">↗</span></h3>
-      </a>
-      <ul class="summary">
-        <li>한국 배터리 업계가 북미 합작사 계획을 철회하고 기존 라인의 <b>ESS 전환</b>에 집중하는 흐름이 보도됨.</li>
-        <li>EV 캐즘으로 비는 생산능력을 ESS 셀로 돌리는 구조 조정 — 삼성SDI도 북미 무게중심을 ESS로 이동하며 EV 부진 속 흑자를 확보.</li>
-      </ul>
-      <div class="src">출처 <a href="https://news.google.com/rss/articles/CBMiZEFVX3lxTE1hZVF2T2owbFdzSDNHZ3ZsM0YxcHNBY1NfVlJKSXJPdlhsMWtUYXVZUGx1bE40NjF5SThwMkRFb21EYzR3YjBHR29XRzZTRDJsMFdpYzh4US0yRkF2ZXFCVUxfVDY?oc=5" target="_blank" rel="noopener noreferrer">머니투데이방송 '26.08.18</a> · <a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE9uUTFWQWZvbDg4eTFfVHZycUV1ZTBxS0F0LUJZaUJnLXF0M1F3SnJQSWx6RUpWZGJuYnZjNWotMmFBbEl4c0RxYXVaQkw5ZUpVdE4tOU9CZVNLMlJYcGc?oc=5" target="_blank" rel="noopener noreferrer">데이터뉴스 '26.08.17</a></div>
-      <div class="insight"><b>인투알 시사점</b> — 셀 라인의 ESS 전환은 6~12개월 후 시스템·외함 발주로 이어지는 선행지표다. 전환 라인의 폼팩터(각형·파우치·LFP 여부)에 따라 랙·모듈 트레이 설계가 달라지므로, 고객사별 전환 라인 정보를 영업 단에서 선제 수집해야 한다.</div>
-      <div class="impact">
-        <span class="lab">인투알 영향도</span>
-        <span class="soc"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><span class="cap"></span></span>
-        <span class="val">3/4 후방 수요 선행지표</span>
-      </div>
-      <div class="art-detail" style="display:none"><p>EV 수요 둔화가 길어지면서 한국 배터리 업계의 북미 전략이 재편되고 있다. 합작사 설립 철회 등 EV 중심 투자를 거두는 대신, 이미 확보한 생산능력을 ESS용으로 전환하는 데 집중한다는 것이 8월 18일 보도의 골자다. 삼성SDI가 EV 부진 속에서도 북미 무게중심을 ESS로 옮겨 흑자를 확보했다는 별도 보도도 같은 방향을 가리킨다.</p><p>셀 관점의 라인 전환은 후방 기자재 관점에서 '수요의 예고편'이다. ESS 셀 증산은 모듈→랙→컨테이너로 이어지는 조립 체인의 물량 확대를 전제하며, 특히 북미향 물량은 UL9540A 등 인증 대응이 가능한 외함 파트너를 필요로 한다. 국내 3사가 국내외에서 동시에 ESS 물량을 늘리는 국면은 외함사에 이중의 기회다.</p><p>다만 전환 라인의 셀 폼팩터와 화학(LFP 전환 여부 등)에 따라 랙 피치·트레이·냉각 인터페이스가 달라진다. 어떤 라인이 어떤 제품으로 전환되는지가 곧 인투알 설계 대응의 우선순위를 정한다.</p><p>인투알 액션: 고객사별 ESS 전환 라인·폼팩터 정보를 영업 접점에서 수집해 '전환 맵'을 만들고, 북미향 인증(UL9540A 계열) 대응 가능 외함 라인업을 정리한 영문 소개자료를 준비한다.</p></div>
-    </article>
-    <article class="card kr">
-      <div class="tags"><span class="tag t-kr">국내</span></div>
-      <a class="hl" href="https://news.google.com/rss/articles/CBMiaEFVX3lxTFBmWUQzZnRtM2hENXBlS3FORzlRbUhiYUxoS2J2eE02TDlkTVp1eHFFQkhUQjk4dzlqYkZUeWlmLVpZYmtWTUJoSVcxUGUyZHJPWjZZeWxDZmJxak9BUGM5cDJBNHYzTlJB?oc=5" target="_blank" rel="noopener noreferrer" title="원문 보기">
-        <h3>K배터리 R&D 투자 1.8조 육박, 전년比 13%↑ — ESS·신기술에 '고삐'<span class="ext">↗</span></h3>
-      </a>
-      <ul class="summary">
-        <li>K배터리의 R&D 투자가 <b>1.8조원</b>에 육박, 전년 대비 <b>13%</b> 증가 — ESS·로봇 등 신기술이 투자 축으로 보도됨.</li>
-        <li>업황 부진에도 투자를 늘리는 방향성 자체가 ESS를 차기 주력으로 보는 신호.</li>
-      </ul>
-      <div class="src">출처 <a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTFBmWUQzZnRtM2hENXBlS3FORzlRbUhiYUxoS2J2eE02TDlkTVp1eHFFQkhUQjk4dzlqYkZUeWlmLVpZYmtWTUJoSVcxUGUyZHJPWjZZeWxDZmJxak9BUGM5cDJBNHYzTlJB?oc=5" target="_blank" rel="noopener noreferrer">CEO스코어데일리 '26.08.18</a></div>
-      <div class="insight"><b>인투알 시사점</b> — R&D가 ESS로 향하면 차세대 셀·시스템 규격 변경이 뒤따른다. 인투알은 고객 R&D 로드맵 변화(신규 폼팩터·고밀도 컨테이너)에 맞춰 외함 표준 플랫폼의 설계 유연성을 미리 확보하는 것이 대응책이다.</div>
+      <div class="src">출처 <a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTFBwTVl0bVpsazZXR0R0Mm9GRm84WXVDLURSRXZWTWkyMUw1d3pUVWc2WVB3Q3Z0cVlvRkF4VG5vRjhnN1FTV0I3SVhVLVJRV3hUc3NZa0VKOWtFOGwwWlE?oc=5" target="_blank" rel="noopener noreferrer">기후에너지데이터뱅크 '26.08.19</a></div>
+      <div class="insight"><b>인투알 시사점</b> — 인투알 시사점 — 전기본에 담길 재생에너지·ESS 목표치는 국내 외함·컨테이너 수요의 총량을 결정하는 상류 변수. 절차가 길어지면 국내 발주 타임라인도 뒤로 밀릴 수 있어, 확정 시점까지는 북미·수출 파이프라인 비중을 유지하는 편이 안전하다.</div>
       <div class="impact">
         <span class="lab">인투알 영향도</span>
         <span class="soc"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><span class="cap"></span></span>
-        <span class="val">2/4 중기 제품 로드맵 신호</span>
+        <span class="val">2/4 중장기 총량 변수 · 단기 수주 영향 제한</span>
       </div>
-      <div class="art-detail" style="display:none"><p>배터리 업계가 실적 부진 국면에서도 R&D 투자를 1.8조원 수준(전년 대비 13% 증가)으로 늘렸다는 집계가 보도됐다. 투자의 방향은 ESS와 로봇 등 신기술로, EV 일변도에서 포트폴리오를 넓히는 흐름이 수치로 확인된 셈이다.</p><p>R&D 확대는 당장의 발주가 아니라 1~2년 뒤 제품 규격의 변화를 의미한다. ESS 쪽 R&D가 커지면 고밀도 셀, 신형 모듈, 대형화된 컨테이너 시스템 등 새로운 규격이 시장에 나오고, 외함·랙은 그 규격을 가장 먼저 수용해야 하는 위치에 있다.</p><p>인투알 액션: 고객사 기술 발표·특허 동향에서 ESS 시스템 대형화·폼팩터 변화 신호를 추적하고, 외함 표준 플랫폼을 '치수 가변형'으로 설계해 규격 변화 시 재설계 비용을 최소화하는 방향을 기술팀과 협의한다.</p></div>
+      <div class="art-detail" style="display:none"><p>전력수급기본계획(전기본)은 2년 주기로 수립되는 국가 전력 마스터플랜으로, 발전원 구성과 계통·저장장치 투자의 법적 근거가 된다. 12차 전기본은 재생에너지 확대와 그에 따른 ESS 물량이 핵심 쟁점으로, 확정 내용에 따라 국내 ESS 발주 시장의 수년치 총량이 정해진다. 이 때문에 수립 절차를 둘러싼 논란 자체가 업계 일정 리스크다.</p><p>이번 보도에 따르면 시민발전협동조합연합회는 12차 전기본 토론회가 실질적 의견 수렴 없는 '요식행위'라며 전면 보완을 요구했다. 헤드라인 기준으로 구체적 요구 항목은 확인되지 않으나, 이해관계자 반발이 공식화됐다는 점에서 공청회·확정 단계로 넘어가는 속도에 변수가 생겼다고 해석할 수 있다.</p><p>인투알 액션 — 국내 ESS 신규 발주 계획을 전기본 확정 시점과 연동해 시나리오를 관리한다. 확정이 지연될 경우 국내 물량 공백을 북미·해외 프로젝트로 메우는 자원 배분이 필요하며, 반대로 확정 시 물량이 일시에 풀릴 가능성에 대비해 표준 외함 라인업과 생산 리드타임 자료를 미리 정비해 둔다.</p></div>
     </article>
   </section>
+  </div>
+  <div class="duo">
+  <div class="plate">
+    <span class="sec">SEC 02</span>
+    <h2>국내 산업 동향</h2>
+    <span class="plate-note">ESS 부품 공급망 재편 1건</span>
+  </div>
+  <section class="cards">
+    <article class="card kr">
+      <div class="tags"><span class="tag t-kr">부품 공급망</span><span class="tag ">사명 변경</span></div>
+      <a class="hl" href="https://news.google.com/rss/articles/CBMiVEFVX3lxTE4yZU1SVk9SVWdKdkFfWURsMndoV1ZXXzJZZHR4NldfNV9LQVZKTXFZRDBoT2NEUnpIZUZ0QlYxeHJxd0lNS2xsbldRMWItZFEwdUttbA?oc=5" target="_blank" rel="noopener noreferrer" title="원문 보기">
+        <h3>세아메카닉스, ESS부품 수주잔고 6,000억 안고 'HT로보틱스'로 사명 변경<span class="ext">↗</span></h3>
+      </a>
+      <ul class="summary">
+        <li>세아메카닉스가 ESS부품 <b>수주잔고 6,000억원</b>을 확보한 상태에서 사명을 'HT로보틱스'로 변경, 로봇 부품 전문기업으로 체질 개선을 선언했다('26.08.19).</li>
+        <li>ESS 부품에서 대형 잔고를 쌓은 업체가 <b>로봇으로 무게중심 이동</b>을 공식화 — ESS 부품 공급망의 빈자리와 경쟁 구도 변화 가능성.</li>
+      </ul>
+      <div class="src">출처 <a href="https://news.google.com/rss/articles/CBMiVEFVX3lxTE4yZU1SVk9SVWdKdkFfWURsMndoV1ZXXzJZZHR4NldfNV9LQVZKTXFZRDBoT2NEUnpIZUZ0QlYxeHJxd0lNS2xsbldRMWItZFEwdUttbA?oc=5" target="_blank" rel="noopener noreferrer">이투데이 '26.08.19</a></div>
+      <div class="insight"><b>인투알 시사점</b> — 인투알 시사점 — ESS 부품에서 6,000억 잔고를 만든 플레이어가 성장축을 로봇으로 옮긴다는 것은, 기존 고객(셀·시스템사)의 부품·구조물 조달처에 재편 여지가 생긴다는 뜻. 해당 잔고의 품목·고객사가 인투알 외함·랙과 인접한지 확인해 대체 공급 기회를 타진할 가치가 있다.</div>
+      <div class="impact">
+        <span class="lab">인투알 영향도</span>
+        <span class="soc"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><span class="cap"></span></span>
+        <span class="val">3/4 인접 공급망 재편 — 영업 기회 탐색 대상</span>
+      </div>
+      <div class="art-detail" style="display:none"><p>세아메카닉스는 ESS 관련 부품으로 6,000억원 규모의 수주잔고를 확보한 것으로 보도된 부품 제조사다. 이번 발표의 핵심은 사명을 'HT로보틱스'로 바꾸고 로봇 부품 전문기업으로 체질을 개선하겠다는 방향 전환이다. 대형 ESS 잔고를 가진 회사가 간판을 로봇으로 바꾼다는 점에서 단순 리브랜딩 이상의 전략 신호로 읽힌다.</p><p>숫자로 보면 6,000억원 잔고는 ESS 부품 단일 카테고리로는 상당한 규모이며, 이 잔고는 사명 변경 후에도 이행돼야 할 물량이다. 다만 신규 수주의 우선순위가 로봇으로 이동한다면, 기존 ESS 고객사 입장에서는 중장기 조달 안정성을 재검토할 유인이 생긴다. 이 틈이 인접 제조사에게는 진입 창이 된다.</p><p>인투알 액션 — 해당 수주잔고의 품목 구성(다이캐스팅·구조물·기구부품 등)과 주요 고객사를 파악해 인투알 외함·랙·구조물 역량과 겹치는 영역을 식별한다. 겹치는 품목이 있다면 해당 고객사 구매라인에 이원화(세컨드 벤더) 제안을 준비하고, 겹치지 않더라도 ESS 부품 생태계의 재편 동향으로 분기 보고에 반영한다.</p></div>
+    </article>
+  </section>
+  </div>
+  <div class="duo">
   <div class="plate">
     <span class="sec">SEC 03</span>
-    <h2>글로벌 · 프로젝트</h2>
-    <span class="plate-note">해외 BESS 프로젝트 1건 확인 — 상세 수치 확인 전으로 영향도 보수적 산정.</span>
+    <h2>글로벌 · 북미 ESS</h2>
+    <span class="plate-note">오늘의 톱 — 랜싱 가동(중복 32건 통합) + 삼성SDI·GM</span>
   </div>
   <section class="cards">
     <article class="card gl">
-      <div class="tags"><span class="tag t-gl">해외</span></div>
-      <a class="hl" href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE42LWZUdUIxS2lrdmphMmFpZzBQY05tcWppbVlSajl6VEhwbEFISmQ5LWdqM1JQS3JmVHRQaklGRWtZNUhkdElxaDFwekYyZW9PSTZqUDBVbDU2Wm9xcldObkxrM05BODd6?oc=5" target="_blank" rel="noopener noreferrer" title="원문 보기">
-        <h3>페를렌 산업단지, 대규모 BESS 프로젝트 추진<span class="ext">↗</span></h3>
+      <div class="tags"><span class="tag t-gl">북미</span><span class="tag ">생산거점</span></div>
+      <a class="hl" href="https://news.google.com/rss/articles/CBMiW0FVX3lxTFB0QlA2QkttNDJVeHJ6M3JWSkZrdTRhVnF0d3B0TXFOR1p3Vkluc2pXTHVlN2xud09SSDFFaG1hR3hNdG1SdVpWaEZiRzYzYUxnd3UzSThYaEFBT2vSAWBBVV95cUxObkhVRXpTN0cweFZDRlR1YnlxMlpmYnRJSzJYVHV3VEtvcGlQdmdZWUkzeW5faWVRZ1JBMDlRaTlYMU5lb3hNRDdEb0t4MFotQlhEcFRMRVR5aEFFLTRQVVI?oc=5" target="_blank" rel="noopener noreferrer" title="원문 보기">
+        <h3>LG엔솔, 미시간 랜싱 공장 본격 가동 — 북미 ESS 5대 생산거점 완성<span class="ext">↗</span></h3>
       </a>
       <ul class="summary">
-        <li>페를렌 산업단지에서 <b>대규모 BESS</b> 프로젝트 추진이 보도됨 — 산업단지 부지 활용형 저장장치 사업.</li>
-        <li>규모·사업자 등 세부 수치는 원문 확인 필요 — 확인 전까지 참고 수준으로 취급.</li>
+        <li>LG에너지솔루션이 미시간 랜싱 공장을 본격 가동, 북미 ESS <b>5대 생산거점</b> 구축을 완성했다('26.08.19, 국내외 32개 매체 동시 보도).</li>
+        <li>랜싱은 연 <b>35GWh</b> 규모로 ESS와 EV 배터리를 함께 생산하는 <b>투트랙</b> 체제 — 'EV 쏠림'을 걷어내는 포트폴리오 재편으로 보도됐다.</li>
+        <li>배경 수요는 AI 데이터센터발 ESS 시장 성장 — 북미 현지 생산능력 확대의 직접 동인으로 지목됐다.</li>
       </ul>
-      <div class="src">출처 <a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE42LWZUdUIxS2lrdmphMmFpZzBQY05tcWppbVlSajl6VEhwbEFISmQ5LWdqM1JQS3JmVHRQaklGRWtZNUhkdElxaDFwekYyZW9PSTZqUDBVbDU2Wm9xcldObkxrM05BODd6?oc=5" target="_blank" rel="noopener noreferrer">2news '26.08.18</a></div>
-      <div class="insight"><b>인투알 시사점</b> — 산업단지 유휴부지 BESS는 새만금 RE100 산단 등 국내에서도 반복될 모델이다. 산단형 프로젝트는 옥외 컨테이너 다열 배치가 표준이므로, 인투알의 산단향 컨테이너 레퍼런스 정리에 활용할 사례로 추적한다.</div>
+      <div class="src">출처 <a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTFB0QlA2QkttNDJVeHJ6M3JWSkZrdTRhVnF0d3B0TXFOR1p3Vkluc2pXTHVlN2xud09SSDFFaG1hR3hNdG1SdVpWaEZiRzYzYUxnd3UzSThYaEFBT2vSAWBBVV95cUxObkhVRXpTN0cweFZDRlR1YnlxMlpmYnRJSzJYVHV3VEtvcGlQdmdZWUkzeW5faWVRZ1JBMDlRaTlYMU5lb3hNRDdEb0t4MFotQlhEcFRMRVR5aEFFLTRQVVI?oc=5" target="_blank" rel="noopener noreferrer">연합뉴스 '26.08.19</a> · <a href="https://news.google.com/rss/articles/CBMicEFVX3lxTFBFMnRqRGZtZ29VWjNKenJSZE1KbEN0d3k4YU9Xd0lQaUotNHE1SzBPTUJGUWJaY2dRMmR3cUFkcVd4Q0tYaWRpdGJhcld2TjZMYkFUaXVES0gwNF9wbjQtOFA3U2dEc1FCWkRjM0F6YWE?oc=5" target="_blank" rel="noopener noreferrer">시장경제신문 '26.08.19</a> · <a href="https://news.google.com/rss/articles/CBMicEFVX3lxTFBBYlFTaDBUcUdtLThoYk9JS3RaV0ZyRlhVcXNjcE5LQm9NeHJScUxaeXE5NkJqbXpPLVhKTldZTVlRNjJLcWYwc1FOR0FieUhDZVQ1YTJXSXRxTEFiMXptTzViNUpkUk5ubzcwOGdmZTc?oc=5" target="_blank" rel="noopener noreferrer">에너지신문 '26.08.19</a></div>
+      <div class="insight"><b>인투알 시사점</b> — 인투알 시사점 — 셀 캐파가 북미 현지로 붙을수록 시스템 조립·외함·랙도 현지 인근 조달 압력이 커진다. 랜싱발 ESS 셀 물량이 어떤 시스템 통합 라인으로 흘러가는지, 그 라인의 외함·컨테이너 조달 구조(현지 제작 vs 수입)를 파악하는 것이 이번 뉴스의 실전 과제다.</div>
       <div class="impact">
         <span class="lab">인투알 영향도</span>
-        <span class="soc"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><span class="cap"></span></span>
-        <span class="val">2/4 사례 축적·모델 검증</span>
+        <span class="soc"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><span class="cap"></span></span>
+        <span class="val">4/4 북미 ESS 하드웨어 수요의 구조적 상방</span>
       </div>
-      <div class="art-detail" style="display:none"><p>페를렌 산업단지에서 대규모 배터리 에너지 저장장치(BESS) 프로젝트가 추진된다는 보도가 나왔다. 산업단지 인프라와 계통 접속 여건을 활용한 저장장치 사업으로, 세계적으로 확산 중인 '산단 병설형 BESS' 유형에 해당한다. 다만 용량·투자액·사업자 등 세부 수치는 이번 수집분에서 확인되지 않아 보수적으로 다룬다.</p><p>산단형 BESS는 국내에서도 유효한 모델이다. 같은 날 보도된 새만금 RE100 산단의 재생에너지 기반 거점 전환처럼, 재생에너지·첨단산업 수요가 몰리는 산단은 저장장치의 자연스러운 입지가 된다. 산단 프로젝트는 옥외 다열 컨테이너 배치, 소음·방화 이격, 유지보수 동선 등 외함 설계 요건이 표준화되어 있어 레퍼런스 이전이 쉽다.</p><p>인투알 액션: 해당 프로젝트의 후속 보도(용량·EPC)를 추적 리스트에 등재하고, 국내 산단형 BESS 제안용으로 '다열 배치 컨테이너 표준 레이아웃' 자료를 정비한다.</p></div>
+      <div class="art-detail" style="display:none"><p>LG에너지솔루션이 미시간 랜싱 공장 가동을 시작하면서 북미 ESS 5대 생산거점 구축이 완성됐다. 오늘 국내외 30여 개 매체가 동시에 다룬 오늘의 톱뉴스로, 보도 기준 랜싱은 연 35GWh 생산능력을 갖추고 ESS와 EV 배터리를 함께 만드는 투트랙 거점이다. '5대 거점 완성'이라는 표현은 북미 ESS 셀 공급망이 계획 단계를 지나 실물 가동 단계로 넘어갔다는 선언에 가깝다.</p><p>수요 측 배경도 헤드라인에 명시됐다. 에너지신문은 'AI 데이터센터가 키운 ESS 시장'을 북미 캐파 확대의 동인으로 지목했고, 서울이코노미뉴스 등은 'EV 쏠림'을 걷어내는 포트폴리오 재편으로 해석했다. 즉 EV 수요 변동성을 ESS로 흡수하는 구조이며, 이는 ESS 물량이 일회성이 아니라 거점 운영의 상수로 자리잡았다는 의미다.</p><p>숫자 감각으로 보면 연 35GWh가 전량 ESS는 아니더라도, 이 규모의 셀이 현지에서 나오면 하류의 시스템 조립 — 즉 컨테이너·외함·랙·BOS 수요가 북미 안에서 연쇄적으로 발생한다. 셀 현지화는 통상 완제품 시스템의 현지 조달 비율 요구로 이어지기 때문에, 하드웨어 벤더에게는 '어디서 만들 것인가'가 곧 수주 조건이 된다.</p><p>인투알 액션 — ① 랜싱발 ESS 셀의 시스템 통합 경로(자체 통합/외부 SI)를 채널을 통해 확인, ② 북미향 외함·랙의 현지 대응 옵션(현지 파트너 제작·CKD 수출·직수출)별 원가·리드타임 비교표를 8월 내 갱신, ③ LG엔솔 ESS 시스템 협력사 리스트에 대한 접촉 우선순위를 재정렬한다.</p></div>
+    </article>
+    <article class="card gl">
+      <div class="tags"><span class="tag t-gl">북미</span><span class="tag ">ESS 전환</span></div>
+      <a class="hl" href="https://news.google.com/rss/articles/CBMibEFVX3lxTFBkV3oxVW12WHJwcXVLS1oteGpzTmxDcmVXWTNXX0VYekVtV0ltSm1IUEQzZnRtUUE1aVpzTXVWQWN4U2c5bjFKMlp5U2RZbnFMTmJJYnpGWUFTTHJMTHNmTmN5X2tpV2huZ0hhZQ?oc=5" target="_blank" rel="noopener noreferrer" title="원문 보기">
+        <h3>삼성SDI·GM, 차세대 각형 배터리 공동개발 — 인디애나 공장은 ESS 거점 전환<span class="ext">↗</span></h3>
+      </a>
+      <ul class="summary">
+        <li>삼성SDI와 GM이 <b>차세대 각형 배터리</b>를 공동개발하고, 인디애나 합작공장을 <b>ESS 거점으로 전환</b>한다는 보도('26.08.19).</li>
+        <li>LG 랜싱과 같은 날 나온 두 번째 'EV 라인의 ESS 전환' 사례 — K배터리 북미 공장의 <b>용도변경 경쟁</b>이 업계 공통 흐름으로 명문화됐다.</li>
+      </ul>
+      <div class="src">출처 <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTFBkV3oxVW12WHJwcXVLS1oteGpzTmxDcmVXWTNXX0VYekVtV0ltSm1IUEQzZnRtUUE1aVpzTXVWQWN4U2c5bjFKMlp5U2RZbnFMTmJJYnpGWUFTTHJMTHNmTmN5X2tpV2huZ0hhZQ?oc=5" target="_blank" rel="noopener noreferrer">모터매거진 '26.08.19</a> · <a href="https://news.google.com/rss/articles/CBMic0FVX3lxTE45YlZlTlpvdFBRN3ZjNktfLUtVak0zMUp0dWZBMzBwTlFGMmI1dHROLWNoUlh2U3RPQnRoMmc0WFVRSmQ0Tkx3WkNQcFMyRy16dG5hZDBWdWhEbEZrMzlmQ1JTQzZ5WnZuRDVZT0FraEpSNnPSAXdBVV95cUxQQlpGZzUwVXd6YlNoMFhCd09ObzV4NmRmQUxLeHh0QTFEVnBBQ3NVYm1lOFZmcmVoLVNiamdVdm51OW5BM0FlTTNJZlhIS2pSbElVcVJSNFdXYW5jX2ZqOTZjZFR4V3dQOE55M2ZkU0tMQnZ0QjFPTQ?oc=5" target="_blank" rel="noopener noreferrer">pinpointnews '26.08.19</a></div>
+      <div class="insight"><b>인투알 시사점</b> — 인투알 시사점 — 삼성SDI 인디애나가 ESS 거점화되면 LG에 이어 두 번째 북미 ESS 셀 공급축이 생긴다. 셀사별로 시스템·외함 조달 정책이 다르므로, 삼성SDI 계열 ESS 시스템의 하드웨어 파트너 지형을 별도 트랙으로 조사할 필요가 있다.</div>
+      <div class="impact">
+        <span class="lab">인투알 영향도</span>
+        <span class="soc"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><span class="cap"></span></span>
+        <span class="val">3/4 북미 제2 ESS 셀 공급축 형성 — 신규 채널 후보</span>
+      </div>
+      <div class="art-detail" style="display:none"><p>삼성SDI와 GM이 차세대 각형 배터리를 공동개발하고, 인디애나 합작공장을 ESS 거점으로 전환한다는 보도가 나왔다. 헤드라인 기준으로 각형 공동개발은 EV 파트너십의 지속을, 인디애나의 ESS 거점화는 유휴·전환 가능 캐파를 ESS 수요로 돌리는 결정을 뜻한다. 같은 날 LG엔솔 랜싱 가동 소식과 겹치며 'EV→ESS 용도변경'이 K배터리 공통 전략임이 드러났다.</p><p>pinpointnews는 이를 'K배터리 美공장 용도변경 경쟁'으로 명명했다. EV 수요의 불확실성과 AI 데이터센터발 ESS 수요 급증이 맞물린 결과로 해석되며, 전환된 라인에서 나올 셀은 결국 북미 현지 ESS 시스템 — 컨테이너·랙·외함 — 으로 조립돼야 한다. 셀사 두 곳이 각자 하류 공급망을 세팅하는 국면이 온 것이다.</p><p>인투알 액션 — 삼성SDI 계열 ESS 시스템(SBB 등 기존 제품군 포함)의 외함·랙 조달 구조를 LG 트랙과 분리해 조사한다. 각형 셀 기반 ESS는 팩·랙 구조 사양이 파우치·원통형과 다를 수 있으므로, 각형 대응 랙 설계 레퍼런스를 기술영업 자료에 미리 반영해 두면 초기 접촉 시 차별화 포인트가 된다.</p></div>
     </article>
   </section>
+  </div>
 
   <div class="plate">
     <span class="sec">SEC 04</span>
@@ -452,11 +462,10 @@
     <table>
       <thead><tr><th>구분</th><th colspan="2">단신</th><th>출처</th></tr></thead>
       <tbody>
-        <tr><td><span class="co-name">고객사</span></td><td colspan="2">삼성SDI, EV 부진에도 흑자 — 북미 무게중심을 ESS로 이동.</td><td><a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE9uUTFWQWZvbDg4eTFfVHZycUV1ZTBxS0F0LUJZaUJnLXF0M1F3SnJQSWx6RUpWZGJuYnZjNWotMmFBbEl4c0RxYXVaQkw5ZUpVdE4tOU9CZVNLMlJYcGc?oc=5" target="_blank" rel="noopener noreferrer">데이터뉴스 8/17</a></td></tr>
-        <tr><td><span class="co-name">정책</span></td><td colspan="2">김성환 기후장관, 산업용 지역요금제 내주 공개·전기본 10월 마련 언급.</td><td><a href="https://news.google.com/rss/articles/CBMiU0FVX3lxTE5BWW5SRzVuMVVyZDFadC1ZekhMalZicEdYMTduUy1iLTVRemVUVFNEZ3QwQkZoT1JjQUtMNnpHY3hHQkNkYmdqbDMtRDF2LUwzRzhB?oc=5" target="_blank" rel="noopener noreferrer">네이트 8/18</a></td></tr>
-        <tr><td><span class="co-name">프로젝트</span></td><td colspan="2">새만금 RE100 산단, 재생에너지 기반 첨단산업 거점 전환 속도 — 산단형 ESS 입지 후보.</td><td><a href="https://news.google.com/rss/articles/CBMickFVX3lxTE1pdkZjTkpPUVZ6amlkQjllNElzWUJCM3hLQnVkMVhJWVNtYzR2NVlQX0d5MEtWUG1WcnVzZWt1ei0tanRPcXlrdzNVYmtZQm1IbXJjWnFLbDc1eV9CSml0bDBxVnE2SzZMWTViYTJZdUFFZw?oc=5" target="_blank" rel="noopener noreferrer">에너지데일리 8/18</a></td></tr>
-        <tr><td><span class="co-name">시장</span></td><td colspan="2">"ESS 폭발적 성장 시작" — LG엔솔·삼성SDI 실적 반등 신호 분석 보도.</td><td><a href="https://news.google.com/rss/articles/CBMiVEFVX3lxTE5ZVy1uUEt2eDNmcHhOZUdqYV9ZMmNXREItMUJZT194eU5xRnhFTVFHWFJRWFN0Y2JWLXhCTVlXY3FVN3NzcnltWmozQUpCeUNOdmtMdg?oc=5" target="_blank" rel="noopener noreferrer">이투데이 8/18</a></td></tr>
-        <tr><td><span class="co-name">RE100</span></td><td colspan="2">한국 RE100 이행 후퇴 조짐 분석 — 국내 재생에너지·저장장치 병목 점검 기사.</td><td><a href="https://news.google.com/rss/articles/CBMibkFVX3lxTE5zazZEdEJYN0tMcVNGbk9GeUdjV0RqckpUcTVBcVhXOVVVdnlXOFJOX2R0anFoanBrWFFPTmxWeG5IeTlIaDlwOXBmUzNYLUtaMjBXVzBIVlA1SkM2MUtZVmJLeDNBaTBGVE96YVRR?oc=5" target="_blank" rel="noopener noreferrer">위클리서울 8/18</a></td></tr>
+        <tr><td><span class="co-name">트렌드</span></td><td colspan="2">'전기차 공장까지 ESS로 돌린다' — K배터리 미국 공장 용도변경 경쟁 기획 보도. 오늘 스포트라이트 #019의 근거 기사.</td><td><a href="https://news.google.com/rss/articles/CBMic0FVX3lxTE45YlZlTlpvdFBRN3ZjNktfLUtVak0zMUp0dWZBMzBwTlFGMmI1dHROLWNoUlh2U3RPQnRoMmc0WFVRSmQ0Tkx3WkNQcFMyRy16dG5hZDBWdWhEbEZrMzlmQ1JTQzZ5WnZuRDVZT0FraEpSNnPSAXdBVV95cUxQQlpGZzUwVXd6YlNoMFhCd09ObzV4NmRmQUxLeHh0QTFEVnBBQ3NVYm1lOFZmcmVoLVNiamdVdm51OW5BM0FlTTNJZlhIS2pSbElVcVJSNFdXYW5jX2ZqOTZjZFR4V3dQOE55M2ZkU0tMQnZ0QjFPTQ?oc=5" target="_blank" rel="noopener noreferrer">pinpointnews 8/19</a></td></tr>
+        <tr><td><span class="co-name">수요 배경</span></td><td colspan="2">AI 데이터센터가 키운 ESS 시장 — LG엔솔 북미 캐파 확대의 수요측 배경을 짚은 보도. 데이터센터향 ESS는 외함 수요의 신성장 축.</td><td><a href="https://news.google.com/rss/articles/CBMicEFVX3lxTFBBYlFTaDBUcUdtLThoYk9JS3RaV0ZyRlhVcXNjcE5LQm9NeHJScUxaeXE5NkJqbXpPLVhKTldZTVlRNjJLcWYwc1FOR0FieUhDZVQ1YTJXSXRxTEFiMXptTzViNUpkUk5ubzcwOGdmZTc?oc=5" target="_blank" rel="noopener noreferrer">에너지신문 8/19</a></td></tr>
+        <tr><td><span class="co-name">지역</span></td><td colspan="2">신안군, 서왕진 국회의원 신재생에너지 산업 현장 방문 — 정책 지원 방안 논의. 서남권 재생e 클러스터 동향 참고.</td><td><a href="https://news.google.com/rss/articles/CBMiZEFVX3lxTE5wZ05VZ0JhRlAzeTl0aGlaSlZIMDRFM0NmR2cxZG1PSHVNZ2hZcHZtajMwS2VOUFp0NFBqVkpTWHNJMDg2a3BvcmJhOU5WVTFiTGl0T0tLTHZnSmlTYnFNMFpzWW4?oc=5" target="_blank" rel="noopener noreferrer">열린뉴스통신 8/19</a></td></tr>
+        <tr><td><span class="co-name">지역</span></td><td colspan="2">청주시지속가능발전협의회, 에너지 전환 정책 포럼 개최 — 충청권 에너지 전환 논의 동향 참고.</td><td><a href="https://news.google.com/rss/articles/CBMiZkFVX3lxTE9OdGVSZVBNbHhuWlFHTVFPQ3F0elpCaEpjSkVKa0c1cVprdlBtR2RoSEdOTXZKclNfbGtRbl9NLXM4YkdlTVhPNlJDYWpvenZjblZqdndrMGVsb0daVWxrMW9HZ3E1UQ?oc=5" target="_blank" rel="noopener noreferrer">중앙매일 8/19</a></td></tr>
       </tbody>
     </table>
   </section>
@@ -465,187 +474,110 @@
   <div class="plate">
     <span class="sec">SEC 05</span>
     <h2>To-Do &amp; 전략 제언</h2>
-    <span class="plate-note">레이더: 지표① ESS 3차 입찰 공고·일정(KPX 간담회 포함) — 상태 '3파전 확정, 공고 대기' / 지표② 12차 전기본 저장장치 물량 — 상태 '8/20 토론회·10월 확정 예정' / 지표③ 산업용 지역요금제 — 상태 '내주 공개 예고'.</span>
+    <span class="plate-note">레이더: 지표① 북미 ESS 셀 현지 캐파 — 랜싱 가동(연 35GWh)으로 상방 확정, 삼성SDI 인디애나 전환 시 제2축 형성. 지표② 국내 정책 — 12차 전기본 절차 논란으로 확정 일정 유동. 단신 5건 목표 미달(유효 소재 부족)은 중복 정리의 결과이며 재탕으로 채우지 않음.</span>
   </div>
   <section class="todo">
     <div class="todo-item">
       <span class="prio p1">P1 긴급</span>
-      <div class="t-body"><b>3차 입찰 대응 패키지 완성</b><p>3사·SI 파트너별 외함·랙 스펙 대응표, 국내 생산 증빙, 표준 컨테이너 견적 템플릿을 금주 내 완성.</p></div>
-      <span class="owner">영업1팀 / 8.22(금)</span>
-    </div>
-    <div class="todo-item">
-      <span class="prio p1">P1 긴급</span>
-      <div class="t-body"><b>KPX ESS 중앙계약시장 간담회 대응</b><p>전력거래소 사업자 의견수렴 간담회 공지 확인·참석(또는 고객사 경유 정보 수집) — 3차 설계 변경 여부가 핵심.</p></div>
-      <span class="owner">영업기획 / 즉시</span>
+      <div class="t-body"><b>랜싱발 북미 ESS 하드웨어 조달 경로 조사</b><p>LG엔솔 랜싱 ESS 셀의 시스템 통합 경로와 외함·랙 조달 구조(현지 제작 vs 수입) 파악. 협력사 채널 접촉 우선순위 재정렬.</p></div>
+      <span class="owner">영업1팀 / 8.21까지 1차 보고</span>
     </div>
     <div class="todo-item">
       <span class="prio p2">P2 중요</span>
-      <div class="t-body"><b>8/20 전기본 토론회 모니터링</b><p>4·5차 토론회의 저장장치·유연성 자원 언급 채록 → 8/21자 브리핑 반영.</p></div>
-      <span class="owner">영업기획 / 8.20(목)</span>
+      <div class="t-body"><b>삼성SDI 트랙 별도 개설</b><p>인디애나 ESS 거점화 관련 삼성SDI 계열 ESS 시스템의 하드웨어 파트너 지형 조사. 각형 셀 대응 랙 설계 레퍼런스 기술자료 반영.</p></div>
+      <span class="owner">기술영업 / 8월 말</span>
     </div>
     <div class="todo-item">
       <span class="prio p2">P2 중요</span>
-      <div class="t-body"><b>고객사 ESS 라인 전환 맵 작성</b><p>북미 합작 철회·라인 전환 보도 기반으로 고객사별 전환 라인·폼팩터 정보 수집.</p></div>
-      <span class="owner">영업2팀 / 8.26(수)</span>
+      <div class="t-body"><b>세아메카닉스(HT로보틱스) 잔고 분석</b><p>6,000억 ESS부품 수주잔고의 품목·고객사 확인 — 인투알 외함·랙·구조물과 겹치는 영역 식별 후 이원화 제안 검토.</p></div>
+      <span class="owner">영업2팀 / 8.26</span>
     </div>
     <div class="todo-item">
       <span class="prio p3">P3 관리</span>
-      <div class="t-body"><b>산단형 BESS 표준 레이아웃 정비</b><p>페를렌·새만금 사례를 참고해 다열 배치 컨테이너 표준 레이아웃·제안서 템플릿 갱신.</p></div>
-      <span class="owner">기술영업 / 8월 말</span>
+      <div class="t-body"><b>12차 전기본 절차 모니터링</b><p>토론회 보완 요구 이후 공청회·확정 일정 변동 추적. 상태 변화 시에만 카드 승격, 평시 KPI로 유지.</p></div>
+      <span class="owner">기획 / 상시</span>
+    </div>
+    <div class="todo-item">
+      <span class="prio p3">P3 관리</span>
+      <div class="t-body"><b>북미 현지화 옵션 원가표 갱신</b><p>외함·랙 북미 대응 3개 옵션(현지 파트너 제작·CKD·직수출) 원가·리드타임 비교표 8월 내 갱신 — #020 지식편(현지조달 요건)과 연동.</p></div>
+      <span class="owner">구매·생산기획 / 8.31</span>
     </div>
   </section>
 
   <div class="comment">
     <h3>STRATEGY COMMENT · 오늘의 전략 코멘트</h3>
-    오늘의 판은 '수요는 커지고, 공급은 ESS로 돌아선다'로 요약된다. 전기본은 메가프로젝트발 수요 급증을 반영해 2040 전망을 다시 짜고(10월 확정), 셀 3사는 EV의 빈자리를 ESS로 메우며 1조원 3차 입찰에서 정면충돌한다. 두 흐름의 교차점에 '국내 생산' 요건이 있고, 이는 외함·랙까지 국산 공급망으로 채우려는 압력으로 작용한다. 인투알의 이번 주 우선순위는 명확하다 — 3차 입찰 낙찰 직후 즉시 견적이 나가도록 대응 패키지를 완성하고, 20일 토론회와 KPX 간담회에서 물량·제도 변화의 첫 신호를 잡는 것이다. 과장 없이 말해, 지금은 준비된 후방 기자재 업체가 리드타임 병목의 수혜를 가져가는 구간이다.
+    오늘 지면은 사실상 하나의 구조 전환을 세 각도에서 비춘다. LG엔솔 랜싱 가동(5대 거점·35GWh), 삼성SDI 인디애나의 ESS 거점화, 그리고 이를 묶은 '용도변경 경쟁' 기획 — 공통분모는 EV 변동성을 ESS로 흡수하며 북미 셀 캐파가 실물 가동 단계로 넘어갔다는 점이다. 셀이 현지에서 나오기 시작하면 다음 병목은 시스템 조립과 하드웨어, 즉 우리 영역이다. 인투알의 과제는 뉴스 소비가 아니라 조달 경로 확인이다: 누가 시스템을 통합하고, 외함과 랙은 어디서 사는가. 국내는 전기본 절차 논란으로 일정이 유동적이므로, 3분기 영업 자원은 북미 트랙에 우선 배분하되 국내 물량 일시 방출 가능성에 대비한 표준품 준비를 병행한다. 과장 없이 말해, 오늘은 북미 파이프라인 지도를 다시 그려야 하는 날이다.
   </div>
 
   
 
-  <div class="plate">
-    <span class="sec">SEC 06</span>
-    <h2>에디터 스포트라이트 — 오늘의 짚어볼 것</h2>
-    <span class="plate-note">최근 3개 롤링(전문 그대로 · 새 글 왼쪽) — #018 선정 이유: '1조 3파전'이라는 헤드라인 숫자보다, 세 라운드에 걸쳐 굳어지는 '국내 생산 평가 구조'가 외함사 수주 방정식을 바꾸고 있어 구조 분석으로 채택.</span>
+  <div class="duo">
+    <div class="plate">
+      <span class="sec">SEC 06</span>
+      <h2>에디터 스포트라이트 &amp; 오늘의 지식</h2>
+      <span class="plate-note">오늘의 1편씩 — 지난 회차는 아래 &#39;지난 호 목록&#39;에서</span>
+    </div>
+    <article class="card policy">
+      <div class="tags"><span class="tag t-gl">구조 분석</span><span class="tag ">EV→ESS 전환</span></div>
+      <a class="hl" href="https://news.google.com/rss/articles/CBMic0FVX3lxTE45YlZlTlpvdFBRN3ZjNktfLUtVak0zMUp0dWZBMzBwTlFGMmI1dHROLWNoUlh2U3RPQnRoMmc0WFVRSmQ0Tkx3WkNQcFMyRy16dG5hZDBWdWhEbEZrMzlmQ1JTQzZ5WnZuRDVZT0FraEpSNnPSAXdBVV95cUxQQlpGZzUwVXd6YlNoMFhCd09ObzV4NmRmQUxLeHh0QTFEVnBBQ3NVYm1lOFZmcmVoLVNiamdVdm51OW5BM0FlTTNJZlhIS2pSbElVcVJSNFdXYW5jX2ZqOTZjZFR4V3dQOE55M2ZkU0tMQnZ0QjFPTQ?oc=5" target="_blank" rel="noopener noreferrer" title="원문 보기">
+        <h3>스포트라이트 #019 — 'EV 공장의 ESS 용도변경', 셀 현지화가 외함 현지화로 번지는 경로<span class="ext">↗</span></h3>
+      </a>
+      <ul class="summary">
+        <li>기준일 '26.08.19, 같은 날 두 개의 전환 신호 — LG엔솔 랜싱(연 <b>35GWh</b>, ESS·EV 투트랙, 5대 거점 완성)과 삼성SDI 인디애나(<b>ESS 거점 전환</b>).</li>
+        <li>구조: EV 수요 변동성 + AI 데이터센터발 ESS 수요 → 기존·신규 EV 캐파의 ESS 전용(轉用) → 북미 현지 ESS 셀 공급 <b>2개 축</b> 형성.</li>
+        <li>다음 단계는 하류 — 현지 셀은 현지 시스템 조립을 부르고, 시스템 조립은 외함·컨테이너·랙의 <b>현지 인근 조달</b>을 부른다.</li>
+      </ul>
+      <div class="src">출처 <a href="https://news.google.com/rss/articles/CBMic0FVX3lxTE45YlZlTlpvdFBRN3ZjNktfLUtVak0zMUp0dWZBMzBwTlFGMmI1dHROLWNoUlh2U3RPQnRoMmc0WFVRSmQ0Tkx3WkNQcFMyRy16dG5hZDBWdWhEbEZrMzlmQ1JTQzZ5WnZuRDVZT0FraEpSNnPSAXdBVV95cUxQQlpGZzUwVXd6YlNoMFhCd09ObzV4NmRmQUxLeHh0QTFEVnBBQ3NVYm1lOFZmcmVoLVNiamdVdm51OW5BM0FlTTNJZlhIS2pSbElVcVJSNFdXYW5jX2ZqOTZjZFR4V3dQOE55M2ZkU0tMQnZ0QjFPTQ?oc=5" target="_blank" rel="noopener noreferrer">pinpointnews '26.08.19</a> · <a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTFB0QlA2QkttNDJVeHJ6M3JWSkZrdTRhVnF0d3B0TXFOR1p3Vkluc2pXTHVlN2xud09SSDFFaG1hR3hNdG1SdVpWaEZiRzYzYUxnd3UzSThYaEFBT2vSAWBBVV95cUxObkhVRXpTN0cweFZDRlR1YnlxMlpmYnRJSzJYVHV3VEtvcGlQdmdZWUkzeW5faWVRZ1JBMDlRaTlYMU5lb3hNRDdEb0t4MFotQlhEcFRMRVR5aEFFLTRQVVI?oc=5" target="_blank" rel="noopener noreferrer">연합뉴스 '26.08.19</a> · <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTFBkV3oxVW12WHJwcXVLS1oteGpzTmxDcmVXWTNXX0VYekVtV0ltSm1IUEQzZnRtUUE1aVpzTXVWQWN4U2c5bjFKMlp5U2RZbnFMTmJJYnpGWUFTTHJMTHNmTmN5X2tpV2huZ0hhZQ?oc=5" target="_blank" rel="noopener noreferrer">모터매거진 '26.08.19</a> — 분석 코너는 신선도 창 대신 기준일 명시(기준일 '26.08.19)</div>
+      <div class="insight"><b>에디터의 결론</b> — 에디터의 결론 — '용도변경'은 셀사의 이야기로 끝나지 않는다. 북미에서 셀이 나오는 순간 하드웨어의 원산지가 수주 조건이 되며, 인투알은 '현지 파트너 제작·CKD·직수출' 3개 옵션의 손익 분기 데이터를 먼저 쥔 쪽이 협상 테이블에 앉는다. 지금 준비할 것은 견적이 아니라 옵션별 원가·리드타임 지도다.</div>
+      <div class="impact">
+        <span class="lab">인투알 영향도</span>
+        <span class="soc"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><span class="cap"></span></span>
+        <span class="val">3/4 중기 북미 전략의 방향타 — 즉시 매출 아닌 포지셔닝 이슈</span>
+      </div>
+      <div class="art-detail" style="display:none"><p>'26.08.19 하루에 나온 뉴스를 겹쳐 보면 개별 공장 소식이 아니라 하나의 구조가 보인다. LG엔솔은 랜싱 가동으로 북미 ESS 5대 생산거점을 완성했고(연 35GWh, ESS·EV 투트랙), 삼성SDI는 GM과 각형 배터리를 공동개발하며 인디애나 공장을 ESS 거점으로 전환한다고 보도됐다. pinpointnews는 이를 'K배터리 美공장 용도변경 경쟁'으로 묶었다. 즉 EV용으로 지은 캐파가 ESS로 방향을 트는 흐름이 두 셀사에서 동시에 확인된 날이다.</p><p>구조를 분해하면 이렇다. 수요 측에는 AI 데이터센터발 ESS 수요 급증이, 공급 측에는 EV 수요 변동성에 노출된 대규모 북미 캐파가 있다. ESS는 EV 대비 셀 스펙 요구가 상대적으로 유연해 라인 전용이 가능하고, 현지 생산은 관세·현지조달 요건 대응에서도 유리하다. 결과적으로 북미 안에 ESS 셀 공급축이 최소 2개(LG·삼성SDI 계열) 서게 되며, 이는 하류 시스템 조립 물량이 북미 역내에서 발생한다는 뜻이다.</p><p>인투알에게 중요한 것은 그 다음 고리다. 현지 셀 → 현지 시스템 조립 → 외함·컨테이너·랙의 현지 인근 조달 압력이라는 연쇄에서, 하드웨어 벤더의 경쟁 변수는 가격만이 아니라 '어디서 만들 수 있는가'가 된다. 액션은 세 가지 — ① 두 셀사 계열의 시스템 통합·조달 구조를 트랙별로 조사, ② 현지 파트너 제작·CKD·직수출 3개 옵션의 원가·리드타임 지도를 8월 내 완성, ③ 각형·파우치 등 셀 폼팩터별 랙 설계 레퍼런스를 선제 정비. 결론적으로 오늘은 '북미 영업 조직도'를 다시 그리는 트리거로 기록해 둘 날이다.</p></div>
+    </article>
+    <article class="card kr">
+      <div class="tags"><span class="tag t-kr">지식 #019</span><span class="tag ">기초 과정</span></div>
+      <h3 style="margin:2px 0 10px; font-size:16.5px; line-height:1.45;">지식 #019 — GWh를 외함으로 환산하는 법: 캐파 뉴스의 숫자감각</h3>
+      <ul class="summary">
+        <li><b>구조</b>: 셀 공장 캐파는 GWh(연간 에너지 생산량)로 발표되지만, 우리 사업의 단위는 '컨테이너 대수·랙 본수'다. 환산 사슬은 GWh → MWh → 시스템(컨테이너) 용량 → 대수 → 랙 본수 순.</li>
+        <li><b>숫자감각</b>: 1GWh = 1,000MWh. 컨테이너 1대를 5MWh급으로 가정하면 1GWh는 약 <b>200대</b>, 3~4MWh급이면 250~330대에 해당한다. 예컨대 '연 35GWh' 헤드라인은 전량 ESS일 경우 이론상 연 수천 대 규모의 컨테이너 물동량을 함의한다(실제로는 EV 배분·가동률에 따라 크게 달라지는 상한 개념).</li>
+        <li><b>왜 중요한가</b>: 캐파 뉴스를 대수로 환산해야 '이 물량을 누가 조립하고 외함은 몇 대 필요한가'라는 영업 질문으로 바뀐다. GWh를 그대로 두면 남의 뉴스, 대수로 바꾸면 우리 파이프라인이다.</li>
+        <li><b>주의점</b>: 명판 GWh는 셀 기준이라 시스템 단에서는 DoD·효율·예비율로 실효 용량이 줄고, 저장시간(2h·4h)에 따라 같은 GWh라도 요구되는 컨테이너 구성이 달라진다. 환산 시 반드시 '가정 조건'을 병기할 것.</li>
+      </ul>
+      <div class="src">출처 <a href="https://news.google.com/rss/articles/CBMicEFVX3lxTFBFMnRqRGZtZ29VWjNKenJSZE1KbEN0d3k4YU9Xd0lQaUotNHE1SzBPTUJGUWJaY2dRMmR3cUFkcVd4Q0tYaWRpdGJhcld2TjZMYkFUaXVES0gwNF9wbjQtOFA3U2dEc1FCWkRjM0F6YWE?oc=5" target="_blank" rel="noopener noreferrer">시장경제신문 '26.08.19 (35GWh 예시 출처)</a> · <b>다음 강 예고 — #020 북미 현지조달(Domestic Content) 요건과 외함 제조사의 3가지 대응 옵션</b></div>
+      <div class="insight"><b>실무 연결</b> — 실무 연결 — 오늘 톱뉴스 '랜싱 연 35GWh'를 견적 언어로 번역하는 훈련이 이 강의 목적. 고객 미팅에서 캐파 뉴스가 나오면 즉시 '몇 MWh급 시스템, 저장시간 몇 시간 기준인가'를 되물어 대수 단위로 좁혀라 — 그 순간 대화가 뉴스 잡담에서 수주 상담으로 바뀐다. <b>오늘의 용어 3개</b>: ①명판용량(Nameplate Capacity — 발표용 이론 최대치) ②저장시간(Duration — 2h/4h, 같은 MW라도 MWh와 컨테이너 구성이 달라짐) ③실효용량(Usable Capacity — DoD·효율 반영 후 실제 쓰는 용량).</div>
+    </article>
   </div>
-  <section class="cards">
-    <article class="card policy">
-      <div class="tags"><span class="tag t-bid">스포트라이트</span><span class="tag t-kr">구조 분석</span></div>
-      <a class="hl" href="https://news.google.com/rss/articles/CBMiWEFVX3lxTFAyUG4yTEFQNHItQmo5NjU0aU5MdFplM3kzODBXai15Q085cVdrc0Myd1JJR2lTRzQ0bElLMU1PV1ZWUDIzU3hNakl0dzRSXzdYekh6MHBDZ1TSAVhBVV95cUxQMlBuMkxBUDRyLUJqOTY1NGlOTHRaZTN5MzgwV2oteUNPOXFXa3NDMndSSUdpU0c0NGxJSzFNT1dWVlAyM1N4TWpJdHc0Ul83WHpIejBwQ2dU?oc=5" target="_blank" rel="noopener noreferrer" title="원문 보기">
-        <h3>SPOT #018 — '1조 3파전'의 진짜 전장: 셀 가격이 아니라 국산 공급망 증빙<span class="ext">↗</span></h3>
-      </a>
-      <ul class="summary">
-        <li>3차 입찰의 표면은 <b>약 1조원</b>을 둘러싼 3사 경쟁이지만, 복수 보도가 공통으로 짚는 심층 변수는 <b>'국내 생산'</b> 평가 구조다.</li>
-        <li>동시에 3사는 북미 합작 철회·EV 라인의 ESS 전환으로 국내외 ESS 생산능력을 확대 중 — 낙찰과 무관하게 외함 수요의 저변이 넓어지는 구조.</li>
-        <li>결론: 낙찰사 1곳에 베팅하는 영업이 아니라, 3사 공통의 '국산 공급망 서류 요건'을 먼저 충족하는 쪽이 판을 가져간다.</li>
-      </ul>
-      <div class="src">출처 <a href="https://news.google.com/rss/articles/CBMiWEFVX3lxTFAyUG4yTEFQNHItQmo5NjU0aU5MdFplM3kzODBXai15Q085cVdrc0Myd1JJR2lTRzQ0bElLMU1PV1ZWUDIzU3hNakl0dzRSXzdYekh6MHBDZ1TSAVhBVV95cUxQMlBuMkxBUDRyLUJqOTY1NGlOTHRaZTN5MzgwV2oteUNPOXFXa3NDMndSSUdpU0c0NGxJSzFNT1dWVlAyM1N4TWpJdHc0Ul83WHpIejBwQ2dU?oc=5" target="_blank" rel="noopener noreferrer">아주경제 '26.08.18</a> · <a href="https://news.google.com/rss/articles/CBMiZEFVX3lxTE1hZVF2T2owbFdzSDNHZ3ZsM0YxcHNBY1NfVlJKSXJPdlhsMWtUYXVZUGx1bE40NjF5SThwMkRFb21EYzR3YjBHR29XRzZTRDJsMFdpYzh4US0yRkF2ZXFCVUxfVDY?oc=5" target="_blank" rel="noopener noreferrer">머니투데이방송 '26.08.18</a> — 분석 코너는 신선도 창 대신 기준일 명시: 2026.08.18 보도 기준</div>
-      <div class="insight"><b>에디터의 결론</b> — 에디터의 결론 — 3파전에서 인투알의 포지션은 '중립적 국산 인프라'다. 누가 이겨도 필요한 국내 생산 증빙·표준 외함·단납기 능력을 갖추면, 3사 경쟁이 치열할수록 인투알의 협상력은 오히려 올라간다.</div>
-      <div class="impact">
-        <span class="lab">인투알 영향도</span>
-        <span class="soc"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><span class="cap"></span></span>
-        <span class="val">3/4 수주 전략 재정렬</span>
-      </div>
-      <div class="art-detail" style="display:none"><p>8월 18일 하루에만 최소 5개 매체가 ESS 3차 입찰 '3파전'을 다뤘다. 헤드라인 숫자는 '약 1조원'이지만, 기사들을 겹쳐 읽으면 공통 구조가 드러난다. 공공 중앙계약시장이라는 제도 특성상 가격 외에 국내 생산·공급망 기여가 평가의 핵심으로 작동하고, 3사 모두 이 축에서 차별화를 시도하고 있다는 점이다.</p><p>여기에 같은 날의 다른 축 — 북미 합작 철회와 ESS 라인 전환, R&D 1.8조원(+13%)의 ESS 집중 — 을 포개면 그림이 완성된다. 3사는 입찰 승패와 무관하게 ESS 생산능력 자체를 키우고 있다. 즉 3차 입찰은 단발 이벤트가 아니라, 국내 ESS 공급망 전체가 상시 가동 체제로 넘어가는 과정의 한 장면이다.</p><p>외함사 관점의 함의는 두 가지다. 첫째, 특정 낙찰사에 대한 베팅보다 3사 공통 요건(국산 증빙, 인증 대응, 단납기)을 먼저 갖추는 것이 기대수익이 크다. 둘째, 경쟁이 격화될수록 납기가 승부처가 되므로 표준 플랫폼 기반의 빠른 견적·생산 체계가 곧 영업 무기가 된다.</p><p>인투알 액션: '3사 공통 서류 패키지'(국내 생산 증빙·품질 인증·납기 실적)를 단일 폴더로 표준화하고, 3차 입찰 공고~낙찰 일정에 맞춘 영업 캘린더를 이번 주 내 확정한다.</p></div>
-    </article>
-    <article class="card policy">
-      <div class="tags"><span class="tag t-kr">스포트라이트 #017</span><span class="tag t-bid">구조 분석</span></div>
-      <a class="hl" href="https://news.google.com/rss/articles/CBMickFVX3lxTE4tekJXMVVZOE1Ed21VMjF1eElsSlZhTHdEUm1jUW5Sejg0c0Vzc01VME5KNXBsM1ZiYWtmcVRVcjRybzhWOE1nRVMxcG1SRDI1OC1zb1E5RV9rNFZTeFRIcmo4LTJTQ1J5a1FBVXpJQXZmZw?oc=5" target="_blank" rel="noopener noreferrer" title="원문 보기">
-        <h3>'20→30%'의 구조 — 셀사의 ESS 주력화가 외함 발주 체계를 바꾼다<span class="ext">↗</span></h3>
-      </a>
-      <ul class="summary">
-        <li>표면의 숫자: LG엔솔·삼성SDI의 ESS 매출 비중이 <b>20%대→30%대</b>로 이동(8/17 보도 기준).</li>
-        <li>숫자 뒤의 구조 ①: EV는 셀 단위로 팔리지만 ESS는 컨테이너·랙 단위 '시스템'으로 팔린다 — 매출 10%p 이동은 시스템 부자재 수요의 비선형적 증가를 의미.</li>
-        <li>숫자 뒤의 구조 ②: 셀사가 시스템까지 직접 공급할수록 외함 발주처가 SI에서 셀사 직발주로 이동할 수 있다 — 고객 구조 자체가 재편되는 국면.</li>
-        <li>같은 주에 3차 입찰 3파전(8/17)·가동률 반등(8/17)이 겹친 것은 우연이 아니라 동일한 전환의 세 단면.</li>
-      </ul>
-      <div class="src">출처 <a href="https://news.google.com/rss/articles/CBMickFVX3lxTE4tekJXMVVZOE1Ed21VMjF1eElsSlZhTHdEUm1jUW5Sejg0c0Vzc01VME5KNXBsM1ZiYWtmcVRVcjRybzhWOE1nRVMxcG1SRDI1OC1zb1E5RV9rNFZTeFRIcmo4LTJTQ1J5a1FBVXpJQXZmZw?oc=5" target="_blank" rel="noopener noreferrer">머니투데이 '26.08.17</a> — 분석 코너는 신선도 창 대신 기준일 명시(기준일 2026.08.17)</div>
-      <div class="insight"><b>에디터의 결론</b> — 에디터의 결론 — 20→30%는 '주문이 늘었다'가 아니라 '고객이 바뀐다'는 신호로 읽어야 한다. 셀사가 ESS를 주력화하면 외함·랙 조달의 의사결정권이 SI에서 셀사 쪽으로 이동할 가능성이 크고, 그 전환기에 양쪽 채널을 모두 잡은 부자재 업체가 다음 사이클의 표준 벤더가 된다. 인투알의 8~9월 영업은 이 이원 채널 구축에 걸어야 한다.</div>
-      <div class="impact">
-        <span class="lab">인투알 영향도</span>
-        <span class="soc"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><span class="cap"></span></span>
-        <span class="val">3/4 고객 구조 재편 — 중기 영업 전략의 방향 결정 이슈</span>
-      </div>
-      <div class="art-detail" style="display:none"><p>8월 17일 보도된 'LG엔솔·삼성SDI ESS 매출 비중 20→30%'는 단순한 실적 뉴스가 아니다. EV 배터리는 완성차에 셀·모듈 단위로 납품되지만, ESS 매출은 상당 부분이 랙·컨테이너를 포함한 시스템 단위로 잡힌다. 따라서 매출 비중 10%p의 이동은 셀 판매량 이동 이상으로 시스템 부자재—외함·랙·열관리—수요의 이동을 내포한다.</p><p>두 번째 구조는 발주 체계의 재편이다. ESS가 부업일 때 셀사는 셀만 팔고 시스템은 SI가 꾸렸지만, ESS가 주력 사업이 되면 셀사가 자체 컨테이너 플랫폼으로 시스템까지 직접 공급하려는 유인이 커진다. 이 경우 외함·랙의 발주처가 다수의 SI에서 소수의 셀사 플랫폼 조직으로 집중되며, 벤더 선정은 프로젝트 단위가 아니라 플랫폼 단위 장기 계약으로 바뀐다.</p><p>같은 날 나온 두 기사—3차 입찰 3파전(뉴스1), AI 훈풍發 가동률 반등(이투데이)—는 이 전환의 다른 단면이다. 내수 입찰 경쟁, 공장 가동률 회복, 매출 비중 이동은 모두 '셀사의 그리드 사업 주력화'라는 하나의 흐름에서 나온다.</p><p>인투알 액션: 전환기의 승부처는 이원 채널이다. 기존 SI 고객 관계를 유지하면서, 셀사 ESS 플랫폼 조직에 대해서는 표준 외함의 플랫폼 적합성(치수·열관리·인증 대응)을 정리한 별도 제안 트랙을 연다. 플랫폼 벤더로 한번 들어가면 프로젝트마다 경쟁 입찰을 반복하지 않아도 되는 위치를 확보할 수 있다.</p></div>
-    </article>
-    <article class="card policy">
-      <div class="tags"><span class="tag ">SPOTLIGHT #016</span><span class="tag t-bid">구조 분석</span></div>
-      <a class="hl" href="https://news.google.com/rss/articles/CBMiVEFVX3lxTE83amVGdjc0bzlOMEJPYWZyM2tzZFZKVGYwVlVmMV9UUXRvc2ZCTVlIZzB2M1B0X2hwR1hjOHo3bkJoZGlVSnJGZXJxNlFmbEdkTG9VMQ?oc=5" target="_blank" rel="noopener noreferrer" title="원문 보기">
-        <h3>연 1회 입찰이 만드는 '발주 절벽과 피크' — 1조 ESS 시장의 시간 구조<span class="ext">↗</span></h3>
-      </a>
-      <ul class="summary">
-        <li>보도 기준(기준일 '26.08.14) 올해 ESS 중앙계약시장 입찰은 <b>단 1회</b>, 규모는 약 <b>1조</b> — 조달의 '빈도'가 줄고 '진폭'이 커지는 구조 전환이다.</li>
-        <li>연 1회 구조에서는 낙찰 발표 시점에 셀 3사의 시스템·외함·랙 발주가 동시에 발생 — 공급사 입장에선 연중 평탄한 수주가 아니라 '절벽과 피크'의 계절성이 생긴다.</li>
-        <li>이 구조의 승자는 캐파가 큰 회사가 아니라 '피크를 소화할 준비가 끝난' 회사 — 사전 벤더 등록, 표준 스펙 선확정, 자재 선주문 여력이 3대 변수다.</li>
-        <li>KPX가 사업자 의견수렴 간담회를 공지한 만큼 회차·물량 설계는 아직 가변적 — 간담회 결과가 이 시간 구조의 최종 형태를 정한다.</li>
-      </ul>
-      <div class="src">출처 <a href="https://news.google.com/rss/articles/CBMiVEFVX3lxTE83amVGdjc0bzlOMEJPYWZyM2tzZFZKVGYwVlVmMV9UUXRvc2ZCTVlIZzB2M1B0X2hwR1hjOHo3bkJoZGlVSnJGZXJxNlFmbEdkTG9VMQ?oc=5" target="_blank" rel="noopener noreferrer">v.daum.net '26.08.14</a> · <a href="https://news.google.com/rss/articles/CBMiZEFVX3lxTFBiOXJmVUg2YkRSdnRHRjhMeHd4WkVFTTk0dW90ckp2OVl1WU9DZEprekdkbW9qbHZXNUdFZHV6bHNFY2NpS28zWW9RNkFock5wdVRhbEdHclhYQmFJdTNYZFdEdDU?oc=5" target="_blank" rel="noopener noreferrer">디지털데일리 '26.08.16</a> · <a href="https://www.kpx.or.kr/board.es?mid=a11201000000&bid=0042&act=view&list_no=77793&tag=&nPage=1" target="_blank" rel="noopener noreferrer">전력거래소 공지</a> — 분석 코너는 신선도 창 대신 기준일 명시</div>
-      <div class="insight"><b>에디터의 결론</b> — 에디터의 결론 — 연 1회 입찰은 '수주 영업'을 '준비 영업'으로 바꾼다. 낙찰 이후 움직이면 늦고, 공고 이후 움직여도 늦다. 인투알은 지금(의견수렴 국면)부터 셀 3사 벤더 지위·표준 스펙·자재 리드타임을 세팅해, 발주 피크가 왔을 때 즉시 캐파를 커밋할 수 있는 소수 공급사 포지션을 선점해야 한다.</div>
-      <div class="impact">
-        <span class="lab">인투알 영향도</span>
-        <span class="soc"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><span class="cap"></span></span>
-        <span class="val">3/4 높음 — 당사 연간 생산·영업 리듬 재설계 사안</span>
-      </div>
-      <div class="art-detail" style="display:none"><p>8월 14일 보도는 올해 국내 ESS 중앙계약시장 입찰이 '딱 한 번' 열리며 삼성·LG·SK가 약 1조 원 규모를 두고 경쟁한다고 전했다. 헤드라인은 셀 3사의 경쟁 구도지만, 공급망 관점에서 더 중요한 것은 '연 1회'라는 빈도다. 조달 빈도가 줄면 개별 회차의 규모와 낙찰 이후 발주 진폭이 커지고, 후방 공급사의 일감은 연중 평탄 분포에서 특정 분기 집중형으로 바뀐다.</p><p>이 시간 구조에서 외함·랙 공급사가 겪는 일은 예측 가능하다. 낙찰 발표 전까지는 발주 공백(절벽), 발표 직후에는 셀 3사와 SI들이 동시에 조달에 나서는 발주 피크가 온다. 피크 국면에서는 강판·부자재·도장·물류까지 공급망 전체가 같은 시점에 조여지므로, 자재 선주문 여력과 표준 스펙 기반의 양산 전환 속도가 납기 경쟁력을 결정한다. 캐파 절대량보다 '피크 소화 준비도'가 승부처라는 뜻이다.</p><p>변수는 아직 남아 있다. 전력거래소가 '2026년 ESS중앙계약시장 사업자 의견수렴 간담회'를 공지한 상태(게시일 미표기)로, 회차·물량·평가기준 설계는 의견수렴을 거쳐 확정될 것으로 보인다. 16일 디지털데일리가 전한 삼성SDI의 '새 판 짜기'까지 겹치면, 공고 전 지금이 공급망 포지셔닝의 마지막 창이다.</p><p>인투알 액션 — ① 셀 3사·유력 SI 벤더 등록 상태를 이번 주 전수 점검하고 미비점을 즉시 보완한다. ② 외함·랙 표준 스펙과 옵션 매트릭스를 선확정해 '공고 후 견적 리드타임'을 최소화한다. ③ 피크 시나리오(단기 집중 발주) 기준의 자재 조달·외주 협력 계획을 수립해 캐파 커밋 근거를 문서화한다.</p></div>
-    </article>
-  </section>
 
-  <div class="plate">
-    <span class="sec">SEC 07</span>
-    <h2>오늘의 ESS 지식 — 하루 한 장</h2>
-    <span class="plate-note">최근 4개 롤링 — 전문 그대로 유지(요약·축소 없음), 새 지식이 왼쪽 — #014 지면 졸업</span>
+  <div class="arch-bar">
+    <span class="txt"><b>지난 호가 궁금하신가요?</b> 이전 스포트라이트 · 지식 전편과 지난 지면을 게시판에서 다시 보실 수 있습니다.</span>
+    <a href="list.html">📚 지난 호 목록 열기</a>
   </div>
-  <section class="cards">
-    <article class="card kr">
-      <div class="tags"><span class="tag t-kr">지식 #018</span><span class="tag ">기초 과정</span></div>
-      <h3 style="margin:2px 0 10px; font-size:16.5px; line-height:1.45;">지식 #018 — 전력수급기본계획(전기본) 읽는 법: 외함 제조사가 봐야 할 숫자</h3>
-      <ul class="summary">
-        <li>구조: 전기본은 정부가 격년 주기로 수립하는 중장기 전력 수급 마스터플랜이다. '수요 전망 → 전원 믹스 → 설비 계획' 순으로 짜이며, 저장장치(ESS)는 재생에너지 변동성과 수요 피크를 받아내는 유연성 자원 항목에 담긴다.</li>
-        <li>숫자 감각: 지금 12차에서는 3대 메가프로젝트발 수요 급증을 반영해 2040년 수요를 다시 전망하는 중이고, 확정 목표는 10월이다. 수요 전망이 위로 움직이면 유연성 자원 소요도 함께 커지는 것이 계획의 논리 구조다.</li>
-        <li>왜 중요한가: 전기본의 저장장치 물량은 ESS 중앙계약시장 입찰의 회차·규모로 번역된다. 즉 전기본은 국내 ESS 외함·랙 시장의 '중기 발주 총량표'이며, 1조원 3차 입찰도 이 체계 안의 한 회차다.</li>
-        <li>실무 팁: 전기본 관련 기사를 읽을 때는 ① 수요 전망 수치의 변화 방향, ② 저장장치·유연성 자원 언급 유무, ③ 확정 일정, 세 가지만 체크해도 영업 파이프라인 전망에 바로 쓸 수 있다.</li>
-      </ul>
-      <div class="src">출처 <a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5tTnpTSElMV3phV01JYWhKVEJFYWU3dGpzTlV2RTJqeVhPRHRMT0diVFNPUm9EU091ZV9jejlSRnhiYUpJMjI1ZWpwV2k3QlkwZjhLRkM5ZXdRcUJGaE9kN3U2RjEtZjA?oc=5" target="_blank" rel="noopener noreferrer">산경e뉴스 '26.08.18</a> · <a href="https://news.google.com/rss/articles/CBMiUkFVX3lxTFBsUTNab3pKT3dDSzJSYTdNeEhVV0FhNko4eTV5UFRZRkljNTZLaElOckJEMTlja1didmFUTzZ3QzN3SjhlUGN2UzkwVUp1RUYzTXc?oc=5" target="_blank" rel="noopener noreferrer">노컷뉴스 '26.08.17</a> · <b>다음 강 예고 — #019 ESS 중앙계약시장: 입찰 평가 구조와 '국내 생산' 요건 해부</b></div>
-      <div class="insight"><b>실무 연결</b> — 실무 연결 — 고객 미팅에서 '전기본이 10월에 확정되면 저장장치 물량이 어떻게 잡히는지'를 화두로 던지면, 고객사의 내년 발주 계획 정보를 자연스럽게 끌어낼 수 있다. <b>오늘의 용어 3개</b>: ①전력수급기본계획(전기본) — 격년 수립 중장기 전력 마스터플랜 ②유연성 자원 — 수요·재생에너지 변동을 받아내는 ESS·가스터빈 등 자원 ③중앙계약시장 — 정부 주도 장기계약 방식의 ESS 경쟁입찰 시장.</div>
-    </article>
-    <article class="card kr">
-      <div class="tags"><span class="tag t-kr">지식 #017</span><span class="tag ">기초 과정</span></div>
-      <h3 style="margin:2px 0 10px; font-size:16.5px; line-height:1.45;">지식 #017 — 에너지형 vs 출력형 ESS: C-rate가 랙과 외함 설계를 바꾼다</h3>
-      <ul class="summary">
-        <li>구조 — ESS는 용도에 따라 '에너지형(장주기·저C-rate)'과 '출력형(단주기·고C-rate)'으로 갈린다. 에너지형은 셀을 최대한 빽빽이 쌓는 고밀도 랙, 출력형은 발열이 커서 냉각·버스바 여유를 둔 랙이 필요하다.</li>
-        <li>숫자 감각 — C-rate는 '1시간 기준 방전 배수'다. 1MWh 시스템이 0.25C면 4시간 동안 250kW로, 1C면 1시간 동안 1MW로 방전한다. 같은 용량이라도 C-rate가 높을수록 전류·발열이 커져 도체 단면적과 냉각 용량이 함께 커진다.</li>
-        <li>왜 중요한가 — 국내 중앙계약시장이 요구하는 장주기 ESS는 에너지형이 주류다. 즉 셀 적재 밀도, 랙 하중 설계, 컨테이너 내 통로·정비 공간 최적화가 원가 경쟁력의 핵심이 된다. 반대로 주파수 조정용 등 출력형은 열관리 사양이 수주를 가른다.</li>
-        <li>실무 포인트 — 고객 RFQ에서 'MW와 MWh의 비율'을 먼저 보라. MWh/MW가 4 이상이면 에너지형(밀도 설계), 1 내외면 출력형(열·전류 설계)으로 외함·랙 제안 방향이 갈린다.</li>
-      </ul>
-      <div class="src">출처 <a href="" target="_blank" rel="noopener noreferrer">사내 교육 자료 · 커리큘럼 자체 편성</a> · <b>다음 강 예고 — #018 ESS 소방·소화 체계 기초(외함에 요구되는 화재 대응 설계)</b></div>
-      <div class="insight"><b>실무 연결</b> — 실무 연결 — 견적 단계에서 C-rate(=MW/MWh 비율)만 확인해도 랙 하중·냉각·버스바 사양의 방향을 초기에 잡을 수 있어 재설계 리스크가 줄어든다. 국내 3차 입찰류 장주기 물량은 에너지형이므로 고밀도 랙 표준안을 기본 제안으로 준비하자. <b>오늘의 용어 3개</b>: ① C-rate(시간당 방전 배수) ② 에너지형/출력형(장주기 대 단주기 용도 구분) ③ DoD(방전심도 — 전체 용량 중 실제 사용 비율)</div>
-    </article>
-    <article class="card kr">
-      <div class="tags"><span class="tag t-kr">지식 #016</span><span class="tag ">기초 과정</span></div>
-      <h3 style="margin:2px 0 10px; font-size:16.5px; line-height:1.45;">지식 #016 — 전기본(전력수급기본계획) 읽는 법: ESS 공급사가 봐야 할 숫자</h3>
-      <ul class="summary">
-        <li><b>구조</b> — 전기본은 정부가 2년 주기로 수립하는 15년 단위 국가 전력 로드맵. '수요 전망 → 목표 설비 믹스 → 계통·유연성 자원 확충'의 3단 구조로, ESS 물량은 세 번째 단에서 도출된다. 초안 공개 → 정책토론회 → 공청회 → 국회 보고 순의 절차를 밟는다.</li>
-        <li><b>숫자 감각</b> — 공급사가 볼 숫자는 세 개: ① 목표연도 최대 전력수요(전체 파이), ② 재생에너지 목표 비중(변동성 = ESS 필요량의 동인), ③ ESS 등 유연성 자원 확충 목표(직접 물량). 이번 8/20 토론회는 ①이 메가프로젝트 반영으로 다시 계산되는 자리다.</li>
-        <li><b>왜 중요한가</b> — 전기본 숫자는 중앙계약시장 입찰 물량, 계통 보강 예산, 지역별 요금 신호의 상위 근거가 된다. 계획 숫자가 오르면 수년 뒤 입찰 공고 규모로 내려오는 하향 전달 구조이므로, 전기본을 읽는 것은 3~5년 뒤 수주 파이프라인을 미리 읽는 것과 같다.</li>
-        <li><b>실무 연결</b> — 토론회·공청회 자료는 공개되므로 발표 당일 원문에서 ESS·유연성 자원 항목만 발췌해 사내 물량 시나리오(외함·랙 환산 기준)에 반영하는 루틴을 만든다. '계획 수치 → 입찰 물량 → 당사 캐파' 3단 환산표가 있으면 경영 보고가 빨라진다.</li>
-      </ul>
-      <div class="src">출처 <a href="https://news.google.com/rss/articles/CBMicEFVX3lxTE9RWk5xeU45M0p0ZGFEWGM2Q1FhaW5QVTJ4OFZYUUlPSDVoVld5WjNfbDRxYU1IR0V3em1MYks2X2JFcUI0QXEyR0E0OXN1aEs1bHhtY0RPRXNXVGJlMXVQU0hyT0UtcHVPOGxacDg1N0_SAXBBVV95cUxPUVpOcXlOOTNKdGRhRFhjNkNRYWluUFUyeDhWWFFJT0g1aFZXeVozX2w0cWFNSEdFd3ptTGJLNl9iRXFCNEFxMkdBNDlzdWhLNWx4bWNET0VzV1RiZTF1UFNIck9FLXB1TzhsWnA4NTdP?oc=5" target="_blank" rel="noopener noreferrer">전기신문 '26.08.15</a> · <a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE9WZ3pqcW5sNExCdEhlTURiaWVXeUphblo2UXRoYlRlMHk5VEVoLVRKNkt6OE9QNnJkMzMydzluX1FyeWtTUVRMSHFCQXFXREl1Zi1sOEZYM3gtaVXSAWBBVV95cUxOUjh2bTc0T1RFTHpLdmwxaEJZZV9DVVRseE4xNnJka2dSX3dfNnA2RFVFNW1TQnpOamtENjBsaDYyU1BQdmRRQThCTTZqcllHY2tROUlCNGRfa2hDVUU4eDY?oc=5" target="_blank" rel="noopener noreferrer">연합뉴스 '26.08.15</a> · <b>다음 강 예고 — #017 ESS 중앙계약시장 입찰 구조 해부: 공고문에서 낙찰까지</b></div>
-      <div class="insight"><b>실무 연결</b> — 실무 연결 — 8/20 토론회 자료가 나오면 이 프레임(수요→믹스→유연성 자원)대로 읽고, ESS 관련 수치를 외함·랙 환산 기준으로 정리해 팀 공유한다. <b>오늘의 용어 3개</b>: <b>전기본</b>(전력수급기본계획 — 2년 주기·15년 단위 국가 전력 로드맵), <b>수요 재추계</b>(대형 신규 수요를 반영해 기준 수요 전망을 다시 산정하는 절차), <b>공청회</b>(계획 확정 전 법정 의견수렴 단계 — 이 단계 진입은 확정이 임박했다는 신호).</div>
-    </article>
-    <article class="card kr">
-      <div class="tags"><span class="tag t-kr">지식 #015</span><span class="tag ">기초 과정</span></div>
-      <h3 style="margin:2px 0 10px; font-size:16.5px; line-height:1.45;">#015 ESS 냉각 방식 3분류 — 공랭·수랭·액침, 그리고 외함 설계가 달라지는 지점</h3>
-      <ul class="summary">
-        <li><b>구조</b>: ESS 냉각은 크게 공랭(HVAC로 공기 순환)·수랭(냉각수 배관으로 열 회수)·액침(셀을 절연 냉각액에 담금) 3방식. 셀 에너지 밀도가 높아질수록 공랭→수랭 전환이 업계의 큰 흐름이며, 이번 주 조명된 한중엔시에스도 냉각 시스템을 기반으로 ESS 체인에 편입된 사례다.</li>
-        <li><b>숫자 감각</b>: 냉각 방식은 컨테이너의 열 설계 전체를 좌우한다. 공랭은 덕트·필터·공조기 공간을, 수랭은 배관·매니폴드·누수 감지와 칠러 배치를 요구해 같은 용량이라도 외함 내부 레이아웃과 개구부 설계가 완전히 달라진다.</li>
-        <li><b>왜 중요한가</b>: 화재 안전(UL9540A 시험에서의 열폭주 전이 억제)과 수명(셀 온도 편차 관리)이 냉각 성능에 직결되기 때문. 발주처의 냉각 방식 선택이 곧 외함 사양서의 절반을 결정한다.</li>
-        <li><b>실무 연결</b>: 견적 단계에서 '냉각 방식이 무엇인지'를 가장 먼저 확인해야 한다. 수랭형이면 배관 관통부 실링·결로 대책·바닥 드레인 설계가 추가되고, 이는 원가와 납기에 바로 반영된다.</li>
-      </ul>
-      <div class="src">출처 <a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE1LUWVKakZfRy1taVAyRExsbXh2TDBQZ2FyQ2xYbnNDTWF4WUk0RUMtMW96b3k1b0tKSV9UZTFTbURNWUdyZVpFT3lJdEpXbmRkanVJMHpxTzJJdw?oc=5" target="_blank" rel="noopener noreferrer">한국경제 '26.08.14 (한중엔시에스 관련)</a> · <b>다음 강 예고 — #016 컨테이너형 ESS의 운송·설치 규격: ISO 컨테이너 치수와 도로 운송 한계</b></div>
-      <div class="insight"><b>실무 연결</b> — 실무 연결 — 냉각 방식 질문 하나로 견적 정확도가 달라진다. RFQ 접수 시 '공랭/수랭 여부, 칠러 위치(외함 내장/외부), 배관 관통부 수량'을 표준 질문 3종으로 확인하자. <b>오늘의 용어 3개</b>: ①공랭(Air Cooling) — 공조기로 컨테이너 내부 공기를 순환시키는 방식 ②수랭(Liquid Cooling) — 냉각수 배관을 셀·모듈에 접촉시켜 열을 회수하는 방식 ③열폭주 전이(Thermal Propagation) — 한 셀의 열폭주가 인접 셀로 번지는 현상, UL9540A의 핵심 평가 항목</div>
-    </article>
-  </section>
 
   <div class="plate">
     <span class="sec">SEC 08</span>
     <h2>주가 · 공시 보드</h2>
-    <span class="plate-note">종가 및 전일·전월·전년 대비 — 발행 시세 스크립트 기입(<!--STAMP-->기준 2026-08-18 종가<!--/STAMP-->) · 오른쪽 열은 확인된 주요 기사·공시(클릭 시 원문 이동)</span>
+    <span class="plate-note">종가 및 전일·전월·전년 대비 — 발행 시세 스크립트 기입(<!--STAMP-->기준 2026-08-19 종가<!--/STAMP-->) · 오른쪽 열은 확인된 주요 기사·공시(클릭 시 원문 이동)</span>
   </div>
-  <section class="board">
-    <table>
-      <thead><tr><th>기업</th><th>종가</th><th>전일比</th><th>전월比</th><th>전년比</th><th>주요 기사 · 공시</th></tr></thead>
-      <tbody>
-        <tr><th colspan="6" class="region-th">KOREA — KRX (원)</th></tr>
-        <tr><td><span class="co-name">LG에너지솔루션</span><span class="tk">KRX 373220</span></td><td class="num"><!--S373220:PX-->351,000원<!--/S373220:PX--></td><td class="num"><!--S373220:D1--><span style="color:#60a5fa; font-weight:700">▼ 5.01%</span><!--/S373220:D1--></td><td class="num"><!--S373220:M1--><span style="color:#f87171; font-weight:700">▲ 5.09%</span><!--/S373220:M1--></td><td class="num"><!--S373220:Y1--><span style="color:#60a5fa; font-weight:700">▼ 8.36%</span><!--/S373220:Y1--></td><td><a href="https://kr.investing.com/news/stock-market-news/article-2036112" target="_blank" rel="noopener noreferrer">설명회: ESS 4.6배 · 목표 90GWh (7/30)</a></td></tr>
-        <tr><td><span class="co-name">삼성SDI</span><span class="tk">KRX 006400</span></td><td class="num"><!--S006400:PX-->488,000원<!--/S006400:PX--></td><td class="num"><!--S006400:D1--><span style="color:#60a5fa; font-weight:700">▼ 5.43%</span><!--/S006400:D1--></td><td class="num"><!--S006400:M1--><span style="color:#f87171; font-weight:700">▲ 12.31%</span><!--/S006400:M1--></td><td class="num"><!--S006400:Y1--><span style="color:#f87171; font-weight:700">▲ 122.32%</span><!--/S006400:Y1--></td><td><a href="https://www.newsis.com/view/NISX20260730_0003729862" target="_blank" rel="noopener noreferrer">2Q 2,038억 — 7개 분기 만 흑자 (7/30)</a></td></tr>
-        <tr><td><span class="co-name">SK이노베이션</span><span class="tk">KRX 096770</span></td><td class="num"><!--S096770:PX-->131,500원<!--/S096770:PX--></td><td class="num"><!--S096770:D1--><span style="color:#f87171; font-weight:700">▲ 2.18%</span><!--/S096770:D1--></td><td class="num"><!--S096770:M1--><span style="color:#f87171; font-weight:700">▲ 8.32%</span><!--/S096770:M1--></td><td class="num"><!--S096770:Y1--><span style="color:#f87171; font-weight:700">▲ 24.64%</span><!--/S096770:Y1--></td><td><a href="https://www.thelec.kr/news/articleView.html?idxno=56239" target="_blank" rel="noopener noreferrer">2차 50.3% · 서산 LFP (5/8)</a> · <a href="https://www.mt.co.kr/industry/2026/07/30/2026073015492916552" target="_blank" rel="noopener noreferrer">SK온 2Q 8,218억 흑자 (7/30)</a></td></tr>
-        <tr><td><span class="co-name">효성중공업</span><span class="tk">KRX 298040</span></td><td class="num"><!--S298040:PX-->2,984,000원<!--/S298040:PX--></td><td class="num"><!--S298040:D1--><span style="color:#f87171; font-weight:700">▲ 1.02%</span><!--/S298040:D1--></td><td class="num"><!--S298040:M1--><span style="color:#f87171; font-weight:700">▲ 6.99%</span><!--/S298040:M1--></td><td class="num"><!--S298040:Y1--><span style="color:#f87171; font-weight:700">▲ 153.53%</span><!--/S298040:Y1--></td><td><a href="https://kr.investing.com/equities/hyosung-heavy-industries" target="_blank" rel="noopener noreferrer">2Q 발표(7/24) — 결과 확인 중</a></td></tr>
-        <tr><th colspan="6" class="region-th">GLOBAL — US · HK · CN</th></tr>
-        <tr><td><span class="co-name">Tesla</span><span class="tk">NASDAQ TSLA</span></td><td class="num"><!--STSLA:PX-->$336.87<!--/STSLA:PX--></td><td class="num"><!--STSLA:D1--><span style="color:#60a5fa; font-weight:700">▼ 0.72%</span><!--/STSLA:D1--></td><td class="num"><!--STSLA:M1--><span style="color:#60a5fa; font-weight:700">▼ 11.55%</span><!--/STSLA:M1--></td><td class="num"><!--STSLA:Y1--><span style="color:#f87171; font-weight:700">▲ 0.51%</span><!--/STSLA:Y1--></td><td><a href="https://www.hankyung.com/article/202607230480i" target="_blank" rel="noopener noreferrer">2Q 저장 13.5GWh · $31.4억 (7/22)</a></td></tr>
-        <tr><td><span class="co-name">Fluence Energy</span><span class="tk">NASDAQ FLNC</span></td><td class="num"><!--SFLNC:PX-->$11.75<!--/SFLNC:PX--></td><td class="num"><!--SFLNC:D1--><span style="color:#60a5fa; font-weight:700">▼ 6.97%</span><!--/SFLNC:D1--></td><td class="num"><!--SFLNC:M1--><span style="color:#60a5fa; font-weight:700">▼ 16.49%</span><!--/SFLNC:M1--></td><td class="num"><!--SFLNC:Y1--><span style="color:#f87171; font-weight:700">▲ 45.78%</span><!--/SFLNC:Y1--></td><td><a href="https://www.ess-news.com/2026/07/14/sungrow-leads-first-global-bess-integrator-ranking-as-market-tops-100-gw/" target="_blank" rel="noopener noreferrer">우드맥 SI 랭킹 톱10 (7/14)</a></td></tr>
-        <tr><td><span class="co-name">CATL</span><span class="tk">HKEX 3750</span></td><td class="num"><!--S3750:PX-->HK$650.50<!--/S3750:PX--></td><td class="num"><!--S3750:D1--><span style="color:#60a5fa; font-weight:700">▼ 0.23%</span><!--/S3750:D1--></td><td class="num"><!--S3750:M1--><span style="color:#f87171; font-weight:700">▲ 7.25%</span><!--/S3750:M1--></td><td class="num"><!--S3750:Y1--><span style="color:#f87171; font-weight:700">▲ 57.13%</span><!--/S3750:Y1--></td><td><a href="https://www.energy-storage.news/2025-bess-cell-and-system-shipments-byd-takes-bess-crown-no-korean-firms-in-top-10-cell-suppliers/" target="_blank" rel="noopener noreferrer">셀 1위 BYD에 내줘 (7/7)</a> · <a href="https://www.ess-news.com/2026/07/14/sungrow-leads-first-global-bess-integrator-ranking-as-market-tops-100-gw/" target="_blank" rel="noopener noreferrer">우드맥 SI 3위 (7/14)</a></td></tr>
-        <tr><td><span class="co-name">Sungrow</span><span class="tk">SZSE 300274</span></td><td class="num"><!--S300274:PX-->¥118.04<!--/S300274:PX--></td><td class="num"><!--S300274:D1--><span style="color:#60a5fa; font-weight:700">▼ 0.64%</span><!--/S300274:D1--></td><td class="num"><!--S300274:M1--><span style="color:#f87171; font-weight:700">▲ 16.17%</span><!--/S300274:M1--></td><td class="num"><!--S300274:Y1--><span style="color:#f87171; font-weight:700">▲ 23.76%</span><!--/S300274:Y1--></td><td><a href="https://www.ess-news.com/2026/07/14/sungrow-leads-first-global-bess-integrator-ranking-as-market-tops-100-gw/" target="_blank" rel="noopener noreferrer">우드맥 첫 SI 랭킹 1위 — 연 100GW 시대 (7/14)</a></td></tr>
-      </tbody>
-    </table>
+  <section class="board" style="background:transparent;border:0;padding:0">
+    <div class="qgrid">
+      <div class="qsec">KOREA — 셀 · 소재</div>
+      <div class="qcard"><div class="nm"><span>LG에너지솔루션</span><span class="tk">KRX 373220</span></div><div class="px"><!--S373220:PX-->357,500원<!--/S373220:PX--></div><div class="dd"><span><!--S373220:D1--><span style="color:#f87171; font-weight:700">▲ 1.85%</span><!--/S373220:D1--></span><span><!--S373220:M1--><span style="color:#f87171; font-weight:700">▲ 12.60%</span><!--/S373220:M1--></span><span><!--S373220:Y1--><span style="color:#60a5fa; font-weight:700">▼ 6.90%</span><!--/S373220:Y1--></span></div><div class="nx">설명회: ESS 4.6배 · 목표 90GWh</div></div>
+      <div class="qcard"><div class="nm"><span>삼성SDI</span><span class="tk">KRX 006400</span></div><div class="px"><!--S006400:PX-->487,000원<!--/S006400:PX--></div><div class="dd"><span><!--S006400:D1--><span style="color:#60a5fa; font-weight:700">▼ 0.20%</span><!--/S006400:D1--></span><span><!--S006400:M1--><span style="color:#f87171; font-weight:700">▲ 21.45%</span><!--/S006400:M1--></span><span><!--S006400:Y1--><span style="color:#f87171; font-weight:700">▲ 120.36%</span><!--/S006400:Y1--></span></div><div class="nx">2Q 2,038억 — 7분기 만 흑자</div></div>
+      <div class="qcard"><div class="nm"><span>SK이노베이션</span><span class="tk">KRX 096770</span></div><div class="px"><!--S096770:PX-->128,900원<!--/S096770:PX--></div><div class="dd"><span><!--S096770:D1--><span style="color:#60a5fa; font-weight:700">▼ 1.98%</span><!--/S096770:D1--></span><span><!--S096770:M1--><span style="color:#f87171; font-weight:700">▲ 10.27%</span><!--/S096770:M1--></span><span><!--S096770:Y1--><span style="color:#f87171; font-weight:700">▲ 21.72%</span><!--/S096770:Y1--></span></div><div class="nx">SK온 2Q 8,218억 흑자</div></div>
+      <div class="qcard"><div class="nm"><span>에코프로비엠</span><span class="tk">KRX 247540</span></div><div class="px"><!--S247540:PX-->109,800원<!--/S247540:PX--></div><div class="dd"><span><!--S247540:D1--><span style="color:#f87171; font-weight:700">▲ 0.64%</span><!--/S247540:D1--></span><span><!--S247540:M1--><span style="color:#f87171; font-weight:700">▲ 5.48%</span><!--/S247540:M1--></span><span><!--S247540:Y1--><span style="color:#60a5fa; font-weight:700">▼ 16.76%</span><!--/S247540:Y1--></span></div><div class="nx">ESS용 LFP 양극재 전환 관전</div></div>
+      <div class="qsec">KOREA — 전력기기 · EPC</div>
+      <div class="qcard"><div class="nm"><span>효성중공업</span><span class="tk">KRX 298040</span></div><div class="px"><!--S298040:PX-->2,908,000원<!--/S298040:PX--></div><div class="dd"><span><!--S298040:D1--><span style="color:#60a5fa; font-weight:700">▼ 2.55%</span><!--/S298040:D1--></span><span><!--S298040:M1--><span style="color:#f87171; font-weight:700">▲ 14.53%</span><!--/S298040:M1--></span><span><!--S298040:Y1--><span style="color:#f87171; font-weight:700">▲ 150.69%</span><!--/S298040:Y1--></span></div><div class="nx">2Q 2,643억 분기 최대 · 잔고 17.5조</div></div>
+      <div class="qcard"><div class="nm"><span>HD현대일렉트릭</span><span class="tk">KRX 267260</span></div><div class="px"><!--S267260:PX-->752,000원<!--/S267260:PX--></div><div class="dd"><span><!--S267260:D1--><span style="color:#60a5fa; font-weight:700">▼ 4.20%</span><!--/S267260:D1--></span><span><!--S267260:M1--><span style="color:#9aa4b2">0.00%</span><!--/S267260:M1--></span><span><!--S267260:Y1--><span style="color:#f87171; font-weight:700">▲ 63.48%</span><!--/S267260:Y1--></span></div><div class="nx">변압기 슈퍼사이클 — 북미 수주</div></div>
+      <div class="qcard"><div class="nm"><span>LS일렉트릭</span><span class="tk">KRX 010120</span></div><div class="px"><!--S010120:PX-->202,000원<!--/S010120:PX--></div><div class="dd"><span><!--S010120:D1--><span style="color:#60a5fa; font-weight:700">▼ 3.35%</span><!--/S010120:D1--></span><span><!--S010120:M1--><span style="color:#f87171; font-weight:700">▲ 12.66%</span><!--/S010120:M1--></span><span><!--S010120:Y1--><span style="color:#f87171; font-weight:700">▲ 265.94%</span><!--/S010120:Y1--></span></div><div class="nx">배전 · ESS PCS 라인업</div></div>
+      <div class="qcard"><div class="nm"><span>한화</span><span class="tk">KRX 000880</span></div><div class="px"><!--S000880:PX-->83,800원<!--/S000880:PX--></div><div class="dd"><span><!--S000880:D1--><span style="color:#9aa4b2">0.00%</span><!--/S000880:D1--></span><span><!--S000880:M1--><span style="color:#60a5fa; font-weight:700">▼ 10.09%</span><!--/S000880:M1--></span><span><!--S000880:Y1--><span style="color:#f87171; font-weight:700">▲ 2.07%</span><!--/S000880:Y1--></span></div><div class="nx">한화솔루션 — 국내 ESS SI</div></div>
+      <div class="qsec">GLOBAL — 셀 · SI</div>
+      <div class="qcard"><div class="nm"><span>Tesla</span><span class="tk">NASDAQ TSLA</span></div><div class="px"><!--STSLA:PX-->$336.87<!--/STSLA:PX--></div><div class="dd"><span><!--STSLA:D1--><span style="color:#60a5fa; font-weight:700">▼ 0.72%</span><!--/STSLA:D1--></span><span><!--STSLA:M1--><span style="color:#60a5fa; font-weight:700">▼ 11.55%</span><!--/STSLA:M1--></span><span><!--STSLA:Y1--><span style="color:#f87171; font-weight:700">▲ 0.51%</span><!--/STSLA:Y1--></span></div><div class="nx">2Q 저장 13.5GWh · $31.4억</div></div>
+      <div class="qcard"><div class="nm"><span>Fluence Energy</span><span class="tk">NASDAQ FLNC</span></div><div class="px"><!--SFLNC:PX-->$11.75<!--/SFLNC:PX--></div><div class="dd"><span><!--SFLNC:D1--><span style="color:#60a5fa; font-weight:700">▼ 6.97%</span><!--/SFLNC:D1--></span><span><!--SFLNC:M1--><span style="color:#60a5fa; font-weight:700">▼ 16.49%</span><!--/SFLNC:M1--></span><span><!--SFLNC:Y1--><span style="color:#f87171; font-weight:700">▲ 45.78%</span><!--/SFLNC:Y1--></span></div><div class="nx">우드맥 SI 톱10</div></div>
+      <div class="qcard"><div class="nm"><span>Sungrow</span><span class="tk">SZSE 300274</span></div><div class="px"><!--S300274:PX-->¥111.49<!--/S300274:PX--></div><div class="dd"><span><!--S300274:D1--><span style="color:#60a5fa; font-weight:700">▼ 5.55%</span><!--/S300274:D1--></span><span><!--S300274:M1--><span style="color:#f87171; font-weight:700">▲ 9.55%</span><!--/S300274:M1--></span><span><!--S300274:Y1--><span style="color:#f87171; font-weight:700">▲ 15.57%</span><!--/S300274:Y1--></span></div><div class="nx">우드맥 첫 SI 랭킹 1위 — 연 100GW</div></div>
+      <div class="qcard"><div class="nm"><span>CATL</span><span class="tk">HKEX 3750</span></div><div class="px"><!--S3750:PX-->HK$628.50<!--/S3750:PX--></div><div class="dd"><span><!--S3750:D1--><span style="color:#60a5fa; font-weight:700">▼ 3.38%</span><!--/S3750:D1--></span><span><!--S3750:M1--><span style="color:#f87171; font-weight:700">▲ 1.62%</span><!--/S3750:M1--></span><span><!--S3750:Y1--><span style="color:#f87171; font-weight:700">▲ 55.26%</span><!--/S3750:Y1--></span></div><div class="nx">셀 1위 BYD에 내줘</div></div>
+    </div>
   </section>
 
   <div class="plate" id="cmt-plate">
