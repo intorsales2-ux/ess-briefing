@@ -7,23 +7,19 @@ from jinja2 import Environment, FileSystemLoader
 BASE = Path(__file__).resolve().parent
 STATE = BASE / "output" / "state.json"
 
-BOARD = [  # (마커ID, 지역, 표시명, 티커표기, 기본 기사열 HTML)
-    ("373220", "KR", "LG에너지솔루션", "KRX 373220",
-     '<a href="https://kr.investing.com/news/stock-market-news/article-2036112" target="_blank" rel="noopener noreferrer">설명회: ESS 4.6배 · 목표 90GWh (7/30)</a>'),
-    ("006400", "KR", "삼성SDI", "KRX 006400",
-     '<a href="https://www.newsis.com/view/NISX20260730_0003729862" target="_blank" rel="noopener noreferrer">2Q 2,038억 — 7개 분기 만 흑자 (7/30)</a>'),
-    ("096770", "KR", "SK이노베이션", "KRX 096770",
-     '<a href="https://www.thelec.kr/news/articleView.html?idxno=56239" target="_blank" rel="noopener noreferrer">2차 50.3% · 서산 LFP (5/8)</a> · <a href="https://www.mt.co.kr/industry/2026/07/30/2026073015492916552" target="_blank" rel="noopener noreferrer">SK온 2Q 8,218억 흑자 (7/30)</a>'),
-    ("298040", "KR", "효성중공업", "KRX 298040",
-     '<a href="https://kr.investing.com/equities/hyosung-heavy-industries" target="_blank" rel="noopener noreferrer">2Q 발표(7/24) — 결과 확인 중</a>'),
-    ("TSLA", "GL", "Tesla", "NASDAQ TSLA",
-     '<a href="https://www.hankyung.com/article/202607230480i" target="_blank" rel="noopener noreferrer">2Q 저장 13.5GWh · $31.4억 (7/22)</a>'),
-    ("FLNC", "GL", "Fluence Energy", "NASDAQ FLNC",
-     '<a href="https://www.ess-news.com/2026/07/14/sungrow-leads-first-global-bess-integrator-ranking-as-market-tops-100-gw/" target="_blank" rel="noopener noreferrer">우드맥 SI 랭킹 톱10 (7/14)</a>'),
-    ("3750", "GL", "CATL", "HKEX 3750",
-     '<a href="https://www.energy-storage.news/2025-bess-cell-and-system-shipments-byd-takes-bess-crown-no-korean-firms-in-top-10-cell-suppliers/" target="_blank" rel="noopener noreferrer">셀 1위 BYD에 내줘 (7/7)</a> · <a href="https://www.ess-news.com/2026/07/14/sungrow-leads-first-global-bess-integrator-ranking-as-market-tops-100-gw/" target="_blank" rel="noopener noreferrer">우드맥 SI 3위 (7/14)</a>'),
-    ("300274", "GL", "Sungrow", "SZSE 300274",
-     '<a href="https://www.ess-news.com/2026/07/14/sungrow-leads-first-global-bess-integrator-ranking-as-market-tops-100-gw/" target="_blank" rel="noopener noreferrer">우드맥 첫 SI 랭킹 1위 — 연 100GW 시대 (7/14)</a>'),
+BOARD = [  # (마커ID, 그룹, 표시명, 티커, 기본 기사열)
+    ("373220", "CELL", "LG에너지솔루션", "KRX 373220", "설명회: ESS 4.6배 · 목표 90GWh"),
+    ("006400", "CELL", "삼성SDI", "KRX 006400", "2Q 2,038억 — 7분기 만 흑자"),
+    ("096770", "CELL", "SK이노베이션", "KRX 096770", "SK온 2Q 8,218억 흑자"),
+    ("247540", "CELL", "에코프로비엠", "KRX 247540", "ESS용 LFP 양극재 전환 관전"),
+    ("298040", "GRID", "효성중공업", "KRX 298040", "2Q 2,643억 분기 최대 · 잔고 17.5조"),
+    ("267260", "GRID", "HD현대일렉트릭", "KRX 267260", "변압기 슈퍼사이클 — 북미 수주"),
+    ("010120", "GRID", "LS일렉트릭", "KRX 010120", "배전 · ESS PCS 라인업"),
+    ("000880", "GRID", "한화", "KRX 000880", "한화솔루션 — 국내 ESS SI"),
+    ("TSLA", "GL", "Tesla", "NASDAQ TSLA", "2Q 저장 13.5GWh · $31.4억"),
+    ("FLNC", "GL", "Fluence Energy", "NASDAQ FLNC", "우드맥 SI 톱10"),
+    ("300274", "GL", "Sungrow", "SZSE 300274", "우드맥 첫 SI 랭킹 1위 — 연 100GW"),
+    ("3750", "GL", "CATL", "HKEX 3750", "셀 1위 BYD에 내줘"),
 ]
 
 CARD_TPL = '''    <article class="card {cls}">
@@ -72,20 +68,23 @@ def _load_state() -> dict:
 
 
 def _board_rows(overrides: dict | None) -> str:
+    """주가 보드 — 카드 격자(그룹 헤더 + 12종목)."""
     overrides = overrides or {}
-    labels = {"KR": "KOREA — KRX (원)", "GL": "GLOBAL — US · HK · CN"}
-    rows, prev_region = [], None
-    for sid, reg, name, tk, default_news in BOARD:
-        region = labels[reg]
-        if region != prev_region:
-            rows.append(f'        <tr><th colspan="6" class="region-th">{region}</th></tr>')
-            prev_region = region
-        cells = ''.join(f'<td class="num"><!--S{sid}:{f}-->—<!--/S{sid}:{f}--></td>' for f in ("PX", "D1", "M1", "Y1"))
+    labels = {"CELL": "KOREA — 셀 · 소재", "GRID": "KOREA — 전력기기 · EPC", "GL": "GLOBAL — 셀 · SI"}
+    out, prev = [], None
+    for sid, grp, name, tk, default_news in BOARD:
+        if grp != prev:
+            out.append(f'      <div class="qsec">{labels[grp]}</div>')
+            prev = grp
+        px = f'<!--S{sid}:PX-->—<!--/S{sid}:PX-->'
+        dd = ''.join(f'<span><!--S{sid}:{f}-->—<!--/S{sid}:{f}--></span>' for f in ("D1", "M1", "Y1"))
         news = overrides.get(sid, default_news)
-        rows.append(f'        <tr><td><span class="co-name">{name}</span><span class="tk">{tk}</span></td>'
-                    f'{cells}<td>{news}</td></tr>')
-    return '\n'.join(rows)
-
+        out.append(f'      <div class="qcard">'
+                   f'<div class="nm"><span>{name}</span><span class="tk">{tk}</span></div>'
+                   f'<div class="px">{px}</div>'
+                   f'<div class="dd">{dd}</div>'
+                   f'<div class="nx">{news}</div></div>')
+    return '\n'.join(out)
 
 def render_briefing(data: dict) -> str:
     env = Environment(loader=FileSystemLoader(BASE / "templates"),
@@ -110,7 +109,7 @@ def render_briefing(data: dict) -> str:
         state["know"].insert(0, {"no": no, "html": html})
         state["next_know"] = no + 1
     dropped_spot = state["spot"][3:]; dropped_know = state["know"][4:]
-    state["spot"], state["know"] = state["spot"][:3], state["know"][:4]
+    state["spot"], state["know"] = state["spot"][:1], state["know"][:1]
     if not dry:
         STATE.parent.mkdir(parents=True, exist_ok=True)
         STATE.write_text(json.dumps(state, ensure_ascii=False), encoding="utf-8")
