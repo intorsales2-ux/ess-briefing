@@ -3,7 +3,7 @@
 인투알 ESS 브리핑 — 주가 보드 자동 기입 스크립트
 사용법:
   1) 준비(최초 1회):  pip install yfinance
-  2) 실행:           python stock_board.py intoal-ess-daily-2026-07-16.html
+  2) 실행:           python stock_board.py intor-ess-daily-2026-08-12.html
      → 야후 파이낸스에서 8종목 확정 종가를 받아 전일/전월/전년 대비를 계산,
        브리핑 HTML의 보드 칸(—)을 ▲▼ 등락으로 채워 저장합니다. (원본은 .bak 백업)
 원칙: 확정 종가만 사용 — 계산 실패 종목은 '—'로 남기고 이유를 출력합니다.
@@ -21,9 +21,11 @@ def _yf():
 # 야후 티커 → (보드 마커 ID, 통화 포맷)
 TICKERS = {
     "373220.KS": ("373220", "krw"), "006400.KS": ("006400", "krw"),
-    "096770.KS": ("096770", "krw"), "298040.KS": ("298040", "krw"),
+    "096770.KS": ("096770", "krw"), "247540.KQ": ("247540", "krw"),
+    "298040.KS": ("298040", "krw"), "267260.KS": ("267260", "krw"),
+    "010120.KS": ("010120", "krw"), "000880.KS": ("000880", "krw"),
     "TSLA":      ("TSLA",   "usd"), "FLNC":      ("FLNC",   "usd"),
-    "3750.HK":   ("3750",   "hkd"), "300274.SZ": ("300274", "cny"),
+    "300274.SZ": ("300274", "cny"), "3750.HK":   ("3750",   "hkd"),
 }
 UP, DN = "#f87171", "#60a5fa"   # 상승 빨강 · 하락 파랑 (국내 관례)
 
@@ -32,9 +34,11 @@ def fmt_price(v, cur):
     sym = {"usd": "$", "hkd": "HK$", "cny": "¥"}[cur]
     return f"{sym}{v:,.2f}"
 
-def fmt_pct(now, base):
+def fmt_pct(now, base, guard=False):
     if base is None or base == 0: return "—"
     p = (now / base - 1) * 100
+    if guard and abs(p) > 40:      # 데이터 글리치 방어(액면분할·오기 등)
+        return "—"
     if abs(p) < 0.005: return '<span style="color:#9aa4b2">0.00%</span>'
     arrow, color = ("▲", UP) if p > 0 else ("▼", DN)
     return f'<span style="color:{color}; font-weight:700">{arrow} {abs(p):.2f}%</span>'
