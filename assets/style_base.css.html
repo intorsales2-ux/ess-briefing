@@ -133,7 +133,7 @@
   .plate .plate-note{margin-left:auto;font-size:12px;color:var(--text-40);}
 
   /* ── 뉴스 카드 ─────────────────────────────── */
-  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:14px;}
   .card{
     background:var(--panel);border:1px solid var(--line);border-radius:12px;
     padding:18px 18px 16px;display:flex;flex-direction:column;gap:10px;
@@ -242,7 +242,7 @@
   .foot-note b{color:var(--text-60);}
 
   @media (max-width:900px){
-    .cards{grid-template-columns:1fr 1fr;}
+    .cards{grid-template-columns:1fr;}
     .kpis{grid-template-columns:1fr 1fr;}
   }
   @media (max-width:640px){
@@ -263,9 +263,8 @@
 /* ── v12 개편: 가로 활용 · 세로 압축 ── */
 .wrap{max-width:1240px}
 /* 카드가 2장 이상이고 폭이 충분할 때만 2단 — 1장이면 가로 전체 사용 */
-.duo{display:grid;grid-template-columns:repeat(auto-fit,minmax(460px,1fr));gap:14px;align-items:start}
-.duo>.plate{grid-column:1/-1}
-@media(max-width:1000px){.duo{grid-template-columns:1fr}}
+/* 섹션 래퍼는 폭을 나누지 않는다 — 실제 배치는 .cards 그리드가 담당 */
+.duo{display:block}
 .arch-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#0b131b;border:1px solid #1f2a36;border-radius:12px;padding:12px 18px;margin:14px 0 4px}
 .arch-bar .txt{font-size:12.5px;color:#9aa4b2}
 .arch-bar .txt b{color:#e6edf3}
