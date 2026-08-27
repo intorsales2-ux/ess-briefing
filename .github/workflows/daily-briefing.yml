@@ -2,11 +2,18 @@ name: INTOR Daily Briefing
 
 on:
   schedule:
-    - cron: '30 22 * * 0-4'   # UTC 22:30 = 한국시간 월~금 07:30
+    # 한국시간 월~금 07:23 (UTC 22:23, 전날) — 정각/30분 혼잡을 피해 지연 확률을 낮춤
+    - cron: '23 22 * * 0-4'
+    # 보험용 2차 알람: 한국시간 월~금 08:10 — 1차가 건너뛰어졌을 때만 발행(중복 방지 로직 내장)
+    - cron: '10 23 * * 0-4'
   workflow_dispatch: {}
 
 permissions:
   contents: write
+
+concurrency:
+  group: intor-daily
+  cancel-in-progress: false
 
 jobs:
   publish:
@@ -22,15 +29,36 @@ jobs:
       MAIL_FROM: ${{ secrets.MAIL_FROM }}
       MAIL_TO: ${{ secrets.MAIL_TO }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+
+      # 오늘 이미 발행됐는지 확인 — 2차 알람의 중복 발행·중복 과금 방지
+      - name: Check if already published today
+        id: guard
+        run: |
+          TODAY=$(date +%F)
+          if [ -f "docs/archive/${TODAY}.html" ]; then
+            echo "skip=true" >> $GITHUB_OUTPUT
+            echo "[guard] ${TODAY} 지면이 이미 있습니다 — 이번 실행은 건너뜁니다."
+          else
+            echo "skip=false" >> $GITHUB_OUTPUT
+            echo "[guard] ${TODAY} 지면 없음 — 발행을 진행합니다."
+          fi
+
+      - uses: actions/setup-python@v6
+        if: steps.guard.outputs.skip == 'false'
         with:
           python-version: '3.12'
+
       - name: Install deps
+        if: steps.guard.outputs.skip == 'false'
         run: pip install -r requirements.txt
+
       - name: Run robot (publish + email)
+        if: steps.guard.outputs.skip == 'false'
         run: python main.py
+
       - name: Publish to web (docs/) & save memory
+        if: steps.guard.outputs.skip == 'false'
         run: |
           mkdir -p docs/archive
           cp output/index.html docs/index.html
@@ -40,4 +68,5 @@ jobs:
           git config user.email "robot@intor.kr"
           git add docs output/state.json output/seen_urls.json
           git commit -m "briefing $(date +%F)" || echo "no changes"
+          git pull --rebase --autostash || true
           git push
