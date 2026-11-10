@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>인투알 ESS 데일리 브리핑 · 2026.11.10</title>
+<style>
+  :root{
+    --bg:#0D141B;            /* 딥 그라파이트 네이비 (페이지) */
+    --panel:#161F29;         /* 카드 패널 */
+    --panel-2:#1B2632;       /* 상위 패널/헤더 */
+    --line:#26333F;
+    --line-strong:#37485A;
+    --text:#E9EEF3;
+    --text-60:#9DACBA;
+    --text-40:#6E8090;
+    --brand:#559535;         /* 인투알 브랜드 그린 (로고 추출) */
+    --brand-bright:#8CCB63;  /* 다크 배경용 밝은 그린 */
+    --brand-soft:rgba(85,149,53,.14);
+    --volt:#5B96F5;          /* 전력 블루 */
+    --volt-soft:rgba(91,150,245,.13);
+    --hazard:#F2B233;        /* 안전표지 옐로 (마감·경고) */
+    --hazard-soft:rgba(242,178,51,.13);
+    --alert:#E9695F;         /* 리스크 레드 */
+    --alert-soft:rgba(233,105,95,.13);
+    --mono:"SF Mono","Consolas","Menlo","Liberation Mono",monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕","Segoe UI",sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    font-size:15px;
+    line-height:1.62;
+    padding:28px 20px 56px;
+  }
+  a{color:inherit;}
+  .wrap{max-width:1060px;margin:0 auto;}
+
+  /* ── 초안 안내 리본 ─────────────────────────── */
+  .ribbon{
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+    border:1px dashed var(--line-strong);
+    background:var(--panel);
+    border-radius:8px;
+    padding:9px 14px;
+    margin-bottom:18px;
+    font-size:12.5px;color:var(--text-60);
+  }
+  .ribbon b{color:var(--text);font-weight:700;}
+  .ribbon .chip{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;
+    background:var(--hazard-soft);color:var(--hazard);
+    border:1px solid rgba(242,178,51,.4);border-radius:4px;padding:2px 7px;
+  }
+
+  /* ── 마스트헤드 : 로고 + 명판 ───────────────── */
+  .mast{
+    background:linear-gradient(180deg,#1D2A37 0%,#161F29 100%);
+    border:1px solid var(--line);
+    border-top:3px solid var(--brand);
+    border-radius:14px;
+    padding:24px 30px 20px;
+    position:relative;
+    overflow:hidden;
+  }
+  .mast::after{ /* 리벳 라인 */
+    content:"";position:absolute;left:30px;right:30px;top:12px;height:1px;
+    background:repeating-linear-gradient(90deg,var(--line-strong) 0 4px,transparent 4px 22px);
+    opacity:.55;
+  }
+  .mast-top{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
+  .brandline{display:flex;align-items:center;gap:20px;}
+  .logo{height:44px;width:auto;display:block;}
+  .brand-divider{width:1px;height:52px;background:var(--line-strong);}
+  .eyebrow{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.22em;color:var(--brand-bright);
+    display:flex;align-items:center;gap:8px;margin-bottom:6px;
+  }
+  .live{width:7px;height:7px;border-radius:50%;background:var(--brand-bright);box-shadow:0 0 0 3px var(--brand-soft);}
+  @media (prefers-reduced-motion:no-preference){
+    .live{animation:pulse 2.4s ease-in-out infinite;}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  }
+  .mast h1{font-size:26px;font-weight:800;letter-spacing:-0.02em;line-height:1.25;}
+  .mast .sub{margin-top:4px;font-size:13px;color:var(--text-60);}
+  .issue{
+    text-align:right;min-width:200px;
+    font-family:var(--mono);font-size:11.5px;line-height:1.9;color:var(--text-60);
+  }
+  .issue b{color:var(--text);font-size:13px;}
+  .mast-meta{
+    margin-top:16px;padding-top:13px;
+    border-top:1px solid var(--line);
+    display:flex;gap:22px;flex-wrap:wrap;
+    font-size:12.5px;color:var(--text-60);
+  }
+  .mast-meta span b{color:var(--text);font-weight:700;}
+
+  /* ── 오늘의 3줄 요약 ────────────────────────── */
+  .brief{
+    background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    margin-top:18px;padding:20px 24px;
+  }
+  .brief h2{font-size:12px;letter-spacing:.14em;color:var(--text-40);font-family:var(--mono);margin-bottom:14px;}
+  .brief ol{list-style:none;display:grid;gap:12px;}
+  .brief li{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start;font-size:15.5px;font-weight:500;}
+  .brief .n{
+    width:30px;height:30px;border-radius:7px;
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--mono);font-size:13px;font-weight:700;
+  }
+  .brief li:nth-child(1) .n{background:var(--hazard);color:#3A2A00;}
+  .brief li:nth-child(2) .n{background:var(--volt);color:#0A1B36;}
+  .brief li:nth-child(3) .n{background:var(--brand);color:#0F1D07;}
+  .brief li b{font-weight:800;color:#FFFFFF;}
+
+  /* ── KPI 스트립 ─────────────────────────────── */
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px;}
+  .kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:15px 17px 13px;}
+  .kpi .k-label{font-size:11.5px;color:var(--text-60);margin-bottom:4px;}
+  .kpi .k-value{font-size:21px;font-weight:800;letter-spacing:-0.02em;line-height:1.2;color:#FFFFFF;}
+  .kpi .k-value small{font-size:13px;font-weight:700;color:var(--text-60);margin-left:2px;}
+  .kpi .k-note{font-size:11.5px;margin-top:5px;font-family:var(--mono);}
+  .up{color:var(--brand-bright);} .down{color:var(--alert);} .flat{color:var(--text-40);}
+
+  /* ── 섹션 명판 ──────────────────────────────── */
+  .plate{
+    margin:34px 0 14px;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+    border-bottom:2px solid var(--line-strong);padding-bottom:8px;
+  }
+  .plate .sec{
+    font-family:var(--mono);font-size:11px;letter-spacing:.16em;
+    background:var(--brand);color:#0F1D07;font-weight:700;border-radius:4px;padding:3px 9px;
+  }
+  .plate h2{font-size:20px;font-weight:800;letter-spacing:-0.01em;color:#FFFFFF;}
+  .plate .plate-note{margin-left:auto;font-size:12px;color:var(--text-40);}
+
+  /* ── 뉴스 카드 ─────────────────────────────── */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:14px;}
+  .card{
+    background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    padding:18px 18px 16px;display:flex;flex-direction:column;gap:10px;
+    border-top:3px solid var(--card-accent,var(--volt));
+  }
+  .card.bid{--card-accent:var(--hazard);}
+  .card.policy{--card-accent:var(--volt);}
+  .card.kr{--card-accent:var(--brand);}
+  .card.gl{--card-accent:var(--text-40);}
+  .tags{display:flex;gap:6px;flex-wrap:wrap;}
+  .tag{font-size:11px;font-weight:700;border-radius:4px;padding:2.5px 8px;background:var(--volt-soft);color:var(--volt);}
+  .tag.t-bid{background:var(--hazard-soft);color:var(--hazard);}
+  .tag.t-kr{background:var(--brand-soft);color:var(--brand-bright);}
+  .tag.t-gl{background:rgba(110,128,144,.18);color:var(--text-60);}
+  .tag.t-risk{background:var(--alert-soft);color:var(--alert);}
+
+  a.hl{text-decoration:none;display:block;}
+  a.hl h3{
+    font-size:16.5px;font-weight:800;line-height:1.42;letter-spacing:-0.01em;color:#FFFFFF;
+    transition:color .15s ease;
+  }
+  a.hl .ext{
+    font-family:var(--mono);font-size:12px;color:var(--text-40);margin-left:5px;
+    display:inline-block;transform:translateY(-1px);
+  }
+  a.hl:hover h3{color:var(--brand-bright);text-decoration:underline;text-underline-offset:3px;}
+  a.hl:hover .ext{color:var(--brand-bright);}
+  a.hl:focus-visible h3{outline:2px solid var(--brand-bright);outline-offset:3px;border-radius:2px;}
+
+  .card .summary{font-size:13.8px;color:#C3CEDA;}
+  .card .summary li{margin-left:17px;margin-bottom:4px;}
+  .src{font-family:var(--mono);font-size:10.5px;color:var(--text-40);letter-spacing:.02em;}
+  .src a{color:var(--text-40);text-decoration:underline;text-underline-offset:2px;text-decoration-color:var(--line-strong);}
+  .src a:hover{color:var(--brand-bright);text-decoration-color:var(--brand-bright);}
+
+  /* 인투알 영향도 게이지 (배터리 SOC) */
+  .impact{
+    display:flex;align-items:center;gap:9px;margin-top:auto;
+    padding-top:10px;border-top:1px dashed var(--line);
+  }
+  .impact .lab{font-size:11px;font-weight:700;color:var(--text-60);}
+  .soc{display:flex;gap:3px;align-items:center;}
+  .soc i{width:15px;height:9px;border-radius:2px;background:#0F1820;border:1px solid var(--line-strong);}
+  .soc i.on{background:var(--brand);border-color:var(--brand-bright);}
+  .soc.hi i.on{background:var(--hazard);border-color:#FFD070;}
+  .soc .cap{width:3px;height:5px;border-radius:1px;background:var(--line-strong);}
+  .impact .val{font-family:var(--mono);font-size:11px;color:var(--text-60);}
+
+  /* 인투알 시사점 박스 — 브랜드 그린 */
+  .insight{
+    background:var(--brand-soft);border:1px solid rgba(85,149,53,.35);border-left:3px solid var(--brand);
+    border-radius:8px;padding:10px 12px;font-size:13.2px;line-height:1.58;color:#D6E4CC;
+  }
+  .insight b{color:var(--brand-bright);font-weight:800;}
+
+  /* ── 주가·공시 테이블 ───────────────────────── */
+  .board{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;}
+  thead th{
+    text-align:left;font-size:11.5px;letter-spacing:.05em;color:var(--text-60);
+    background:var(--panel-2);border-bottom:1px solid var(--line);
+    padding:10px 14px;font-family:var(--mono);white-space:nowrap;
+  }
+  tbody td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top;color:#C9D4DF;}
+  tbody tr:last-child td{border-bottom:none;}
+  td.num{font-family:var(--mono);font-size:13px;white-space:nowrap;}
+  .tk{font-family:var(--mono);font-size:11px;color:var(--text-40);display:block;}
+  .co-name{font-weight:700;color:var(--text);}
+  th.region-th{background:rgba(85,149,53,.10) !important;color:var(--brand-bright) !important;font-weight:700;text-align:left;padding:8px 14px;font-size:11px;letter-spacing:.08em;}
+
+  /* ── To-Do ─────────────────────────────────── */
+  .todo{display:grid;gap:10px;}
+  .todo-item{
+    background:var(--panel);border:1px solid var(--line);border-radius:10px;
+    padding:13px 16px;display:grid;grid-template-columns:52px 1fr auto;gap:14px;align-items:center;
+  }
+  .prio{font-family:var(--mono);font-size:11px;font-weight:700;text-align:center;border-radius:6px;padding:5px 0;}
+  .p1{background:var(--alert-soft);color:var(--alert);}
+  .p2{background:var(--hazard-soft);color:var(--hazard);}
+  .p3{background:rgba(110,128,144,.18);color:var(--text-60);}
+  .todo-item .t-body b{font-weight:800;color:var(--text);}
+  .todo-item .t-body p{font-size:12.8px;color:var(--text-60);margin-top:2px;}
+  .owner{font-size:11.5px;font-family:var(--mono);color:var(--text-40);white-space:nowrap;}
+
+  .comment{
+    margin-top:14px;background:linear-gradient(180deg,rgba(85,149,53,.16),rgba(85,149,53,.07));
+    border:1px solid rgba(85,149,53,.4);
+    border-radius:12px;padding:20px 24px;font-size:14.5px;line-height:1.7;color:#DCE8D3;
+  }
+  .comment h3{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--brand-bright);margin-bottom:10px;}
+  .comment b{color:#FFFFFF;}
+
+  /* ── 푸터 파이프라인 ────────────────────────── */
+  .pipeline{
+    margin-top:34px;border-top:2px solid var(--line-strong);padding-top:16px;
+    display:flex;gap:0;align-items:stretch;flex-wrap:wrap;
+  }
+  .step{flex:1;min-width:150px;background:var(--panel);border:1px solid var(--line);padding:12px 14px;font-size:12px;}
+  .step:first-child{border-radius:10px 0 0 10px;}
+  .step:last-child{border-radius:0 10px 10px 0;}
+  .step + .step{border-left:none;}
+  .step .s-no{font-family:var(--mono);font-size:10px;color:var(--brand-bright);letter-spacing:.1em;}
+  .step b{display:block;font-size:12.8px;margin:2px 0;color:var(--text);}
+  .step span{color:var(--text-60);}
+  .foot-note{margin-top:14px;font-size:11.8px;color:var(--text-40);line-height:1.7;}
+  .foot-note b{color:var(--text-60);}
+
+  @media (max-width:900px){
+    .cards{grid-template-columns:1fr;}
+    .kpis{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:640px){
+    body{padding:16px 12px 40px;}
+    .cards{grid-template-columns:1fr;}
+    .mast h1{font-size:21px;}
+    .issue{text-align:left;}
+    .brandline{gap:14px;}
+    .logo{height:34px;}
+    .brand-divider{display:none;}
+    .todo-item{grid-template-columns:46px 1fr;}
+    .owner{grid-column:2;}
+    .board{overflow-x:auto;}
+    table{min-width:640px;}
+  }
+
+
+/* ── v12 개편: 가로 활용 · 세로 압축 ── */
+.wrap{max-width:1240px}
+/* 카드가 2장 이상이고 폭이 충분할 때만 2단 — 1장이면 가로 전체 사용 */
+/* 섹션 래퍼는 폭을 나누지 않는다 — 실제 배치는 .cards 그리드가 담당 */
+.duo{display:block}
+.arch-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#0b131b;border:1px solid #1f2a36;border-radius:12px;padding:12px 18px;margin:14px 0 4px}
+.arch-bar .txt{font-size:12.5px;color:#9aa4b2}
+.arch-bar .txt b{color:#e6edf3}
+.arch-bar a{background:#18242f;border:1px solid #33414f;color:#e6edf3;text-decoration:none;font-size:12px;font-weight:700;padding:8px 16px;border-radius:18px;white-space:nowrap}
+.arch-bar a:hover{border-color:#4dd0a4;color:#4dd0a4}
+.qgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+@media(max-width:1000px){.qgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.qgrid{grid-template-columns:1fr}}
+.qcard{background:#0b131b;border:1px solid #1a2530;border-radius:11px;padding:11px 13px}
+.qcard .nm{font-size:12.5px;font-weight:700;color:#e6edf3;display:flex;justify-content:space-between;align-items:baseline;gap:6px}
+.qcard .tk{font-size:9.5px;color:#6b7684;font-weight:400;letter-spacing:.03em}
+.qcard .px{font-size:15px;font-weight:800;color:#fff;margin:5px 0 3px;font-variant-numeric:tabular-nums}
+.qcard .dd{font-size:11px;display:flex;gap:9px;color:#8e9aa6;font-variant-numeric:tabular-nums}
+.qcard .nx{display:block;margin-top:7px;padding-top:7px;border-top:1px solid #1a2530;font-size:10.5px;color:#8e9aa6;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.qsec{grid-column:1/-1;font-size:10.5px;color:#6b7684;letter-spacing:.12em;margin:6px 0 1px 2px}
+.todo-item{padding:11px 14px}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+  <header class="mast">
+    <div class="mast-top">
+      <div class="brandline">
+        <img class="logo" src="data:image/png;base64,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" alt="인투알 로고">
+        <div class="brand-divider"></div>
+        <div>
+          <div class="eyebrow"><span class="live"></span>ESS MARKET INTELLIGENCE · DAILY</div>
+          <h1>ESS 시황 데일리 브리핑</h1>
+          <div class="sub">2차전지 외함(컨테이너·랙) 사업 관점의 시장·입찰·업계 동향 리포트</div>
+        </div>
+      </div>
+      <div class="issue">
+        <b>제2026-314호</b><br>
+        발행 2026.11.10(화) 13:10 KST<br>
+        수신 대표이사 · 영업/전략 임원<br>
+        발신 영업팀
+      </div>
+    </div>
+    <div class="mast-meta">
+      <span>수집 범위 <b>직전 발행 이후 ~ 11.10 13:10</b></span>
+      <span>수집 40건 → 신선도·중복 필터 후 카드 5 · 단신 5 (3차 입찰 동일 주제 9건·대전 포럼 4건·인제군 3건·CES 수상 3건은 클러스터 통합, 전력거래소 공지 2건은 발행일 미확인으로 제외, 지면 총량 가드로 카드 5장 상한 적용)</span>
+      <span>전력거래소 입찰공고 게시판 매칭 2건은 발행일 미확인으로 지면 제외 — 3차 ESS 중앙계약시장은 '삼성SDI·SK온 2파전 확정' 보도로 상태 변화가 확인돼 SEC 01 카드로 승격</span>
+      <span>다음 발행 <b>11.11(수) 07:30</b></span>
+    </div>
+  </header>
+
+  <section class="brief">
+    <h2>TODAY IN 3 LINES · 오늘의 3줄 요약</h2>
+    <ol>
+      <li><span class="n">1</span><div><b>3차 ESS 입찰, 2파전 확정</b> LG엔솔 불참이 복수 매체로 확인되며 역대 최대 규모 입찰이 삼성SDI·SK온 맞대결로 재편 — 저가 경쟁 완화 여부와 공급 부족 가능성이 동시 쟁점으로 부상.</div></li>
+      <li><span class="n">2</span><div><b>보증 경쟁 개막 — '20년' 선 상향</b> SK온이 20년 이상 보증을 제시하고 K-배터리 3사 보증이 20년 선으로 이동 — 경쟁축이 가격에서 수명·안전성으로 넘어가며 외함·랙에도 장기 내구 입증 요구가 따라온다.</div></li>
+      <li><span class="n">3</span><div><b>해외 BESS 명암 교차</b> 호주 캔버라 메가 BESS는 상업 가동에 진입한 반면 미국 뉴욕에선 넥스트에라 BESS(LG엔솔 배터리 탑재 시설 포함)가 가동 중단 — 안전 입증이 수주 변수로 재확인.</div></li>
+    </ol>
+  </section>
+
+  <section class="kpis">
+    <div class="kpi">
+      <div class="k-label">3차 ESS 중앙계약시장</div>
+      <div class="k-value">2파전<small>삼성SDI · SK온</small></div>
+      <div class="k-note flat">— LG엔솔 불참 확정 보도('26.11.8~10)</div>
+    </div>
+    <div class="kpi">
+      <div class="k-label">ESS 보증 기간 경쟁</div>
+      <div class="k-value">20년+<small>SK온 제시</small></div>
+      <div class="k-note up">▲ 장주기 수명 경쟁 점화(매경 11.9)</div>
+    </div>
+    <div class="kpi">
+      <div class="k-label">독일 BESS 프로젝트 금융</div>
+      <div class="k-value">8.35억€<small>조달 확정 보도</small></div>
+      <div class="k-note up">▲ 유럽 BESS 자금 유입(데일리연합 11.9)</div>
+    </div>
+    <div class="kpi">
+      <div class="k-label">세계 재생에너지 증설 전망</div>
+      <div class="k-value">4,800GW<small>에너지 안보 동인</small></div>
+      <div class="k-note up">▲ 글로벌 전망치(ESG경제 11.9)</div>
+    </div>
+  </section>
+
+
+  <div class="duo">
+  <div class="plate">
+    <span class="sec">SEC 01</span>
+    <h2>정책 · 입찰 레이더</h2>
+    <span class="plate-note">3차 입찰은 '대기' 상태에서 '2파전 확정 보도' 상태로 변경 — 상태 변화 발생으로 카드 승격</span>
+  </div>
+  <section class="cards">
+    <article class="card policy">
+      <div class="tags"><span class="tag t-bid">업데이트</span><span class="tag t-bid">3차 입찰</span><span class="tag t-kr">국내</span></div>
+      <a class="hl" href="https://news.google.com/rss/articles/CBMibEFVX3lxTFBtWkQ2YU5Bakg4cm1CNGFEQWk5b21uTDBySFM3Y3pIeHJ4OFlTRXF3M1B1S2psVFNXbXVhN3RwVjg2b1pVSWdKX2xJVWFVYTZ4T1M4NGl1dEJHMXhfd3RzTTVVWXhMSk5ncW1SRdIBckFVX3lxTE5vRkRSblNtWUJETWFseEUyYkpsUmlRX1dHckowMlpMamJscE5KcXJ6UERqb04zczJEX3MtVE9wYVpPRnR3UWRYaVZVVUt5QlRIY1ZtX2l3SGN3aHlSRlhqTG5MaU95dDhtUmVxNWstTzZjQQ?oc=5" target="_blank" rel="noopener noreferrer" title="원문 보기">
+        <h3>LG엔솔 빠진 3차 ESS 입찰 — 삼성SDI·SK온 '최대 규모' 2파전 확정<span class="ext">↗</span></h3>
+      </a>
+      <ul class="summary">
+        <li><b>업데이트</b>: LG엔솔의 3차 ESS 중앙계약시장 경쟁입찰 불참이 복수 매체로 확인 — 수주전이 <b>삼성SDI·SK온 2파전</b>으로 재편('26.11.8~10 보도).</li>
+        <li>이번 입찰은 역대 <b>최대 규모</b>·직전 대비 <b>'두 배' 커진 판</b>으로 보도 — 저가 경쟁 완화 여부가 핵심 관전 포인트.</li>
+        <li>공급사가 2곳으로 좁혀지며 <b>공급 부족</b> 가능성이 새 변수로 거론(아주경제 11.8).</li>
+      </ul>
+      <div class="src">출처 <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTFBtWkQ2YU5Bakg4cm1CNGFEQWk5b21uTDBySFM3Y3pIeHJ4OFlTRXF3M1B1S2psVFNXbXVhN3RwVjg2b1pVSWdKX2xJVWFVYTZ4T1M4NGl1dEJHMXhfd3RzTTVVWXhMSk5ncW1SRdIBckFVX3lxTE5vRkRSblNtWUJETWFseEUyYkpsUmlRX1dHckowMlpMamJscE5KcXJ6UERqb04zczJEX3MtVE9wYVpPRnR3UWRYaVZVVUt5QlRIY1ZtX2l3SGN3aHlSRlhqTG5MaU95dDhtUmVxNWstTzZjQQ?oc=5" target="_blank" rel="noopener noreferrer">머니투데이 '26.11.10</a> · <a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE5FSWUyOFV6eVI2bEtVaW9iZ2swVEc5UFlYNHZxbkxmWUdfbFV3d1NyTldTeDlHdUNxWTUydEZXUnRUdGk3RTR2NEk0Z2k5a3dkQmdOOC1Panowd9IBWEFVX3lxTFA3eEMyVzFLUVp6YzY1cm02czNPRkNsNHVvMXBWUmw2VTF2cGJHbDRMaHI1UWE1aEtRYmY4bXl1ZWNlVF8yVENPbnlQUXRIRi1HazRjc1U1VzM?oc=5" target="_blank" rel="noopener noreferrer">아주경제 '26.11.8</a> · <a href="https://news.google.com/rss/articles/CBMidkFVX3lxTE40MkZqRjlUT0EyWkkwMjNmWWpsQV8tNlMtWG00YURQWlV0dzZuNDNJSmZZczBtTzAwd0ttanZaSDJKSzJlSkRnU3RDYk51VmNKSGdXY3Bvcl93WVV2QkRjaElvYllRUGEwQVF2SVVZUnNwMTMwRGfSAXZBVV95cUxONDJGakY5VE9BMlpJMDIzZllqbEFfLTZTLVhtNGFEUFpVdHc2bjQzSUpmWXMwbU8wMHdLbWp2WkgySksyZUpEZ1N0Q2JOdVZjSkhnV2Nwb3Jfd1lVdkJEY2hJb2JZUVBhMEFRdklVWVJzcDEzMERn?oc=5" target="_blank" rel="noopener noreferrer">시사저널e '26.11.8</a></div>
+      <div class="insight"><b>인투알 시사점</b> — 셀 공급이 삼성SDI·SK온 2사로 수렴하면 EPC·개발사의 외함·랙 사양도 두 사의 플랫폼 규격에 맞춰 발주된다. 양사 ESS 플랫폼별 외함 호환 설계와 견적 패키지를 낙찰 발표 전에 준비해두는 쪽이 리드타임 경쟁에서 이긴다.</div>
+      <div class="impact">
+        <span class="lab">인투알 영향도</span>
+        <span class="soc"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><span class="cap"></span></span>
+        <span class="val">4/4 — 국내 최대 발주 이벤트의 구도 확정</span>
+      </div>
+      <div class="art-detail" style="display:none"><p>3차 ESS 중앙계약시장 입찰이 '공고 대기' 상태를 지나 수주 구도가 확정되는 국면에 들어섰다. 직전 호까지 KPI 상태 표시로만 유지하던 이슈였으나, 이번 주말~화요일 사이 LG엔솔의 불참이 복수 매체(시사저널e·아주경제·대한경제·머니투데이·마이데일리)로 일제히 확인되며 '새 사실'이 발생했다. 1·2차 입찰에서 3사가 경합하던 판이 처음으로 2파전이 된 것이다.</p><p>보도 기조를 종합하면 이번 입찰은 역대 최대 규모이며 직전 대비 '두 배 커진 판'으로 표현된다. 쟁점은 두 갈래다. 첫째, 경쟁자가 줄어든 만큼 1·2차를 지배했던 저가 수주 경쟁이 완화될지(머니투데이 11.9~10). 둘째, 공급사 2곳이 이 물량을 소화할 수 있는지 — 아주경제(11.8)는 공급 부족이 새 변수가 될 수 있다고 짚었다.</p><p>LG엔솔의 불참 배경에 대해서는 수익성 판단이 거론되는 보도 흐름이 있으며, 이는 비즈니스포스트(11.9)가 제기한 '저가 입찰 구조 → 공급사 기피' 논리와 맞닿는다. 즉 이번 2파전은 단순한 경쟁 완화가 아니라 시장 설계 자체에 대한 공급사의 가격 시그널로 읽어야 한다.</p><p>인투알 액션: ① 삼성SDI·SK온 양사 ESS 플랫폼별 외함·랙 대응 스펙 시트를 금주 내 정비, ② 낙찰 발표 직후 EPC·개발사 영업 라인이 바로 움직일 수 있도록 표준 견적 패키지 선작성, ③ 낙찰 단가 공개 시 외함 단가 압박 수준을 역산해 원가 시나리오를 갱신한다.</p></div>
+    </article>
+    <article class="card policy">
+      <div class="tags"><span class="tag t-bid">시장 구조</span><span class="tag t-kr">국내</span></div>
+      <a class="hl" href="https://news.google.com/rss/articles/CBMic0FVX3lxTE80N2lDZWt6LVVTVTc2djJ4VUU2VVBIS2hJN2VpWXJ4VkJPVFNmSWEzQzlabnEydnpZMEdCYUVwTkoxVHBCRDJaSVM4bm5nVUVrQTZnUmY0by11RFctY05FRXpONC1uNjRUT1ZUMVBqQllqbHc?oc=5" target="_blank" rel="noopener noreferrer" title="원문 보기">
+        <h3>'저가 입찰' 구조가 ESS 도입 차질 요인으로 — 공급사 기피 가능성 제기<span class="ext">↗</span></h3>
+      </a>
+      <ul class="summary">
+        <li>정부 저가 입찰 구조가 ESS 도입 차질 우려 요인으로 지목 — ESS 배터리 <b>공급 부족</b> 상황에서 낮은 수익성 탓에 공급사 기피 가능성 제기(비즈니스포스트 11.9).</li>
+        <li>LG엔솔의 3차 입찰 불참도 같은 맥락의 가격 시그널로 해석되는 보도 흐름 — 수요(최대 규모 발주)와 공급(수익성 기피)의 엇박자.</li>
+      </ul>
+      <div class="src">출처 <a href="https://news.google.com/rss/articles/CBMic0FVX3lxTE80N2lDZWt6LVVTVTc2djJ4VUU2VVBIS2hJN2VpWXJ4VkJPVFNmSWEzQzlabnEydnpZMEdCYUVwTkoxVHBCRDJaSVM4bm5nVUVrQTZnUmY0by11RFctY05FRXpONC1uNjRUT1ZUMVBqQllqbHc?oc=5" target="_blank" rel="noopener noreferrer">비즈니스포스트 '26.11.9</a></div>
+      <div class="insight"><b>인투알 시사점</b> — 낙찰가 하락 압력은 셀에서 끝나지 않고 BOS·외함·랙 단가로 전가된다. 표준화·모듈화로 원가 방어선을 만들되, '싸게'가 아니라 '보증·안전 스펙으로 비싸게 팔 이유'를 문서화하는 것이 중기 대응이다.</div>
+      <div class="impact">
+        <span class="lab">인투알 영향도</span>
+        <span class="soc"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><span class="cap"></span></span>
+        <span class="val">3/4 — 수주 단가 체계에 직결되는 구조 이슈</span>
+      </div>
+      <div class="art-detail" style="display:none"><p>비즈니스포스트(11.9)는 정부 주도 ESS 입찰의 저가 낙찰 구조가 오히려 ESS 보급을 지연시킬 수 있다는 역설을 제기했다. 글로벌 ESS 배터리 수요가 공급을 앞서는 국면에서, 수익성이 낮은 국내 입찰을 배터리사가 갈수록 기피할 수 있다는 논리다.</p><p>이 구조론은 이번 주 가장 큰 뉴스인 LG엔솔 불참과 직접 연결된다. 공급이 귀한 시기에 저가 시장은 공급사 입장에서 '안 들어가도 되는 시장'이 된다. 발주처가 가격을 누를수록 참여자가 줄고, 참여자가 줄면 공급 부족과 사업 지연이 돌아오는 자기모순이 작동하는 것이다.</p><p>인투알에게 이 구조는 양날이다. 단기적으로는 낙찰가 하락 압력이 외함·랙 단가 협상으로 전가될 위험이 있다. 반면 중기적으로는 '가격'에서 '수명·안전성'으로 평가축이 이동 중이라는 보도(파이낸셜포스트 11.9)와 맞물려, 스펙으로 차별화하는 제조사에게 공간이 열린다.</p><p>액션: 견적 대응 시 단가 인하 요구에 맞설 수 있도록 설계수명·내식·안전(열폭주 전파 방지) 근거 자료를 표준 첨부물로 만들고, 저가 물량과 스펙 물량의 수주 기준선을 내부적으로 분리해 관리한다.</p></div>
+    </article>
+  </section>
+  </div>
+  <div class="duo">
+  <div class="plate">
+    <span class="sec">SEC 02</span>
+    <h2>국내 산업 · 기술</h2>
+    <span class="plate-note">경쟁축이 가격에서 '20년 수명 보증'으로 이동 — 외함 내구 요구의 선행 지표</span>
+  </div>
+  <section class="cards">
+    <article class="card kr">
+      <div class="tags"><span class="tag t-kr">단독 보도</span><span class="tag t-kr">보증 경쟁</span></div>
+      <a class="hl" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTFBJUEUxUzFxX1kyVC1WT2N5ejFEWEpHLUVyaWMza2VJaDJ1c3p1Yzdnb1VLektodHM4d3BjeDNZQlk0VVA1cmJGQjRfeE1ob2xreGhkdVZn?oc=5" target="_blank" rel="noopener noreferrer" title="원문 보기">
+        <h3>ESS '장주기 수명 경쟁' 점화 — SK온 '20년 이상 보증', 3사 보증 20년 선으로<span class="ext">↗</span></h3>
+      </a>
+      <ul class="summary">
+        <li>SK온이 후발주자 위치에서 ESS <b>'20년 이상' 보증</b>을 제시 — 장주기 수명 경쟁 점화(매일경제 단독, 11.9).</li>
+        <li>K-배터리 3사의 ESS 보증이 <b>20년</b> 선으로 수렴 — 가격 경쟁에서 <b>수명·안전성</b>으로 경쟁축 이동(파이낸셜포스트 11.9).</li>
+        <li>3차 입찰 2파전과 맞물려 '저가 대신 보증으로 변별'하는 수주 전략이 가시화.</li>
+      </ul>
+      <div class="src">출처 <a href="https://news.google.com/rss/articles/CBMiVkFVX3lxTFBJUEUxUzFxX1kyVC1WT2N5ejFEWEpHLUVyaWMza2VJaDJ1c3p1Yzdnb1VLektodHM4d3BjeDNZQlk0VVA1cmJGQjRfeE1ob2xreGhkdVZn?oc=5" target="_blank" rel="noopener noreferrer">매일경제 '26.11.9</a> · <a href="https://news.google.com/rss/articles/CBMidEFVX3lxTE9IZnExUUtNTmRHX184eWd4ZGJ3N3NfaVA3WVo1ZUVDYk1BSUZkU19CWVE2MkVjeU9TVXNVbHR4YzhuMFU1QVRXSm9LM3NocHR0MmV2ellmQmd6bnA1UTNuNHM4QU5YTTNzWDV3Z3pXeUItODdQ?oc=5" target="_blank" rel="noopener noreferrer">파이낸셜포스트 '26.11.9</a></div>
+      <div class="insight"><b>인투알 시사점</b> — 셀 보증이 20년이면 외함·랙도 '20년 무교체 내구'를 묻는 RFQ가 온다. 도장·소재의 내식 연한 근거, 셀 교체·증설 접근 동선, 장기 열관리 설계를 스펙 문서로 선제 정리하면 보증 경쟁 국면이 오히려 인투알의 변별 포인트가 된다.</div>
+      <div class="impact">
+        <span class="lab">인투알 영향도</span>
+        <span class="soc"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><span class="cap"></span></span>
+        <span class="val">3/4 — 외함 요구 스펙의 방향을 바꾸는 흐름</span>
+      </div>
+      <div class="art-detail" style="display:none"><p>매일경제(11.9 단독)는 SK온이 ESS에서 '20년 이상 보증'을 제시하며 장주기 수명 경쟁이 점화됐다고 보도했고, 파이낸셜포스트(11.9)는 K-배터리 3사의 ESS 보증이 20년 선으로 올라서며 경쟁 관건이 가격에서 수명·안전성으로 넘어가고 있다고 짚었다. 후발주자인 SK온이 보증 기간을 공격적으로 내건 것은 가격 대신 신뢰로 점유율을 사겠다는 전략으로 읽힌다.</p><p>타이밍이 중요하다. 3차 입찰이 2파전으로 좁혀진 바로 그 주에 보증 경쟁 보도가 나왔다. 저가 출혈 경쟁의 피로가 누적된 상태에서(매일일보 11.8), 공급사들은 단가 인하 대신 '20년을 책임진다'는 약속으로 변별하려는 것이다. 보증은 발주처의 금융 조달 조건과 직결되므로 입찰 평가에서 실질 가중치를 갖는다.</p><p>외함·랙 제조사 관점에서 이것은 요구 스펙의 구조 변화다. 셀이 20년을 약속하면 그 셀을 담는 인클로저가 10년 만에 부식되거나 구조 피로를 일으키는 설계는 계약상 성립하지 않는다. 내식 도장 사양, 구조 내구, HVAC 등 소모 부품의 교체 접근성, 셀 교체·증설(리트로핏)을 전제한 랙 설계가 모두 '20년 운영 시나리오' 위에서 재검토돼야 한다.</p><p>액션: 기술영업이 '설계수명 근거 패키지'(소재·도장 사양, 구조해석 요약, 유지보수 동선도)를 11월 중 표준화하고, 삼성SDI·SK온 양사 및 EPC 접촉 시 보증 연계 스펙 제안서로 활용한다.</p></div>
+    </article>
+  </section>
+  </div>
+  <div class="duo">
+  <div class="plate">
+    <span class="sec">SEC 03</span>
+    <h2>글로벌 BESS</h2>
+    <span class="plate-note">가동(호주)과 중단(미국)이 하루 간격으로 — 안전 입증이 프로젝트 생사를 가르는 변수</span>
+  </div>
+  <section class="cards">
+    <article class="card gl">
+      <div class="tags"><span class="tag t-gl">리스크</span><span class="tag t-gl">북미</span></div>
+      <a class="hl" href="https://news.google.com/rss/articles/CBMiiAFBVV95cUxOTFFxQmwxejVxSWMwMnRseVNtRmJBcXRBSVczNTlZUlBuU3k2b2l6RjRYYmdnN1haOXJ0VnJZYkZ1X1FDNkRxVEdJT2RUMDktci0xSWtWOEYwT0ZYRGZGNDdkVHlCd01jdXI0S1p6Mktlb3JsMnE5a2k2VERkcVJzOUIteGo3OTRR?oc=5" target="_blank" rel="noopener noreferrer" title="원문 보기">
+        <h3>넥스트에라 뉴욕 BESS 가동 중단 — LG엔솔 배터리 탑재 시설도 포함<span class="ext">↗</span></h3>
+      </a>
+      <ul class="summary">
+        <li>미국 넥스트에라의 뉴욕 BESS 시설이 가동 중단 — <b>LG엔솔 배터리 탑재 시설</b>도 멈춘 것으로 보도(글로벌이코노믹 11.9).</li>
+        <li>중단 사유·재가동 일정 등 세부는 후속 보도 확인 필요 — 뉴욕주의 BESS 안전 규제·주민 수용성 환경과 맞물린 리스크로 추적.</li>
+      </ul>
+      <div class="src">출처 <a href="https://news.google.com/rss/articles/CBMiiAFBVV95cUxOTFFxQmwxejVxSWMwMnRseVNtRmJBcXRBSVczNTlZUlBuU3k2b2l6RjRYYmdnN1haOXJ0VnJZYkZ1X1FDNkRxVEdJT2RUMDktci0xSWtWOEYwT0ZYRGZGNDdkVHlCd01jdXI0S1p6Mktlb3JsMnE5a2k2VERkcVJzOUIteGo3OTRR?oc=5" target="_blank" rel="noopener noreferrer">글로벌이코노믹 '26.11.9</a></div>
+      <div class="insight"><b>인투알 시사점</b> — 운영 중단 사례가 쌓일수록 발주처는 셀 브랜드만이 아니라 인클로저 단위의 안전 입증(UL9540A 열폭주 전파 시험, 소화·배연 설계)을 따진다. 인투알의 안전 설계 레퍼런스를 북미향 제안 자료로 정리해둘 시점이다.</div>
+      <div class="impact">
+        <span class="lab">인투알 영향도</span>
+        <span class="soc"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><span class="cap"></span></span>
+        <span class="val">3/4 — K-배터리 탑재 시설의 운영 리스크 노출</span>
+      </div>
+      <div class="art-detail" style="display:none"><p>글로벌이코노믹(11.9)에 따르면 미국 최대급 재생에너지 사업자인 넥스트에라의 뉴욕 BESS 시설이 가동을 멈췄고, 여기에는 LG엔솔 배터리를 탑재한 시설도 포함됐다. 상업 운전 중인 자산의 중단은 발전 수익 상실과 직결되는 만큼 운영사·배터리사 모두에게 민감한 사안이다.</p><p>구체적 중단 사유와 재가동 일정은 입수된 보도만으로 단정할 수 없어 후속 확인이 필요하다. 다만 뉴욕주는 BESS 화재 이후 안전 규제와 주민 수용성 논의가 활발한 지역이라는 맥락에서, 이번 중단이 북미 시장 전반의 안전 요구 강화 흐름과 같은 선상에 있는지 주시할 필요가 있다.</p><p>구조적으로 중요한 포인트는 '셀 브랜드'가 아니라 '시스템 단위 안전 입증'이 신뢰의 단위가 되고 있다는 것이다. 사고·중단이 반복될수록 보험사·AHJ(인허가 당국)·운영사는 열폭주 전파 방지, 소화·배연, 이격 설계 등 인클로저 레벨의 증빙을 요구한다. 이는 외함 제조사의 부가가치가 커지는 방향이다.</p><p>액션: ① 본 건 중단 원인 후속 보도를 전략기획이 추적해 북미향 영업 토크포인트를 갱신, ② UL9540A 대응 설계·시험 레퍼런스를 영문 1장짜리 자료로 정리, ③ 국내 고객에게도 '뉴욕 사례'를 안전 스펙 상향 제안의 근거로 활용한다.</p></div>
+    </article>
+    <article class="card gl">
+      <div class="tags"><span class="tag t-gl">상업 가동</span><span class="tag t-gl">호주</span></div>
+      <a class="hl" href="https://news.google.com/rss/articles/CBMiiAFBVV95cUxPeHludzQ4NjM4SXE3blQ2TE5IdXY3cjFEUXJoZTMtb25lY3l3QW0yVVh1cE9Ka1h0aDc0a3hhQkZFOFZxRnNTR0V6YnlteEpaaWR4eEVPcUZOdUQtWmdCTGtrYndyZEpXM0hxNGRadERSZWJMNTdEMWRZdkIya2tYS0NMcDNNTmJf?oc=5" target="_blank" rel="noopener noreferrer" title="원문 보기">
+        <h3>호주 캔버라 '메가 BESS' 상업 가동 — "도시 3분의 1 정전 막는다"<span class="ext">↗</span></h3>
+      </a>
+      <ul class="summary">
+        <li>에쿠 에너지가 호주 캔버라 인근 메가 BESS를 <b>상업 가동</b> — '캔버라 3분의 1 정전 방지' 규모로 보도(글로벌이코노믹 11.9).</li>
+        <li>계통 안정(백업) 목적의 대형 BESS가 상업 운전 단계로 — 호주 시장의 대형 프로젝트 파이프라인 신호.</li>
+      </ul>
+      <div class="src">출처 <a href="https://news.google.com/rss/articles/CBMiiAFBVV95cUxPeHludzQ4NjM4SXE3blQ2TE5IdXY3cjFEUXJoZTMtb25lY3l3QW0yVVh1cE9Ka1h0aDc0a3hhQkZFOFZxRnNTR0V6YnlteEpaaWR4eEVPcUZOdUQtWmdCTGtrYndyZEpXM0hxNGRadERSZWJMNTdEMWRZdkIya2tYS0NMcDNNTmJf?oc=5" target="_blank" rel="noopener noreferrer">글로벌이코노믹 '26.11.9</a></div>
+      <div class="insight"><b>인투알 시사점</b> — 호주는 옥외 고온·분진 환경에 맞춘 컨테이너 사양(내열·방진·내식) 요구가 뚜렷한 시장이다. 상업 가동 사례가 늘어나는 지금, 호주형 외함 요구 조건을 수출 레퍼런스 관점에서 조사해둘 가치가 있다.</div>
+      <div class="impact">
+        <span class="lab">인투알 영향도</span>
+        <span class="soc"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><span class="cap"></span></span>
+        <span class="val">2/4 — 직접 수주 연결은 아니나 수출 시장 신호</span>
+      </div>
+      <div class="art-detail" style="display:none"><p>글로벌이코노믹(11.9)에 따르면 에쿠 에너지가 호주 수도 캔버라 인근의 메가급 BESS를 상업 가동했다. '캔버라의 3분의 1 규모 정전을 막는다'는 표현이 보여주듯, 이 프로젝트는 차익거래용이 아니라 도시 계통의 백업·안정화 자산으로 자리매김한 사례다.</p><p>호주는 석탄발전 퇴출과 재생에너지 확대가 빠르게 진행되며 대형 BESS가 계통 인프라의 표준 구성요소로 정착해가는 시장이다. 상업 가동 사례가 하나씩 쌓일 때마다 후속 프로젝트의 금융 조달과 인허가가 쉬워지는 선순환이 작동한다. 같은 날 독일에서도 8.35억 유로 규모 BESS 금융이 보도(데일리연합 11.9)된 점과 묶어 보면, 선진 계통 시장의 BESS 자금 흐름은 견조하다.</p><p>인투알 액션: 해외영업이 호주·독일 등 파이프라인 시장의 외함 요구 조건(기후 등급, 인증, 운송 규격)을 11월 중 조사해 수출용 컨테이너 표준 사양 초안에 반영한다. 국내 2파전 결과와 무관하게 움직이는 해외 수요는 수주 포트폴리오 분산 관점에서 의미가 있다.</p></div>
+    </article>
+  </section>
+  </div>
+
+  <div class="plate">
+    <span class="sec">SEC 04</span>
+    <h2>오늘의 단신 — 한 줄 브리프</h2>
+    <span class="plate-note">카드 미만 · 알아둘 소식 (출처 링크)</span>
+  </div>
+  <section class="board">
+    <table>
+      <thead><tr><th>구분</th><th colspan="2">단신</th><th>출처</th></tr></thead>
+      <tbody>
+        <tr><td><span class="co-name">글로벌·금융</span></td><td colspan="2">독일 BESS 프로젝트에 <b>8.35억 유로</b> 금융 투입 — 유럽 대형 BESS 자금 조달 지속.</td><td><a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE9TV29LMlBCck9CWGpEUHFSUmdvOVZXR0wzV2VjS0Q2aXJnOFhQUDRKR1VsamZtQ080Uy16UEk5eS1CNnVIY1JXczlRTG1SVmtFbl9ZZGdyZW9JbEk?oc=5" target="_blank" rel="noopener noreferrer">데일리연합 11/9</a></td></tr>
+        <tr><td><span class="co-name">전망</span></td><td colspan="2">세계 재생에너지 <b>4,800GW</b> 증설 전망 — '에너지 안보'가 성장 동인으로 지목.</td><td><a href="https://news.google.com/rss/articles/CBMibEFVX3lxTFA2UjljQ1IwSlJfckl0b0RfQlBKQ2FuYjMtUXctWFlRTUZTWExWeHpHSldPTi1MSG5zVmRrdkNkeTNyY2hMUXBzWWcxTkp6TWpqT05zZlltVldHbUo0RWJ6VzRxNDdIREFQNktiOQ?oc=5" target="_blank" rel="noopener noreferrer">ESG경제 11/9</a></td></tr>
+        <tr><td><span class="co-name">제품</span></td><td colspan="2">삼성SDI, <b>UPS용 각형 배터리</b>로 CES 2027 혁신상 수상 — 데이터센터 백업 전원 라인업 강화 신호.</td><td><a href="https://news.google.com/rss/articles/CBMiZkFVX3lxTE4zblFIOE5ReVNmNE5LZjRJb1JyT0I4OU5BZGRCd0FCbEIyYXRGaW10MmR4M3BvY0dUVTNjUTBZeUR2al9qYVBCU0RzbmYyZ0xfM05mdTFGRjM1NFJPRERnM2dNb0xTQQ?oc=5" target="_blank" rel="noopener noreferrer">디일렉 11/10</a></td></tr>
+        <tr><td><span class="co-name">제품</span></td><td colspan="2">LG엔솔, 사용 후 배터리 진단을 7시간→<b>10분</b>으로 줄인 기술로 CES 혁신상 — 리유즈 ESS 생태계 기반 기술.</td><td><a href="https://news.google.com/rss/articles/CBMiZkFVX3lxTE1YSEl5aG5wREViUmJIUUN0ZXNBV1NWWkNMeFl3bGhGZHFLQWU1cXd2QmJTU3NIV09wYTN5dmhBUVU0XzRUank5amNpSnJZcnQ1ZFJ2TDhSVmJNaUdXT1MzSUZOeDVWZw?oc=5" target="_blank" rel="noopener noreferrer">디일렉 11/10</a></td></tr>
+        <tr><td><span class="co-name">산업</span></td><td colspan="2">삼성SDI 수익성 회복의 주역으로 <b>ESS</b> 지목 — 로봇·우주항공까지 응용처 확장 보도.</td><td><a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE9lVlp0R29wa251VE9MMkoyakFaZ2k4cU9pR0JUcXFMakVULXVhRFFwM2hMMzlkUVoyVjc5LUlCVGozSXlva3FuTm9ZZmhBeE9iYXZJeHRiWVZMSlhBOW9j?oc=5" target="_blank" rel="noopener noreferrer">데이터뉴스 11/9</a></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+
+  <div class="plate">
+    <span class="sec">SEC 05</span>
+    <h2>To-Do &amp; 전략 제언</h2>
+    <span class="plate-note">레이더: 지표① 3차 ESS 입찰 — '2파전 확정 보도' 단계 진입, 다음 트리거는 낙찰 결과·단가 공개 / 지표② 보증 경쟁 — 3사 20년 선 상향, 외함 내구 스펙 요구 동반 상향 추적 / 지표③ 북미 리스크 — 뉴욕 BESS 중단 원인 후속 보도 모니터링.</span>
+  </div>
+  <section class="todo">
+    <div class="todo-item">
+      <span class="prio p1">P1 긴급</span>
+      <div class="t-body"><b>2파전 대응 — 양사 플랫폼별 외함·랙 패키지 정비</b><p>삼성SDI·SK온 ESS 플랫폼별 외함·랙 대응 스펙 시트와 표준 견적 패키지를 낙찰 발표 전 완성. 낙찰 직후 EPC·개발사 접촉 리스트 가동.</p></div>
+      <span class="owner">영업1팀 / 금주 내</span>
+    </div>
+    <div class="todo-item">
+      <span class="prio p1">P1 긴급</span>
+      <div class="t-body"><b>'20년 보증' 연계 설계수명 근거 패키지 작성</b><p>내식 도장 사양·구조해석 요약·유지보수 동선도를 묶은 '설계수명 근거 패키지' 표준화. 보증 경쟁 국면의 스펙 제안 무기로 활용.</p></div>
+      <span class="owner">기술영업 / 11.14까지</span>
+    </div>
+    <div class="todo-item">
+      <span class="prio p2">P2 중요</span>
+      <div class="t-body"><b>뉴욕 BESS 중단 원인 추적 · 안전 소구점 갱신</b><p>넥스트에라 뉴욕 중단 사유 후속 보도를 추적하고, UL9540A·열폭주 전파 방지 설계 레퍼런스를 국문·영문 1장 자료로 갱신.</p></div>
+      <span class="owner">전략기획 / 상시</span>
+    </div>
+    <div class="todo-item">
+      <span class="prio p2">P2 중요</span>
+      <div class="t-body"><b>호주·독일 BESS 파이프라인 수출 조건 조사</b><p>캔버라 메가 BESS 상업 가동·독일 8.35억 유로 금융을 계기로 양 시장의 외함 요구 조건(기후 등급·인증·운송 규격) 조사, 수출 사양 초안 반영.</p></div>
+      <span class="owner">해외영업 / 11월 중</span>
+    </div>
+    <div class="todo-item">
+      <span class="prio p3">P3 일반</span>
+      <div class="t-body"><b>직접PPA 실무 세미나 참석 검토</b><p>산업교육연구소 직접PPA 세미나(에너지신문 11.10 보도) 참석 여부 판단 — 수요기업 발주 구조·계약 실무 이해도 제고 목적.</p></div>
+      <span class="owner">영업지원 / 금주 판단</span>
+    </div>
+  </section>
+
+  <div class="comment">
+    <h3>STRATEGY COMMENT · 오늘의 전략 코멘트</h3>
+    이번 호의 축은 하나다 — 국내 ESS 시장의 평가 기준이 '얼마나 싸게'에서 '얼마나 오래, 얼마나 안전하게'로 이동하고 있다는 것. LG엔솔의 3차 입찰 불참은 저가 시장에 대한 공급사의 가격 시그널이고, 같은 주에 나온 '20년 보증' 경쟁 보도는 그 대안 경쟁축의 등장이다. 외함·랙 제조사에게 이 전환은 기회다. 단가 싸움에서는 우리가 끼일 공간이 좁지만, 20년 내구·열폭주 안전·유지보수 접근성 같은 시스템 수명 스펙 싸움에서는 인클로저가 변별 요소가 된다. 금주 실행 과제는 명확하다 — 양사 플랫폼 대응 패키지와 설계수명 근거 자료를 낙찰 발표 전에 완성해, 결과가 어느 쪽으로 나와도 첫 미팅에 들고 갈 수 있게 하는 것. 과장 없이, 준비된 쪽이 이긴다.
+  </div>
+
+  
+
+  <div class="duo">
+    <div class="plate">
+      <span class="sec">SEC 06</span>
+      <h2>에디터 스포트라이트 &amp; 오늘의 지식</h2>
+      <span class="plate-note">오늘의 1편씩 — 지난 회차는 아래 &#39;지난 호 목록&#39;에서</span>
+    </div>
+    <article class="card policy">
+      <div class="tags"><span class="tag t-bid">SPOTLIGHT #078</span><span class="tag t-kr">구조 분석</span></div>
+      <a class="hl" href="https://news.google.com/rss/articles/CBMic0FVX3lxTE80N2lDZWt6LVVTVTc2djJ4VUU2VVBIS2hJN2VpWXJ4VkJPVFNmSWEzQzlabnEydnpZMEdCYUVwTkoxVHBCRDJaSVM4bm5nVUVrQTZnUmY0by11RFctY05FRXpONC1uNjRUT1ZUMVBqQllqbHc?oc=5" target="_blank" rel="noopener noreferrer" title="원문 보기">
+        <h3>빈자리의 경제학 — LG엔솔 불참이 드러낸 중앙계약시장의 '저가 설계' 모순<span class="ext">↗</span></h3>
+      </a>
+      <ul class="summary">
+        <li>표면: 역대 <b>최대 규모</b> 3차 입찰에서 1위 사업자가 퇴장 — 삼성SDI·SK온 2파전('26.11.8~10 복수 보도).</li>
+        <li>구조: 저가 낙찰 설계 → 공급사 수익성 악화 → 참여 기피 → <b>공급 부족·보급 지연</b>의 순환(비즈니스포스트 11.9 기준).</li>
+        <li>출구: 같은 주 등장한 <b>'20년 보증'</b> 경쟁(매경 11.9)은 가격 외 평가축의 부상 — 시장이 스스로 균형점을 찾는 신호.</li>
+      </ul>
+      <div class="src">출처 <a href="https://news.google.com/rss/articles/CBMic0FVX3lxTE80N2lDZWt6LVVTVTc2djJ4VUU2VVBIS2hJN2VpWXJ4VkJPVFNmSWEzQzlabnEydnpZMEdCYUVwTkoxVHBCRDJaSVM4bm5nVUVrQTZnUmY0by11RFctY05FRXpONC1uNjRUT1ZUMVBqQllqbHc?oc=5" target="_blank" rel="noopener noreferrer">비즈니스포스트 '26.11.9</a> · <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTFBtWkQ2YU5Bakg4cm1CNGFEQWk5b21uTDBySFM3Y3pIeHJ4OFlTRXF3M1B1S2psVFNXbXVhN3RwVjg2b1pVSWdKX2xJVWFVYTZ4T1M4NGl1dEJHMXhfd3RzTTVVWXhMSk5ncW1SRdIBckFVX3lxTE5vRkRSblNtWUJETWFseEUyYkpsUmlRX1dHckowMlpMamJscE5KcXJ6UERqb04zczJEX3MtVE9wYVpPRnR3UWRYaVZVVUt5QlRIY1ZtX2l3SGN3aHlSRlhqTG5MaU95dDhtUmVxNWstTzZjQQ?oc=5" target="_blank" rel="noopener noreferrer">머니투데이 '26.11.10</a> · <a href="https://news.google.com/rss/articles/CBMidkFVX3lxTE40MkZqRjlUT0EyWkkwMjNmWWpsQV8tNlMtWG00YURQWlV0dzZuNDNJSmZZczBtTzAwd0ttanZaSDJKSzJlSkRnU3RDYk51VmNKSGdXY3Bvcl93WVV2QkRjaElvYllRUGEwQVF2SVVZUnNwMTMwRGfSAXZBVV95cUxONDJGakY5VE9BMlpJMDIzZllqbEFfLTZTLVhtNGFEUFpVdHc2bjQzSUpmWXMwbU8wMHdLbWp2WkgySksyZUpEZ1N0Q2JOdVZjSkhnV2Nwb3Jfd1lVdkJEY2hJb2JZUVFhMEFRdklVWVJzcDEzMERn?oc=5" target="_blank" rel="noopener noreferrer">시사저널e '26.11.8</a> — 분석 코너는 신선도 창 대신 기준일 명시: 본 분석의 근거 보도 기준일 '26.11.8~11.10</div>
+      <div class="insight"><b>에디터의 결론</b> — 에디터의 결론 — 입찰의 '빈자리'는 시장이 보내는 가격표다. 발주 설계가 저가에 머무는 한 공급사는 보증·스펙으로 수익을 복원하려 하고, 그 전장은 셀이 아니라 시스템(인클로저 포함)으로 넓어진다. 인투알은 단가표가 아니라 '20년 운영 시나리오'를 파는 회사로 포지셔닝할 타이밍이다.</div>
+      <div class="impact">
+        <span class="lab">인투알 영향도</span>
+        <span class="soc"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><span class="cap"></span></span>
+        <span class="val">3/4 — 수주 전략의 프레임을 바꾸는 구조 신호</span>
+      </div>
+      <div class="art-detail" style="display:none"><p>숫자 뒤의 구조를 보자. 이번 주 확인된 사실은 세 가지다 — ① 3차 중앙계약시장 입찰은 역대 최대 규모이자 직전 대비 '두 배 커진 판'(머니투데이 11.9~10), ② 그런데 국내 1위 배터리사가 불참했다('26.11.7~8 확인), ③ 같은 주에 저가 입찰 구조가 공급사 기피를 부를 수 있다는 구조론이 보도됐다(비즈니스포스트 11.9). 판이 커졌는데 선수가 줄었다는 조합 자체가 이 시장의 가격 설계에 대한 평가서다.</p><p>작동하는 순환 구조는 이렇다. 발주 측이 낙찰가를 누르면, 글로벌 ESS 배터리 공급이 빠듯한 시기에 공급사는 더 나은 수익을 주는 시장(북미·유럽)으로 물량을 돌린다. 참여자가 줄면 경쟁이 약해져 단가가 오르거나, 공급 부족으로 사업이 지연된다. 싸게 사려던 설계가 결국 비싸게 또는 늦게 사는 결과로 돌아오는 자기모순이다. 1·2차의 저가 출혈 경쟁(매일일보 11.8)이 이번 2파전의 전사(前史)다.</p><p>흥미로운 것은 시장의 자기 교정 신호가 같은 주에 나왔다는 점이다. SK온의 '20년 이상 보증'(매경 11.9)과 3사 보증의 20년 수렴(파이낸셜포스트 11.9)은 가격이 아닌 축 — 수명·안전성 — 으로 경쟁을 옮기려는 시도다. 보증은 발주처의 금융 조건을 개선해주므로, 명목 단가가 같아도 실질 가치가 달라진다. 평가축이 '초기 단가'에서 '20년 총비용'으로 이동하는 것이다.</p><p>인투알의 결론: 이 전환에서 외함·랙은 원가 항목이 아니라 '20년 총비용'을 줄이는 변수로 재정의될 수 있다. 내식 연한, 무교체 구조 내구, 유지보수 접근성, 증설 여유 공간 — 이것들이 20년 운영 시나리오의 비용을 좌우한다. 낙찰 결과 발표 전에 '단가 견적서'가 아니라 '수명 제안서'를 준비하는 것이 이번 구조 전환에 올라타는 방법이다.</p></div>
+    </article>
+    <article class="card kr">
+      <div class="tags"><span class="tag t-kr">지식 #078</span><span class="tag ">기초 과정</span></div>
+      <h3 style="margin:2px 0 10px; font-size:16.5px; line-height:1.45;">지식 #078 — 'ESS 20년 보증'의 수명 공학: 셀 열화 곡선과 외함 설계수명은 한 몸이다</h3>
+      <ul class="summary">
+        <li><b>구조</b>: 배터리 수명은 시간 경과에 따른 <b>캘린더 열화</b>와 충방전 반복에 따른 <b>사이클 열화</b>의 합으로 결정되고, 보증은 통상 일정 기간 동안 건강 상태(SOH)를 기준선 이상으로 유지하겠다는 약속이다. 즉 '20년 보증'은 숫자 하나가 아니라 열화 곡선 전체에 대한 설계 약속이다.</li>
+        <li><b>숫자 감각</b>: 이번 주 보도 기준 K-배터리 3사의 ESS 보증이 <b>20년</b> 선으로 상향됐다(파이낸셜포스트 '26.11.9, 매일경제 '26.11.9). 보증 기간이 길어지는 만큼, 셀을 담는 외함·랙에 요구되는 무교체 내구 연한도 같은 축으로 끌려 올라간다.</li>
+        <li><b>왜 중요한가</b>: 보증은 프로젝트의 금융 조달 조건과 직결된다. 장기 보증이 서면 운영 기간 중 교체·증설 비용 가정이 바뀌어 사업성이 달라지고, 그 계약 문서에는 셀만이 아니라 열관리·구조·안전을 포함한 시스템 전체의 수명 입증이 들어온다.</li>
+        <li><b>실무 연결</b>: 외함 관점 점검 3가지 — ① 내식(소재·도장) 연한의 시험 근거, ② 셀 교체·증설을 전제한 유지보수 접근 동선, ③ HVAC 등 소모 부품의 교체 주기를 반영한 장기 열관리 설계. 이 세 가지가 '20년 RFQ'에서 묻는 핵심 항목이 된다.</li>
+      </ul>
+      <div class="src">출처 <a href="https://news.google.com/rss/articles/CBMiVkFVX3lxTFBJUEUxUzFxX1kyVC1WT2N5ejFEWEpHLUVyaWMza2VJaDJ1c3p1Yzdnb1VLektodHM4d3BjeDNZQlk0VVA1cmJGQjRfeE1ob2xreGhkdVZn?oc=5" target="_blank" rel="noopener noreferrer">매일경제 '26.11.9</a> · <a href="https://news.google.com/rss/articles/CBMidEFVX3lxTE9IZnExUUtNTmRHX184eWd4ZGJ3N3NfaVA3WVo1ZUVDYk1BSUZkU19CWVE2MkVjeU9TVXNVbHR4YzhuMFU1QVRXSm9LM3NocHR0MmV2ellmQmd6bnA1UTNuNHM4QU5YTTNzWDV3Z3pXeUItODdQ?oc=5" target="_blank" rel="noopener noreferrer">파이낸셜포스트 '26.11.9</a> · <b>다음 강 예고 — #079 증설(Augmentation)과 리트로핏: 20년 운영을 버티는 랙 설계</b></div>
+      <div class="insight"><b>실무 연결</b> — 실무 연결 — 고객이 '셀 보증 20년'을 말하면, 영업은 '외함은 그 20년을 어떻게 버티는가'를 묻기 전에 먼저 답해야 한다. 견적서에 설계수명 근거(도장 사양·구조 내구·유지보수 동선)를 한 장으로 첨부하는 것만으로 저가 경쟁 바깥의 대화가 시작된다. <b>오늘의 용어 3개</b>: ① SOH(State of Health · 초기 용량 대비 현재 건강 상태) ② 캘린더 수명(사용하지 않아도 시간 경과로 진행되는 열화 기준 수명) ③ 사이클 수명(충방전 반복 횟수 기준 수명).</div>
+    </article>
+  </div>
+
+  <div class="arch-bar">
+    <span class="txt"><b>지난 호가 궁금하신가요?</b> 이전 스포트라이트 · 지식 전편과 지난 지면을 게시판에서 다시 보실 수 있습니다.</span>
+    <a href="list.html">📚 지난 호 목록 열기</a>
+  </div>
+
+  <div class="plate">
+    <span class="sec">SEC 08</span>
+    <h2>주가 · 공시 보드</h2>
+    <span class="plate-note">종가 및 전일·전월·전년 대비 — 발행 시세 스크립트 기입(<!--STAMP-->기준 2026-11-10 종가<!--/STAMP-->) · 오른쪽 열은 확인된 주요 기사·공시(클릭 시 원문 이동)</span>
+  </div>
+  <section class="board" style="background:transparent;border:0;padding:0">
+    <div class="qgrid">
+      <div class="qsec">KOREA — 셀 · 소재</div>
+      <div class="qcard"><div class="nm"><span>LG에너지솔루션</span><span class="tk">KRX 373220</span></div><div class="px"><!--S373220:PX-->328,500원<!--/S373220:PX--></div><div class="dd"><span><!--S373220:D1--><span style="color:#f87171; font-weight:700">▲ 3.30%</span><!--/S373220:D1--></span><span><!--S373220:M1--><span style="color:#60a5fa; font-weight:700">▼ 18.08%</span><!--/S373220:M1--></span><span><!--S373220:Y1--><span style="color:#60a5fa; font-weight:700">▼ 29.43%</span><!--/S373220:Y1--></span></div><div class="nx">설명회: ESS 4.6배 · 목표 90GWh</div></div>
+      <div class="qcard"><div class="nm"><span>삼성SDI</span><span class="tk">KRX 006400</span></div><div class="px"><!--S006400:PX-->446,000원<!--/S006400:PX--></div><div class="dd"><span><!--S006400:D1--><span style="color:#f87171; font-weight:700">▲ 7.47%</span><!--/S006400:D1--></span><span><!--S006400:M1--><span style="color:#60a5fa; font-weight:700">▼ 21.62%</span><!--/S006400:M1--></span><span><!--S006400:Y1--><span style="color:#f87171; font-weight:700">▲ 41.59%</span><!--/S006400:Y1--></span></div><div class="nx">2Q 2,038억 — 7분기 만 흑자</div></div>
+      <div class="qcard"><div class="nm"><span>SK이노베이션</span><span class="tk">KRX 096770</span></div><div class="px"><!--S096770:PX-->109,100원<!--/S096770:PX--></div><div class="dd"><span><!--S096770:D1--><span style="color:#f87171; font-weight:700">▲ 2.25%</span><!--/S096770:D1--></span><span><!--S096770:M1--><span style="color:#60a5fa; font-weight:700">▼ 32.19%</span><!--/S096770:M1--></span><span><!--S096770:Y1--><span style="color:#60a5fa; font-weight:700">▼ 9.46%</span><!--/S096770:Y1--></span></div><div class="nx">SK온 2Q 8,218억 흑자</div></div>
+      <div class="qcard"><div class="nm"><span>에코프로비엠</span><span class="tk">KRX 247540</span></div><div class="px"><!--S247540:PX-->79,300원<!--/S247540:PX--></div><div class="dd"><span><!--S247540:D1--><span style="color:#f87171; font-weight:700">▲ 4.48%</span><!--/S247540:D1--></span><span><!--S247540:M1--><span style="color:#60a5fa; font-weight:700">▼ 38.43%</span><!--/S247540:M1--></span><span><!--S247540:Y1--><span style="color:#60a5fa; font-weight:700">▼ 48.44%</span><!--/S247540:Y1--></span></div><div class="nx">ESS용 LFP 양극재 전환 관전</div></div>
+      <div class="qsec">KOREA — 전력기기 · EPC</div>
+      <div class="qcard"><div class="nm"><span>효성중공업</span><span class="tk">KRX 298040</span></div><div class="px"><!--S298040:PX-->1,706,000원<!--/S298040:PX--></div><div class="dd"><span><!--S298040:D1--><span style="color:#f87171; font-weight:700">▲ 10.14%</span><!--/S298040:D1--></span><span><!--S298040:M1--><span style="color:#60a5fa; font-weight:700">▼ 31.60%</span><!--/S298040:M1--></span><span><!--S298040:Y1--><span style="color:#60a5fa; font-weight:700">▼ 24.31%</span><!--/S298040:Y1--></span></div><div class="nx">2Q 2,643억 분기 최대 · 잔고 17.5조</div></div>
+      <div class="qcard"><div class="nm"><span>HD현대일렉트릭</span><span class="tk">KRX 267260</span></div><div class="px"><!--S267260:PX-->389,500원<!--/S267260:PX--></div><div class="dd"><span><!--S267260:D1--><span style="color:#f87171; font-weight:700">▲ 9.41%</span><!--/S267260:D1--></span><span><!--S267260:M1--><span style="color:#60a5fa; font-weight:700">▼ 35.73%</span><!--/S267260:M1--></span><span><!--S267260:Y1--><span style="color:#60a5fa; font-weight:700">▼ 54.55%</span><!--/S267260:Y1--></span></div><div class="nx">변압기 슈퍼사이클 — 북미 수주</div></div>
+      <div class="qcard"><div class="nm"><span>LS일렉트릭</span><span class="tk">KRX 010120</span></div><div class="px"><!--S010120:PX-->119,100원<!--/S010120:PX--></div><div class="dd"><span><!--S010120:D1--><span style="color:#f87171; font-weight:700">▲ 6.62%</span><!--/S010120:D1--></span><span><!--S010120:M1--><span style="color:#60a5fa; font-weight:700">▼ 39.08%</span><!--/S010120:M1--></span><span><!--S010120:Y1--><span style="color:#f87171; font-weight:700">▲ 24.58%</span><!--/S010120:Y1--></span></div><div class="nx">배전 · ESS PCS 라인업</div></div>
+      <div class="qcard"><div class="nm"><span>한화</span><span class="tk">KRX 000880</span></div><div class="px"><!--S000880:PX-->79,000원<!--/S000880:PX--></div><div class="dd"><span><!--S000880:D1--><span style="color:#f87171; font-weight:700">▲ 1.15%</span><!--/S000880:D1--></span><span><!--S000880:M1--><span style="color:#60a5fa; font-weight:700">▼ 28.25%</span><!--/S000880:M1--></span><span><!--S000880:Y1--><span style="color:#60a5fa; font-weight:700">▼ 36.50%</span><!--/S000880:Y1--></span></div><div class="nx">한화솔루션 — 국내 ESS SI</div></div>
+      <div class="qsec">GLOBAL — 셀 · SI</div>
+      <div class="qcard"><div class="nm"><span>Tesla</span><span class="tk">NASDAQ TSLA</span></div><div class="px"><!--STSLA:PX-->$378.05<!--/STSLA:PX--></div><div class="dd"><span><!--STSLA:D1--><span style="color:#f87171; font-weight:700">▲ 5.54%</span><!--/STSLA:D1--></span><span><!--STSLA:M1--><span style="color:#60a5fa; font-weight:700">▼ 1.22%</span><!--/STSLA:M1--></span><span><!--STSLA:Y1--><span style="color:#60a5fa; font-weight:700">▼ 11.98%</span><!--/STSLA:Y1--></span></div><div class="nx">2Q 저장 13.5GWh · $31.4억</div></div>
+      <div class="qcard"><div class="nm"><span>Fluence Energy</span><span class="tk">NASDAQ FLNC</span></div><div class="px"><!--SFLNC:PX-->$5.40<!--/SFLNC:PX--></div><div class="dd"><span><!--SFLNC:D1--><span style="color:#f87171; font-weight:700">▲ 2.47%</span><!--/SFLNC:D1--></span><span><!--SFLNC:M1--><span style="color:#60a5fa; font-weight:700">▼ 27.32%</span><!--/SFLNC:M1--></span><span><!--SFLNC:Y1--><span style="color:#60a5fa; font-weight:700">▼ 74.03%</span><!--/SFLNC:Y1--></span></div><div class="nx">우드맥 SI 톱10</div></div>
+      <div class="qcard"><div class="nm"><span>Sungrow</span><span class="tk">SZSE 300274</span></div><div class="px"><!--S300274:PX-->¥78.48<!--/S300274:PX--></div><div class="dd"><span><!--S300274:D1--><span style="color:#f87171; font-weight:700">▲ 0.81%</span><!--/S300274:D1--></span><span><!--S300274:M1--><span style="color:#60a5fa; font-weight:700">▼ 2.73%</span><!--/S300274:M1--></span><span><!--S300274:Y1--><span style="color:#60a5fa; font-weight:700">▼ 59.55%</span><!--/S300274:Y1--></span></div><div class="nx">우드맥 첫 SI 랭킹 1위 — 연 100GW</div></div>
+      <div class="qcard"><div class="nm"><span>CATL</span><span class="tk">HKEX 3750</span></div><div class="px"><!--S3750:PX-->HK$378.60<!--/S3750:PX--></div><div class="dd"><span><!--S3750:D1--><span style="color:#f87171; font-weight:700">▲ 2.38%</span><!--/S3750:D1--></span><span><!--S3750:M1--><span style="color:#60a5fa; font-weight:700">▼ 22.95%</span><!--/S3750:M1--></span><span><!--S3750:Y1--><span style="color:#60a5fa; font-weight:700">▼ 30.91%</span><!--/S3750:Y1--></span></div><div class="nx">셀 1위 BYD에 내줘</div></div>
+    </div>
+  </section>
+
+  <div class="plate" id="cmt-plate">
+    <span class="sec">SEC 09</span>
+    <h2>READER&#39;S COMMENTS · 독자 댓글</h2>
+    <span class="plate-note">로그인 없이 누구나 — 비밀번호는 본인 댓글의 수정·삭제에만 사용됩니다</span>
+  </div>
+  <section class="cmt-wrap" id="cmt-root">
+    <div id="cmt-list"><div class="cmt-empty">댓글을 불러오는 중…</div></div>
+    <div class="cmt-form">
+      <input type="text" id="cmt-name" maxlength="20" placeholder="이름 (선택)">
+      <input type="password" id="cmt-pw" maxlength="30" placeholder="비밀번호 (수정·삭제용)">
+      <textarea id="cmt-text" maxlength="500" placeholder="댓글 내용"></textarea>
+      <button id="cmt-submit" type="button">등록</button>
+      <input type="text" id="cmt-hp" class="hp" tabindex="-1" autocomplete="off">
+      <div class="cmt-note">등록 즉시 모든 독자에게 표시됩니다 · 관리자는 댓글 시트에서 전체 관리할 수 있습니다</div>
+    </div>
+  </section>
+
+  <p class="foot-note">
+    <b>보고서 도구 사용법:</b> 기사 제목 왼쪽의 네모를 체크하면 오른쪽 아래에 <b>보고서 버튼</b>이 나타납니다 — 누르면 선택 기사만 담긴 보고서 창이 열리고, 창 안의 &#39;인쇄 / PDF 저장&#39;으로 파일화하세요. (도구는 브라우저 열람 전용 · 팝업 차단 시 허용 필요)<br>
+    <b>모니터링 소스:</b> 전력거래소 공지 · 기후에너지환경부 · 나라장터(g2b) · KIND/DART 공시 · 전기신문 · 디일렉 · Energy-Storage.News 등<br>
+    본 리포트는 공개 기사·공고를 수집·요약한 내부 참고 자료입니다. 원문 확인을 권장하며, 투자 판단의 근거로 사용할 수 없습니다. 주가 보드의 종가·등락은 발행 시세 스크립트(stock_board.py)가 확정 종가로 계산해 기입하며, &#39;—&#39;는 기입 전 상태입니다. 추정·임의 시세는 전 판형 금지. © 인투알 영업팀, 내부용
+  </p>
+
+</div>
+<style>
+.art-check{width:15px;height:15px;border:1px solid #33414f;border-radius:4px;background:transparent;cursor:pointer;flex-shrink:0;accent-color:#4dd0a4;margin:4px 8px 0 0;vertical-align:top}
+.card.picked{outline:2px solid #4dd0a4; outline-offset:2px}
+.float-btn{position:fixed;bottom:1.4rem;right:1.4rem;z-index:200;display:none;gap:8px;align-items:center}
+.float-btn.visible{display:flex}
+.report-btn{background:#4dd0a4;color:#07130d;border:none;padding:.6rem 1.15rem;border-radius:24px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(77,208,164,.35);display:flex;align-items:center;gap:.45rem}
+.report-btn:hover{transform:translateY(-2px)}
+.sel-count{background:rgba(0,0,0,.25);border-radius:12px;padding:.12rem .5rem;font-size:11px}
+.cmt-wrap{margin-top:8px}
+.cmt-item{background:#0b131b;border:1px solid #1f2a36;border-radius:10px;padding:10px 13px;margin-bottom:8px;font-size:13px;line-height:1.65}
+.cmt-item b{color:#4dd0a4;font-size:12px;margin-right:7px}
+.cmt-item .t{color:#6b7684;font-size:10.5px;margin-left:7px}
+.cmt-item .ops{float:right}
+.cmt-item .ops button{background:transparent;color:#6b7684;border:none;cursor:pointer;font-size:11px;font-family:inherit;padding:0 4px}
+.cmt-item .ops button:hover{color:#e6edf3}
+.cmt-empty{color:#6b7684;font-size:12.5px;margin:6px 0 10px}
+.cmt-form{display:grid;grid-template-columns:150px 150px 1fr auto;gap:7px;margin-top:6px}
+.cmt-form input,.cmt-form textarea{background:#0b131b;color:#e6edf3;border:1px solid #2a3644;border-radius:8px;padding:8px 10px;font-size:12.5px;font-family:inherit}
+.cmt-form textarea{height:38px;resize:vertical}
+.cmt-form button{background:#4dd0a4;color:#07130d;border:none;border-radius:8px;padding:8px 16px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit}
+.cmt-note{grid-column:1/-1;color:#6b7684;font-size:10.5px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+@media(max-width:760px){.cmt-form{grid-template-columns:1fr 1fr}.cmt-form textarea,.cmt-form button,.cmt-note{grid-column:1/-1}}
+</style>
+
+<div class="float-btn" id="floatBtn">
+  <button class="report-btn" id="btnReport">📄 선택 기사 보고서 <span class="sel-count" id="selCount">0</span></button>
+</div>
+
+<script>
+(function(){
+  var sel = new Set(), seq = 0;
+  var cards = document.querySelectorAll('article.card');
+  cards.forEach(function(c){
+    var id = 'a' + (seq++); c.dataset.rid = id;
+    var h = c.querySelector('h3'); if (!h) return;
+    var cb = document.createElement('input');
+    cb.type='checkbox'; cb.className='art-check'; cb.title='보고서에 담기';
+    h.insertBefore(cb, h.firstChild);
+    var link = cb.closest('a');
+    if (link) link.addEventListener('click', function(e){
+      if (e.target.classList && e.target.classList.contains('art-check')) e.preventDefault();
+    });
+    cb.addEventListener('click', function(e){ e.stopPropagation(); });
+    cb.addEventListener('change', function(){
+      this.checked ? sel.add(id) : sel.delete(id);
+      c.classList.toggle('picked', this.checked);
+      document.getElementById('selCount').textContent = sel.size;
+      document.getElementById('floatBtn').classList.toggle('visible', sel.size > 0);
+    });
+  });
+  function txt(el){ return el ? el.textContent.replace(/\u2197/g,'').trim() : ''; }
+  function issueLine(){
+    var b = document.querySelector('.issue b'); var d = document.querySelector('.issue');
+    var date = d ? (d.innerHTML.split('<br>')[1]||'').replace(/<[^>]+>/g,'').trim() : '';
+    return (b ? txt(b) : '') + (date ? ' · ' + date : '');
+  }
+  document.getElementById('btnReport').addEventListener('click', function(){
+    var ps = Array.prototype.filter.call(cards, function(c){ return sel.has(c.dataset.rid); });
+    if (!ps.length) { alert('기사를 먼저 선택해주세요.'); return; }
+    var logo = document.querySelector('img.logo'); var logoSrc = logo ? logo.src : '';
+    var now = new Date();
+    var body = ps.map(function(c, i){
+      var tags = Array.prototype.map.call(c.querySelectorAll('.tags .tag'), txt).join(' · ');
+      var a = c.querySelector('a.hl'); var url = a ? a.getAttribute('href') : '';
+      var det = c.querySelector('.art-detail');
+      var sum = c.querySelector('.summary'); var ins = c.querySelector('.insight');
+      var src = c.querySelector('.src'); var val = c.querySelector('.impact .val');
+      var main;
+      if (det) {
+        main = '<div style="font-size:13px;color:#222;line-height:1.85;">' + det.innerHTML + '</div>';
+      } else {
+        main = (sum ? '<ul style="font-size:12.8px;color:#222;line-height:1.75;margin:0 0 10px 18px;padding:0;">' + sum.innerHTML + '</ul>' : '');
+      }
+      return '<div style="margin-bottom:32px;padding-bottom:28px;border-bottom:1px solid #e6e6e6;page-break-inside:avoid;">'
+        + '<div style="font-size:11px;font-weight:700;color:#8a6d1d;letter-spacing:.05em;margin-bottom:7px;">' + tags + (val ? ' <span style="color:#888;">| ' + txt(val) + '</span>' : '') + '</div>'
+        + '<h3 style="font-size:17px;font-weight:700;color:#111;line-height:1.5;margin:0 0 8px;">' + String(i+1).padStart(2,'0') + '.&nbsp; ' + txt(c.querySelector('h3')) + '</h3>'
+        + (url ? '<div style="font-size:10.5px;color:#888;margin-bottom:12px;">🔗 원문: <a href="' + url + '" style="color:#8a6d1d;word-break:break-all;">' + url + '</a></div>' : '')
+        + main
+        + (ins ? '<div style="font-size:12.5px;color:#222;line-height:1.7;background:#f7f5ef;padding:12px 14px;border-radius:6px;border-left:4px solid #c9a02a;margin-top:12px;">' + ins.innerHTML + '</div>' : '')
+        + (src ? '<div style="font-size:10.5px;color:#777;margin-top:9px;">' + src.innerHTML + '</div>' : '')
+        + '</div>';
+    }).join('');
+    var toc = ps.map(function(c){ return '<li>' + txt(c.querySelector('h3')) + '</li>'; }).join('');
+    var w = window.open('', '_blank', 'width=980,height=820');
+    if (!w) { alert('팝업이 차단됐습니다. 주소창의 팝업 허용을 눌러주세요.'); return; }
+    w.document.write('<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><title>인투알 ESS 브리핑 — 선택 기사 상세 보고서</title>'
+      + '<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif;font-size:13px;color:#111;background:#fff;padding:44px;max-width:860px;margin:0 auto}a{color:#8a6d1d}p{margin:0 0 11px}.no-print{margin-bottom:22px;display:flex;gap:10px}@media print{.no-print{display:none!important}body{padding:20px}}</style></head><body>'
+      + '<div class="no-print"><button onclick="window.print()" style="background:#0e1720;color:#fff;border:none;padding:10px 24px;border-radius:6px;cursor:pointer;font-family:inherit;font-size:13px;font-weight:700;">🖨️ 인쇄 / PDF 저장</button>'
+      + '<button onclick="window.close()" style="background:#eee;color:#333;border:none;padding:10px 18px;border-radius:6px;cursor:pointer;font-family:inherit;font-size:13px;">✕ 닫기</button></div>'
+      + '<div style="display:flex;align-items:center;gap:14px;background:#0e1720;border-radius:10px;padding:16px 20px;margin-bottom:12px;">'
+      + (logoSrc ? '<img src="' + logoSrc + '" style="height:40px;">' : '')
+      + '<div><div style="font-size:21px;font-weight:900;color:#fff;">선택 기사 상세 보고서</div>'
+      + '<div style="font-size:11px;color:#9aa4b2;margin-top:3px;">' + issueLine() + ' · 출력 ' + now.toLocaleString('ko-KR') + ' · 선택 ' + ps.length + '건 · © 인투알 영업팀, 내부용</div></div></div>'
+      + '<ol style="font-size:11.5px;color:#444;margin:0 0 26px 18px;">' + toc + '</ol>'
+      + body
+      + '<div style="font-size:10px;color:#999;border-top:1px solid #ddd;padding-top:10px;">본 보고서의 상세 본문은 에디터가 원문 기사·공시를 바탕으로 작성한 해설이며, 원문 전문의 복제가 아닙니다. 정확한 사실 확인은 각 기사의 원문 링크를 이용해 주세요.</div>'
+      + '</body></html>');
+    w.document.close();
+  });
+
+  // ── 하단 댓글 (이름 · 비밀번호 — 우체통 연결 시 표시) ──
+  var API = 'https://script.google.com/macros/s/AKfycbw5yAOuaCA_L4IuecIGNvDqUdYzg2QdL8cSBWODGYMRQ0wKYFC_a6eGA6G0NaCtu9c/exec';
+  var root = document.getElementById('cmt-root');
+  if (!root) return;
+  if (!API) {
+    document.getElementById('cmt-list').innerHTML =
+      '<div class="cmt-empty">🔌 댓글 우체통(구글 시트)이 아직 연결되지 않았습니다 — 관리자가 연결하는 즉시 이 자리에서 등록 · 수정 · 삭제가 바로 작동합니다.</div>';
+    document.getElementById('cmt-submit').addEventListener('click', function(){
+      alert('댓글 우체통이 아직 연결되지 않았습니다.\n(관리자: comments-setup-guide의 우체통 URL 연결 후 재발행하면 작동합니다)');
+    });
+    return;
+  }
+  var issueEl = document.querySelector('.issue b'); var ISSUE = issueEl ? issueEl.textContent.trim() : 'unknown';
+  function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
+  function jp(params, cb){
+    var name = '__cb' + Math.floor(Math.random()*1e9);
+    window[name] = function(res){ cb(res); delete window[name]; s.remove(); };
+    var q = Object.keys(params).map(function(k){return k+'='+encodeURIComponent(params[k]);}).join('&');
+    var s = document.createElement('script');
+    s.src = API + (API.indexOf('?')>0?'&':'?') + q + '&callback=' + name + '&_=' + Date.now();
+    s.onerror = function(){ cb({ok:false, error:'network'}); delete window[name]; s.remove(); };
+    document.body.appendChild(s);
+  }
+  function draw(rows){
+    var list = document.getElementById('cmt-list');
+    if (!rows || !rows.length) { list.innerHTML = '<div class="cmt-empty">첫 댓글을 남겨보세요 — 이름과 비밀번호(수정·삭제용)만 있으면 됩니다.</div>'; return; }
+    list.innerHTML = rows.map(function(r){
+      return '<div class="cmt-item" data-id="'+esc(r.id)+'"><span class="ops"><button class="op-e">수정</button><button class="op-d">삭제</button></span><b>'+esc(r.name||'익명')+'</b>'+esc(r.text)+'<span class="t">'+esc(r.time||'')+'</span></div>';
+    }).join('');
+    list.querySelectorAll('.op-d').forEach(function(b){
+      b.addEventListener('click', function(){
+        var id = this.closest('.cmt-item').dataset.id;
+        var pw = prompt('이 댓글의 비밀번호를 입력하세요 (삭제)'); if (pw === null || !pw) return;
+        jp({mode:'del', issue:ISSUE, id:id, pw:pw}, function(res){
+          if (res && res.ok) refresh(); else alert(res && res.error === 'pw' ? '비밀번호가 일치하지 않습니다.' : '삭제에 실패했습니다.');
+        });
+      });
+    });
+    list.querySelectorAll('.op-e').forEach(function(b){
+      b.addEventListener('click', function(){
+        var item = this.closest('.cmt-item'); var id = item.dataset.id;
+        var pw = prompt('이 댓글의 비밀번호를 입력하세요 (수정)'); if (pw === null || !pw) return;
+        var cur = item.childNodes[2] ? item.childNodes[2].textContent : '';
+        var nt = prompt('수정할 내용을 입력하세요', cur); if (nt === null || !nt.trim()) return;
+        jp({mode:'edit', issue:ISSUE, id:id, pw:pw, text:nt.trim().slice(0,500)}, function(res){
+          if (res && res.ok) refresh(); else alert(res && res.error === 'pw' ? '비밀번호가 일치하지 않습니다.' : '수정에 실패했습니다.');
+        });
+      });
+    });
+  }
+  function refresh(){ jp({mode:'list', issue:ISSUE}, function(res){ draw(res && res.rows ? res.rows : []); }); }
+  document.getElementById('cmt-submit').addEventListener('click', function(){
+    var n = document.getElementById('cmt-name').value.trim() || '익명';
+    var p = document.getElementById('cmt-pw').value;
+    var t = document.getElementById('cmt-text').value.trim();
+    var hp = document.getElementById('cmt-hp').value;
+    if (!t) { alert('내용을 입력해주세요.'); return; }
+    if (!p || p.length < 4) { alert('비밀번호를 4자 이상 입력해주세요 (수정·삭제에 사용됩니다).'); return; }
+    jp({mode:'add', issue:ISSUE, name:n.slice(0,20), pw:p, text:t.slice(0,500), hp:hp}, function(res){
+      if (res && res.ok) { document.getElementById('cmt-text').value=''; document.getElementById('cmt-pw').value=''; refresh(); }
+      else alert('등록에 실패했습니다. 잠시 후 다시 시도해주세요.');
+    });
+  });
+  refresh();
+})();
+</script>
+</body>
+</html>
