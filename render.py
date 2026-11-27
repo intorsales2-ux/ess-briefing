@@ -1,6 +1,10 @@
-"""HTML 렌더링 v3 — v10 지면 + 롤링 상태(스포트 3·지식 4) + 등락표 보드 + 보고서 도구."""
+"""HTML 렌더링 — 지면 템플릿 + 스포트·지식 상태 + 등락표 보드 + 보고서 도구.
+
+2026-11 개편: 환율 띠 · 데이터센터 섹션 · 주간 코너 · 계절 띠 · 안내 상자(하루만) 추가, 댓글 삭제.
+"""
 from __future__ import annotations
 import json
+import re
 from pathlib import Path
 from jinja2 import Environment, FileSystemLoader
 
@@ -47,13 +51,16 @@ def build_card_html(c: dict) -> str:
         head = f'<h3 style="margin:2px 0 10px; font-size:16.5px; line-height:1.45;">{c["title"]}</h3>'
     bullets = ''.join(f'        <li>{b}</li>\n' for b in c.get("bullets", []))
     src = '출처 ' + ' · '.join(
-        f'<a href="{s["u"]}" target="_blank" rel="noopener noreferrer">{s["n"]}</a>' for s in c.get("srcs", []))
+        (f'<a href="{s["u"]}" target="_blank" rel="noopener noreferrer">{s["n"]}</a>' if s.get("u") else s.get("n", ""))
+        for s in c.get("srcs", []))
     if c.get("src_tail"):
         src += ' ' + c["src_tail"]
     n = int(c.get("impact_n", 2))
     dots = ''.join('<i class="on"></i>' if i < n else '<i class=""></i>' for i in range(4))
+    ilabel = c.get("ilabel", "인투알 시사점")
+    insight = re.sub(rf"^\s*(?:<b>)?\s*{re.escape(ilabel)}\s*(?:</b>)?\s*[—–:-]\s*", "", c.get("insight", "") or "")
     html = CARD_TPL.format(cls=c.get("cls", "kr"), tags=tags, head=head, bullets=bullets, src=src,
-                           ilabel=c.get("ilabel", "인투알 시사점"), insight=c.get("insight", ""),
+                           ilabel=ilabel, insight=insight,
                            dots=dots, impact_val=c.get("impact_val", "2/4 중간"))
     if c.get("detail"):
         det = ''.join(f"<p>{p}</p>" for p in c["detail"])
@@ -92,7 +99,9 @@ def render_briefing(data: dict) -> str:
     template = env.get_template("briefing.j2")
 
     state = _load_state()
-    dry = bool(data.get("_dry"))
+    state.setdefault("spot", []); state.setdefault("know", [])
+    state.setdefault("next_spot", 1); state.setdefault("next_know", 1)
+    dry = bool(data.get("_dry") or data.get("_nosave"))  # 미리보기·리허설은 상태를 저장하지 않는다
 
     if data.get("new_spot"):
         c = dict(data["new_spot"]); no = c.pop("no", state["next_spot"])
@@ -122,9 +131,17 @@ def render_briefing(data: dict) -> str:
     data["know_cards_html"] = '\n'.join(k["html"] for k in state["know"])
     data["board_rows_html"] = _board_rows(data.get("board_news"))
     data["style_block"] = (BASE / "assets" / "style_base.css.html").read_text(encoding="utf-8")
-    tool = (BASE / "assets" / "report_tool.html").read_text(encoding="utf-8")
-    cmt_api = (data.get("comments_api_url") or "").strip()
-    data["report_tool"] = tool.replace("__CMT_API__", cmt_api)
+    data["report_tool"] = (BASE / "assets" / "report_tool.html").read_text(encoding="utf-8")
+    # 개편 추가 요소 — 없으면 해당 칸은 지면에서 빠진다
+    for key, default in (("season_html", ""), ("notice", None), ("rehearsal", ""), ("fx", None),
+                         ("weekly_html", ""), ("weekly_note", "")):
+        data.setdefault(key, default)
+    data["badges"] = bool(data.get("notice"))  # 'NEW' 배지는 안내가 뜨는 날에만
+    for sec in data.get("news_sections", []):
+        sec.setdefault("badge", {"SEC 03": "확대", "SEC 04": "NEW"}.get(sec.get("sec"), ""))
+    site = (data.get("site_url") or "").rstrip("/")
+    data["list_url"] = (site + "/list.html") if site else "list.html"
+    data["board_sec"] = "SEC 09" if data.get("weekly_html") else "SEC 08"
     logo_b64 = (BASE / "assets" / "logo_b64.txt").read_text(encoding="utf-8").strip()
     return template.render(logo_b64=logo_b64, **data)
 
