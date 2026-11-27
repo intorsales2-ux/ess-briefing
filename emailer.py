@@ -12,8 +12,16 @@ from email.utils import formatdate
 FILENAME = "INTOR-ess-briefing.html"
 
 
-def _cover_html(html: str, site_url: str = "") -> str:
-    """메일 본문 표지 — 모든 스타일 인라인(메일 앱이 벗겨낼 옷이 없음)."""
+def _esc(s) -> str:
+    return (str(s).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;"))
+
+
+def _cover_html(html: str, site_url: str = "", extras: dict | None = None) -> str:
+    """메일 본문 표지 — 모든 스타일 인라인(메일 앱이 벗겨낼 옷이 없음).
+
+    extras: season(계절 테마) · notice(하루짜리 안내) · weekly(오늘의 주간 코너 이름) · rehearsal(리허설 여부)
+    """
+    extras = extras or {}
     m = re.search(r"제(20\d\d-\d+)호", html)
     issue = "제" + m.group(1) + "호" if m else "오늘 호"
     d = re.search(r"발행 (20\d\d\.\d\d\.\d\d\([^)]+\))", html)
@@ -39,8 +47,46 @@ def _cover_html(html: str, site_url: str = "") -> str:
             break
 
     base = site_url.rstrip("/") if site_url else ""
-    today_link = base + "/" if base else ""
+    today_link = (base + ("/preview/" if extras.get("rehearsal") else "/")) if base else ""
     list_link = base + "/list.html" if base else ""
+
+    # 리허설 표시 — 독자에게 가지 않은 시험 메일임을 맨 위에 밝힌다
+    rehearsal_html = ""
+    if extras.get("rehearsal"):
+        rehearsal_html = ('<tr><td style="background:#fdecea;border-bottom:1px solid #f5c2bd;padding:10px 26px;'
+                          'font-size:12.5px;color:#8a2a22;line-height:1.6;"><b>리허설 메일</b> — 독자에게는 발송되지 않았습니다. '
+                          '아래 버튼은 미리보기 지면으로 연결됩니다.</td></tr>')
+
+    # 계절 띠 — 웹에 올려 둔 그림(docs/assets/season/<테마>.png). 그림이 막힌 메일 앱에서는 글자(alt)가 보인다
+    season_html = ""
+    season = extras.get("season")
+    if season and base:
+        bg = season.get("mail_bg", "#0e1720")
+        season_html = ('<tr><td bgcolor="' + bg + '" style="background:' + bg + ';padding:0;line-height:0;font-size:0;">'
+                       '<img src="' + base + '/assets/season/' + season["key"] + '.png" width="600" alt="' + _esc(season.get("label", ""))
+                       + '" style="display:block;width:100%;max-width:600px;height:auto;border:0;outline:none;'
+                       'color:#ffffff;font-size:13px;line-height:44px;font-family:\'Malgun Gothic\',sans-serif;"></td></tr>')
+
+    # 안내 상자(개편 안내 등 — 하루만)
+    notice_html = ""
+    notice = extras.get("notice")
+    if notice:
+        lis = "".join('<tr><td style="vertical-align:top;width:14px;padding:0 0 5px;font-size:12.5px;color:#b7791f;">&#9642;</td>'
+                      '<td style="padding:0 0 5px;font-size:12.5px;color:#4a4033;line-height:1.6;">' + it + '</td></tr>'
+                      for it in notice.get("points", []))
+        notice_html = ('<tr><td style="padding:18px 26px 0;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" '
+                       'style="background:#fff8e6;border:1px solid #f0d58a;border-radius:10px;"><tr><td style="padding:13px 16px 9px;">'
+                       '<div style="font-size:13.5px;font-weight:800;color:#5c4308;margin-bottom:5px;">' + _esc(notice.get("title", "")) + '</div>'
+                       + ('<div style="font-size:12.5px;color:#4a4033;line-height:1.6;margin-bottom:7px;">' + notice["lead"] + '</div>' if notice.get("lead") else "")
+                       + '<table role="presentation" width="100%" cellpadding="0" cellspacing="0">' + lis + '</table>'
+                       '</td></tr></table></td></tr>')
+
+    # 오늘의 주간 코너(월 AI 활용 교실 · 금 주간 퀴즈)
+    weekly_html = ""
+    if extras.get("weekly"):
+        weekly_html = ('<div style="margin:0 0 16px;padding:10px 14px;background:#eef6ea;border:1px solid #cfe3c4;border-radius:10px;'
+                       'font-size:12.5px;color:#2f4a22;line-height:1.6;"><b style="color:#3d6b26;">오늘의 코너</b> &nbsp;'
+                       + _esc(extras["weekly"]) + '</div>')
 
     li_html = ""
     for i, ln in enumerate(lines, 1):
@@ -80,36 +126,43 @@ def _cover_html(html: str, site_url: str = "") -> str:
 
     return """<div style="margin:0;padding:24px 12px;background:#eef2f5;font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif;">
  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;margin:0 auto;background:#ffffff;border:1px solid #dfe5ea;border-radius:14px;overflow:hidden;">
+  """ + rehearsal_html + """
   <tr><td style="background:#0e1720;padding:20px 26px;">
     <div style="font-size:21px;font-weight:900;color:#ffffff;letter-spacing:1px;">INTO<span style="color:#4dd0a4;">R</span></div>
     <div style="font-size:10.5px;color:#8b96a2;letter-spacing:.16em;margin-top:4px;">ESS MARKET INTELLIGENCE &middot; DAILY</div>
   </td></tr>
+  """ + season_html + """
   <tr><td style="padding:24px 26px 4px;">
     <div style="font-size:19px;font-weight:800;color:#0e1720;">ESS 시황 데일리 브리핑</div>
     <div style="font-size:12.5px;color:#7d8791;margin-top:6px;padding-bottom:16px;border-bottom:1px solid #eceff2;">""" + issue + ((" &middot; " + pub) if pub else "") + """</div>
   </td></tr>
+  """ + notice_html + """
   <tr><td style="padding:18px 26px 0;">
     <div style="font-size:11px;font-weight:800;color:#4dd0a4;letter-spacing:.1em;margin-bottom:12px;">TODAY IN 3 LINES</div>
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0">""" + li_html + """</table>
   </td></tr>
   <tr><td style="padding:8px 26px 0;">""" + kpi_html + """</td></tr>
-  <tr><td style="padding:4px 26px 26px;">""" + btns + """
+  <tr><td style="padding:4px 26px 26px;">""" + weekly_html + btns + """
     <div style="font-size:11.5px;color:#98a2ad;margin-top:14px;line-height:1.6;">
-      전체 지면 &middot; 기사별 상세 보고서 출력 &middot; 독자 댓글은 위 링크에서 이용하실 수 있습니다.<br>
-      &copy; 인투알 영업팀 &middot; 내부용 &middot; 매 영업일 07:30 자동 발행
+      전체 지면과 기사별 상세 보고서 출력은 위 링크에서 이용하실 수 있습니다.<br>
+      &copy; 인투알 영업팀 &middot; 내부용 &middot; 매 영업일 """ + _esc(extras.get("publish_time") or "07:00") + """ 자동 발행
     </div>
   </td></tr>
  </table>
 </div>"""
 
 
-def send_briefing(html: str, subject: str, plain_summary: str = "", site_url: str = "") -> bool:
+def send_briefing(html: str, subject: str, plain_summary: str = "", site_url: str = "", extras: dict | None = None) -> bool:
+    extras = extras or {}
     host = os.environ.get("SMTP_HOST")
     user = os.environ.get("SMTP_USER")
     pw = os.environ.get("SMTP_PASS")
     mail_from = os.environ.get("MAIL_FROM", user or "")
     mail_to = [a.strip() for a in os.environ.get("MAIL_TO", "").split(",") if a.strip()]
-    port = int(os.environ.get("SMTP_PORT", "587"))
+    port = int(os.environ.get("SMTP_PORT") or "587")
+    if extras.get("rehearsal"):  # 리허설 — 독자 명단은 쓰지 않고 발신 계정 본인에게만 보낸다
+        mail_to = [a.strip() for a in (os.environ.get("REHEARSAL_TO") or user or "").split(",") if a.strip()]
+        subject = "[리허설] " + subject
 
     if not (host and user and pw and mail_to):
         print("[emailer] SMTP 환경변수 미설정 → 발송 건너뜀 "
@@ -124,7 +177,7 @@ def send_briefing(html: str, subject: str, plain_summary: str = "", site_url: st
     msg.set_content(plain_summary or
                     (f"인투알 ESS 데일리 브리핑이 도착했습니다. 웹에서 보기: {site_url}" if site_url else
                      f"인투알 ESS 데일리 브리핑이 도착했습니다. 첨부된 {FILENAME} 파일을 브라우저로 열어주세요."))
-    msg.add_alternative(_cover_html(html, site_url), subtype="html")
+    msg.add_alternative(_cover_html(html, site_url, extras), subtype="html")
     # 본문은 어떤 메일 앱에서도 깨지지 않는 '표지'만 — 전체 지면은 첨부 파일로 열람
     if not site_url:   # 웹 주소가 없을 때만 첨부(오프라인 보험)
         msg.add_attachment(html.encode("utf-8"), maintype="text", subtype="html",
@@ -140,7 +193,7 @@ def send_briefing(html: str, subject: str, plain_summary: str = "", site_url: st
                 s.starttls(context=ssl.create_default_context())
                 s.login(user, pw)
                 s.send_message(msg)
-        print(f"[emailer] 발송 완료 → {', '.join(mail_to)}")
+        print(f"[emailer] 발송 완료 → {len(mail_to)}명" + (" (리허설 — 발신 계정 본인에게만)" if extras.get("rehearsal") else ""))
         return True
     except Exception as exc:
         print(f"[emailer] 발송 실패: {exc}")
