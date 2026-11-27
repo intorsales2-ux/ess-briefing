@@ -281,4 +281,93 @@
 .qcard .nx{display:block;margin-top:7px;padding-top:7px;border-top:1px solid #1a2530;font-size:10.5px;color:#8e9aa6;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .qsec{grid-column:1/-1;font-size:10.5px;color:#6b7684;letter-spacing:.12em;margin:6px 0 1px 2px}
 .todo-item{padding:11px 14px}
+
+/* ══════════ 2026-11 개편 추가 ══════════ */
+.card.dc{--card-accent:#45C4C9;}
+.nw{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.08em;background:var(--hazard);color:#1A1202;border-radius:4px;padding:1px 6px;margin-left:6px;vertical-align:middle}
+/* 환율 띠 — 상승 빨강 · 하락 파랑(국내 관례) */
+.fx{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 24px;margin-top:12px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:11px 17px}
+.fx-t{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--text-60)}
+.fx-i{display:inline-flex;align-items:baseline;gap:8px;font-size:12.5px;font-variant-numeric:tabular-nums}
+.fx-l{color:var(--text-60)}
+.fx-i b{font-size:16px;font-weight:800;color:#fff}
+.fx-up{color:#f87171}.fx-down{color:#60a5fa}.fx-flat{color:var(--text-40)}
+.fx-n{margin-left:auto;font-size:11px;color:var(--text-40)}
+/* 계절 띠 — 마스트헤드 맨 위 */
+.mast.has-season{padding-top:0}
+.mast.has-season::after{display:none}
+.season{position:relative;height:88px;margin:0 -30px 20px;overflow:hidden;background:var(--season-bg);border-bottom:1px solid var(--line)}
+.season-art{position:absolute;inset:0;width:100%;height:100%;display:block}
+.season::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--season-bg) 0%,var(--season-bg) 8%,transparent 44%);opacity:.9;pointer-events:none}
+.season-txt{position:absolute;z-index:1;left:30px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:3px;color:var(--season-ink);text-shadow:0 1px 10px rgba(0,0,0,.5)}
+.season-txt b{font-family:Georgia,'Times New Roman',serif;font-style:italic;font-weight:700;font-size:26px;letter-spacing:.01em;line-height:1.1}
+.season-txt span{font-size:12.5px;opacity:.88}
+/* 안내 상자(개편 안내 등 — 하루만 표시) · 리허설 띠 */
+.notice{margin-top:14px;background:linear-gradient(180deg,rgba(242,178,51,.11),rgba(242,178,51,.04));border:1px solid rgba(242,178,51,.45);border-radius:12px;padding:14px 18px 15px}
+.notice-h{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:3px}
+.notice-h .nw{margin-left:0}
+.notice-h b{font-size:15.5px;color:#fff}
+.notice-h .when{margin-left:auto;font-size:11px;color:var(--text-40)}
+.notice p{font-size:13.2px;color:#D9DEE4}
+.notice ul{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:5px 24px;margin-top:9px}
+.notice li{font-size:13px;color:#C3CEDA;padding-left:15px;position:relative;line-height:1.55}
+.notice li::before{content:"";position:absolute;left:0;top:.6em;width:6px;height:6px;border-radius:2px;background:var(--hazard)}
+.notice li b{color:#fff}
+.rehearsal{background:var(--alert-soft);border:1px dashed var(--alert);color:#F6C3BE;border-radius:10px;padding:10px 16px;font-size:13px;margin-bottom:12px;line-height:1.6}
+.rehearsal b{color:#fff}
+/* 주간 코너 — AI 활용 교실(월) · 주간 퀴즈(금) */
+.wk{background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--brand);border-radius:12px;padding:20px 22px;margin-bottom:14px}
+.wk-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.wk-day{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.04em;background:var(--hazard-soft);color:var(--hazard);border-radius:4px;padding:3px 9px}
+.wk-no{font-size:12px;font-weight:700;color:var(--brand-bright)}
+.wk h3{font-size:18px;font-weight:800;color:#fff;line-height:1.4;margin-bottom:6px}
+.wk-lead{font-size:13.8px;color:#C3CEDA;max-width:900px}
+.wk-lead .self{color:#fff;background:var(--volt-soft);border:1px solid rgba(91,150,245,.4);border-radius:4px;padding:0 6px;white-space:nowrap}
+.wk-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px;margin-top:14px;align-items:start}
+.wk-four{list-style:none;display:grid;gap:8px;margin-bottom:10px}
+.wk-four li{display:flex;gap:11px;background:#111A23;border:1px solid var(--line);border-radius:9px;padding:10px 13px;font-size:13.5px;color:#C3CEDA;line-height:1.55}
+.wk-four li b{color:#fff}
+.wk-four .k{flex:0 0 22px;height:22px;border-radius:11px;background:var(--brand);color:#0F1D07;font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.wk-four .eg{display:block;color:var(--brand-bright);font-size:12.5px;margin-top:2px}
+.pr{background:#0B1218;border:1px solid var(--line-strong);border-radius:10px;overflow:hidden;margin-bottom:10px}
+.pr-h{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 13px;border-bottom:1px solid var(--line);font-size:11.5px;color:var(--text-60)}
+.pr-h button{background:var(--brand);color:#0F1D07;border:0;border-radius:14px;padding:4px 14px;font-size:11.5px;font-weight:800;cursor:pointer;font-family:inherit}
+.pr-h button:focus-visible{outline:2px solid var(--volt);outline-offset:2px}
+.pr pre{white-space:pre-wrap;word-break:keep-all;overflow-wrap:anywhere;font-family:var(--sans);font-size:13.2px;line-height:1.7;color:#DCE8D3;padding:12px 14px;margin:0}
+.pr.bad{border-color:var(--line)}
+.pr.bad pre{color:var(--text-60)}
+.wk-notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px 18px;margin-top:6px}
+.wk-note{font-size:12.8px;color:var(--text-60);border-left:3px solid var(--line-strong);padding:1px 0 1px 12px;line-height:1.6}
+.wk-note b{color:var(--text)}
+.qz-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:14px 0 10px}
+.qz-prog{font-family:var(--mono);font-size:12px;color:var(--text-60)}
+.qz-dots{display:inline-flex;gap:6px}
+.qz-dots i{width:24px;height:5px;border-radius:3px;background:var(--line-strong)}
+.qz-dots i.cur{background:var(--volt)}.qz-dots i.ok{background:var(--brand-bright)}.qz-dots i.no{background:var(--alert)}
+.qz-src{font-family:var(--mono);font-size:11px;color:var(--text-40);margin-bottom:5px}
+.qz-q{font-size:16px;font-weight:700;color:#fff;line-height:1.5;margin-bottom:12px;max-width:900px}
+.qz-opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px}
+.qz-opts button{text-align:left;background:#111A23;border:1px solid var(--line-strong);color:var(--text);border-radius:9px;padding:11px 14px;font-size:14px;font-family:inherit;cursor:pointer;line-height:1.45}
+.qz-opts button:hover:not(:disabled){border-color:var(--volt)}
+.qz-opts button:focus-visible,.qz-next:focus-visible{outline:2px solid var(--volt);outline-offset:2px}
+.qz-opts button:disabled{cursor:default;color:var(--text-60)}
+.qz-opts button.ok{border-color:var(--brand-bright);background:var(--brand-soft);color:#fff}
+.qz-opts button.no{border-color:var(--alert);background:var(--alert-soft);color:#fff}
+.qz-fb{margin-top:12px;background:#111A23;border:1px solid var(--line);border-left:3px solid var(--brand);border-radius:8px;padding:11px 14px;font-size:13.5px;color:#C3CEDA;line-height:1.65}
+.qz-fb[hidden]{display:none}
+.qz-fb b{color:#fff}
+.qz-fb a,.qz-miss a{color:var(--brand-bright)}
+.qz-next{margin-top:12px;background:var(--brand);color:#0F1D07;border:0;border-radius:20px;padding:9px 22px;font-weight:800;font-size:13px;cursor:pointer;font-family:inherit}
+.qz-end .score{font-size:36px;font-weight:800;color:#fff;font-variant-numeric:tabular-nums;line-height:1.2}
+.qz-end .score small{font-size:18px;color:var(--text-60);font-weight:700}
+.qz-msg{font-size:14.5px;color:#C3CEDA;margin-top:2px}
+.qz-miss{font-size:13px;color:var(--text-60);margin-top:8px}
+.qz-self{font-size:12.5px;color:#C9DBFB;background:var(--volt-soft);border:1px solid rgba(91,150,245,.35);border-radius:8px;padding:8px 12px;margin-top:12px;max-width:560px}
+@media(max-width:640px){
+  .season{height:72px;margin-bottom:16px}
+  .season-txt b{font-size:21px}.season-txt span{font-size:11.5px}
+  .season::after{background:linear-gradient(90deg,var(--season-bg) 0%,var(--season-bg) 20%,transparent 78%)}
+  .fx-n{margin-left:0}
+  .notice-h .when{margin-left:0}
+}
 </style>
