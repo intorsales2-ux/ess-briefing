@@ -42,6 +42,16 @@ body{background:#070b0f;color:#e6edf3;font-family:'Malgun Gothic','Apple SD Goth
 """
 
 
+def _publish_time() -> str:
+    """config.yaml 의 발행 시각 표기(없으면 07:00)."""
+    try:
+        import yaml
+        t = str(yaml.safe_load((Path(__file__).parent / "config.yaml").read_text(encoding="utf-8")).get("publish_time", "") or "").strip()
+        return t if len(t) == 5 and t[2] == ":" else "07:00"
+    except Exception:
+        return "07:00"
+
+
 def _meta(html: str) -> dict:
     issue = re.search(r"제(20\d\d-\d+)호", html)
     pub = re.search(r"발행 (20\d\d\.\d\d\.\d\d)\(([^)]+)\)", html)
@@ -100,7 +110,7 @@ def build() -> Path:
         + latest_block + "\n"
         '  <div class="sec">지난 호 · ' + str(len(rows)) + "건</div>\n"
         + items + "\n"
-        '  <div class="foot">매 영업일 07:30 자동 발행 · 각 지면 맨 아래에서 댓글로 의견을 남길 수 있습니다</div>\n'
+        '  <div class="foot">매 영업일 ' + _publish_time() + ' 자동 발행</div>\n'
         "</div></body></html>\n"
     )
 
