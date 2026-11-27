@@ -4,28 +4,57 @@
 # ─────────────────────────────────────────────────────────
 
 report:
-  max_cards_per_section: 3        # 섹션당 카드 수
+  caps:                           # 지면 분량 — 섹션별 카드 상한(이 숫자를 넘지 않습니다)
+    policy: 2                     #   SEC 01 정책 · 입찰 레이더
+    kr: 2                         #   SEC 02 국내 산업 동향
+    global: 4                     #   SEC 03 글로벌 ESS
+    datacenter: 2                 #   SEC 04 데이터센터 · AI 전력
+    briefs: 8                     #   단신
+    todos: 3                      #   To-Do
 
 news:
-  lookback_hours: 72              # 최근 N시간 기사만 수집 (72시간 = 3일). — 에디터 v2 신선도 원칙
+  lookback_hours: 72              # 최근 N시간 기사만 수집 (72시간 = 3일)
                                   #   월요일 실행 시 main.py가 자동으로 96시간(금~일 포함)으로 늘립니다.
-                                  #   과거처럼 넓게 훑고 싶으면 720(30일)으로 되돌리면 됩니다.
   max_age_days_hard_limit: 45     # 이 일수보다 오래된 기사는 무조건 제외(안전장치)
-  google_news_queries:            # Google 뉴스 RSS 검색어 (자유롭게 추가/삭제)
-    - ESS 중앙계약시장
-    - 에너지저장장치 입찰
-    - ESS 수주
-    - 재생에너지 정책
-    - RE100 PPA
-    - 전력수급기본계획
-    - LG에너지솔루션 ESS
-    - 삼성SDI ESS
-    - SK온 ESS
-    - ESS 화재 안전
-    - battery energy storage system
-    - Tesla Megapack
-    - Fluence energy storage
-  extra_rss: []                   # 직접 구독할 RSS 주소 추가 가능
+  queries:                        # Google 뉴스 검색어 (자유롭게 추가/삭제)
+    kr:                           #   국내 — 한국판에서 검색
+      - ESS 중앙계약시장
+      - 에너지저장장치 입찰
+      - ESS 수주
+      - 재생에너지 정책
+      - RE100 PPA
+      - 전력수급기본계획
+      - LG에너지솔루션 ESS
+      - 삼성SDI ESS
+      - SK온 ESS
+      - ESS 화재 안전
+    global:                       #   해외 — 영어판에서 검색(해외 매체 원문)
+      - battery energy storage system
+      - BESS project
+      - energy storage tender
+      - grid-scale battery storage
+      - Tesla Megapack
+      - Fluence energy storage
+      - Sungrow energy storage
+      - BESS fire safety
+    datacenter_ko:                #   데이터센터 — 한국판
+      - 데이터센터 전력
+      - AI 데이터센터
+      - 데이터센터 ESS
+    datacenter_en:                #   데이터센터 — 영어판
+      - data center power demand
+      - data center battery storage
+      - AI data center electricity
+  feeds:                          # 전문매체 직접 구독(RSS) — 접속이 막히는 매체는 건너뛰고 계속 진행합니다
+    global:
+      - https://www.energy-storage.news/feed/
+      - https://www.ess-news.com/feed/
+    datacenter:
+      - https://www.datacenterdynamics.com/en/rss/
+  candidates:                     # 편집 AI에게 넘기는 묶음별 후보 수(최신순)
+    kr: 26
+    global: 18
+    datacenter: 12
 
 kpx:                              # 전력거래소 공지 모니터링 (입찰 공고 감지)
   enabled: true
@@ -61,8 +90,41 @@ output:
   archive: true                   # output/archive/YYYY-MM-DD.html 로 매일 보관
 
 
-# 댓글 우체통(구글 시트 Apps Script 웹앱 URL) — 비우면 댓글 칸이 숨겨집니다. 설정법: comments-setup-guide.md
-comments_api_url: "https://script.google.com/macros/s/AKfycbw5yAOuaCA_L4IuecIGNvDqUdYzg2QdL8cSBWODGYMRQ0wKYFC_a6eGA6G0NaCtu9c/exec"
+
+# 편집 AI 모델 — 여기에 적은 모델이 우선입니다. (비워 두면 GitHub Secret의 CLAUDE_MODEL 값을 씁니다)
+# 이 모델 호출이 거절되면(이름 오타·권한 없음 등) Secret에 적힌 모델로 자동 전환해 발행을 이어 가고, 실행 기록에 남깁니다.
+ai:
+  model: "claude-fable-5-2"
+
+# 지면·메일에 적히는 발행 시각 표기("다음 발행 12.01(화) 07:00" · "매 영업일 07:00 자동 발행").
+# 실제 발행 시각은 알람(cron-job.org, GitHub 예약)이 정합니다. 알람 시각을 바꾸면 여기도 맞춰 주세요. 따옴표는 그대로 둡니다.
+publish_time: "07:00"
+
+fx:
+  enabled: true                   # 환율 띠(달러/원 · 위안/원) — 수신 실패 시 그날은 자동 생략
+
+weekly:
+  enabled: true                   # 주간 코너 — 그 주 첫 호(보통 월요일) AI 활용 교실 · 금요일 주간 퀴즈
+
+# 계절 장식 — auto: 날짜에 따라 자동(크리스마스 11/25~12/25 · 새해 12/26~1/10 · 겨울 ~2월 · 봄 3~5월 · 여름 6~8월 · 가을 9/1~11/24)
+#             off: 끄기 / christmas · newyear · winter · spring · summer · autumn: 한 가지로 고정
+season: auto
+
+# 안내 상자 — 목록의 각 안내는 '처음 발행되는 날 하루만' 지면과 메일 표지에 표시됩니다.
+# 새 안내를 내보내려면 id가 다른 항목을 하나 더 적으면 됩니다. (not_before: 이 날짜 전에는 숨김 / not_after: 지나면 폐기)
+notices:
+  - id: redesign-2026-11
+    not_before: "2026-11-30"
+    not_after: "2026-12-11"
+    title: "지면 개편 안내"
+    lead: "오늘부터 지면이 조금 달라졌습니다. 기존 틀은 그대로 두고 아래 내용을 더했습니다."
+    items:
+      - "<b>환율</b> — 달러·위안 환율을 핵심 숫자 아래에 표시합니다."
+      - "<b>글로벌 ESS 확대</b> — 해외 매체를 직접 살펴 최대 4건까지 싣습니다."
+      - "<b>데이터센터 · AI 전력</b> — 새 섹션입니다."
+      - "<b>월요일 · AI 활용 교실</b> — 업무에 AI를 쓰는 법을 매주 한 가지씩 소개합니다."
+      - "<b>금요일 · 주간 퀴즈</b> — 한 주 지면을 5문제로 돌아봅니다(자체 확인용 · 점수 저장 없음)."
+      - "<b>댓글 칸 종료</b> — 지면 하단 댓글 칸은 운영을 마쳤습니다."
 
 # 웹 발행 주소(GitHub Pages) — 설정 시 메일 본문에 "웹에서 보기" 링크가 표시됩니다
 # 예: https://내아이디.github.io/ess-briefing/
