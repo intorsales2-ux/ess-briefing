@@ -2,11 +2,26 @@ name: INTOR Daily Briefing
 
 on:
   schedule:
-    # 한국시간 월~금 07:23 (UTC 22:23, 전날) — 정각/30분 혼잡을 피해 지연 확률을 낮춤
-    - cron: '23 22 * * 0-4'
-    # 보험용 2차 알람: 한국시간 월~금 08:10 — 1차가 건너뛰어졌을 때만 발행(중복 방지 로직 내장)
-    - cron: '10 23 * * 0-4'
-  workflow_dispatch: {}
+    # 한국시간 월~금 아침의 '예비 알람'. 정시 발행은 외부 알람(cron-job.org)이 맡고, 아래는 외부 알람이 실패한 날을 위한 보험이다.
+    # GitHub 예약은 밀리거나 건너뛰는 일이 잦아 4개를 걸어 둔다. 먼저 울린 쪽이 발행하고,
+    # 나머지는 '이미 발행됨'을 확인한 뒤 바로 끝난다(중복 발행·중복 과금 없음).
+    - cron: '7 22 * * 0-4'    # 07:07
+    - cron: '23 22 * * 0-4'   # 07:23
+    - cron: '47 22 * * 0-4'   # 07:47
+    - cron: '10 23 * * 0-4'   # 08:10
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: '실행 방식 — publish: 실제 발행(독자에게 메일 발송) / rehearsal: 리허설(독자에게 안 나감)'
+        type: choice
+        options:
+          - publish
+          - rehearsal
+        default: publish
+      date:
+        description: '리허설 기준 날짜(선택) — 예: 2026-11-30 · 비우면 오늘'
+        required: false
+        default: ''
 
 permissions:
   contents: write
@@ -20,6 +35,10 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TZ: Asia/Seoul
+      BRIEFING_MODE: ${{ inputs.mode || 'publish' }}
+      BRIEFING_DATE: ${{ inputs.date }}
+      GH_EVENT: ${{ github.event_name }}
+      GH_SCHEDULE: ${{ github.event.schedule }}
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
       CLAUDE_MODEL: ${{ secrets.CLAUDE_MODEL }}
       SMTP_HOST: ${{ secrets.SMTP_HOST }}
@@ -29,14 +48,26 @@ jobs:
       MAIL_FROM: ${{ secrets.MAIL_FROM }}
       MAIL_TO: ${{ secrets.MAIL_TO }}
     steps:
+      # 항상 '지금의 main'을 받는다. 알람이 겹쳐 실행이 줄을 섰을 때, 뒤 실행이 앞 실행의 발행분을 보고 건너뛰게 하기 위함
+      # (이 설정이 없으면 뒤 실행이 줄 서기 전의 옛 상태를 받아 같은 날 두 번 발행할 수 있다)
       - uses: actions/checkout@v5
+        with:
+          ref: main
 
-      # 오늘 이미 발행됐는지 확인 — 2차 알람의 중복 발행·중복 과금 방지
+      # 오늘 이미 발행됐는지 확인 — 뒤따라 울린 알람의 중복 발행·중복 과금 방지 (리허설은 항상 진행)
       - name: Check if already published today
         id: guard
         run: |
           TODAY=$(date +%F)
-          if [ -f "docs/archive/${TODAY}.html" ]; then
+          if [ "$BRIEFING_MODE" = "rehearsal" ]; then
+            # 안전장치: 리허설을 모르는 예전 main.py로 돌리면 실제 발송이 되므로, 새 코드가 올라와 있는지 먼저 확인한다
+            if ! grep -q "BRIEFING_MODE" main.py; then
+              echo "::error::main.py가 리허설을 지원하지 않는 예전 버전입니다. 새 파일을 먼저 올린 뒤 다시 실행하세요. (메일은 발송되지 않았습니다)"
+              exit 1
+            fi
+            echo "skip=false" >> $GITHUB_OUTPUT
+            echo "[guard] 리허설 — 독자에게 발송하지 않는 시험 실행입니다."
+          elif [ -f "docs/archive/${TODAY}.html" ]; then
             echo "skip=true" >> $GITHUB_OUTPUT
             echo "[guard] ${TODAY} 지면이 이미 있습니다 — 이번 실행은 건너뜁니다."
           else
@@ -53,12 +84,12 @@ jobs:
         if: steps.guard.outputs.skip == 'false'
         run: pip install -r requirements.txt
 
-      - name: Run robot (publish + email)
+      - name: Run robot
         if: steps.guard.outputs.skip == 'false'
         run: python main.py
 
       - name: Publish to web (docs/) & save memory
-        if: steps.guard.outputs.skip == 'false'
+        if: steps.guard.outputs.skip == 'false' && env.BRIEFING_MODE != 'rehearsal'
         run: |
           mkdir -p docs/archive
           cp output/index.html docs/index.html
@@ -67,6 +98,21 @@ jobs:
           git config user.name "intor-robot"
           git config user.email "robot@intor.kr"
           git add docs output/state.json output/seen_urls.json
+          git add output/run_log.json 2>/dev/null || true
           git commit -m "briefing $(date +%F)" || echo "no changes"
+          git pull --rebase --autostash || true
+          git push
+
+      # 리허설 결과 — 독자에게 알리지 않는 미리보기 주소(/preview/)에만 올린다. 실패해도 진단 기록은 남긴다.
+      - name: Save rehearsal preview
+        if: always() && steps.guard.outputs.skip == 'false' && env.BRIEFING_MODE == 'rehearsal'
+        run: |
+          mkdir -p docs/preview
+          if [ -f output/preview.html ]; then cp output/preview.html docs/preview/index.html; fi
+          if [ -f output/preview_diag.txt ]; then cp output/preview_diag.txt docs/preview/diag.txt; fi
+          git config user.name "intor-robot"
+          git config user.email "robot@intor.kr"
+          git add docs/preview
+          git commit -m "rehearsal $(date +%F-%H%M)" || echo "no changes"
           git pull --rebase --autostash || true
           git push
